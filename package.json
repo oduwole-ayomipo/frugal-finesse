@@ -2,7 +2,7 @@
   "name": "frugal-finesse",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://oduwole-ayomipo/github.io/frugal-finesse",
+  "homepage": "https://ayomipo-oduwole/github.io/frugal-finesse",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
