@@ -1,8 +1,12 @@
 import React from "react";
-import Nav from "../../components/Navigation/Nav";
+import LandingPageNav from "../../components/Landing-Page-Nav/LandingPageNav";
 
 function LandingPage() {
-  return <Nav />;
+  return (
+    <div>
+      <LandingPageNav />
+    </div>
+  );
 }
 
 export default LandingPage;
