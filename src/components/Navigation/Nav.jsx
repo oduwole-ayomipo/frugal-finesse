@@ -1,11 +1,11 @@
 import React from "react";
-import lgLogo from "../../images/svg-logo/logo.svg";
+import smLogo from "../../images/svg-logo/smLogo.svg";
 
 function Nav() {
   return (
     <div>
       <div className="logo">
-        <img src={lgLogo} alt="Frugal Finesse" />
+        <img src={smLogo} alt="Frugal Finesse" />
       </div>
     </div>
   );
