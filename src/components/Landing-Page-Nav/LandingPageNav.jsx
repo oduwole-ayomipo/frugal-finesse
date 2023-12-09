@@ -31,7 +31,7 @@ function LandingPageNav() {
           <div className="mx-auto max-w-7xl py-9 sm:px-6 lg:px-9">
             <div className="relative flex items-center justify-end">
               <div className="absolute inset-y-0 left-0 flex items-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
+                <div className="flex flex-shrink-0 pl-3 items-center">
                   <img className="h-14 p-3" src={smLogo} alt="Frugal Finesse" />
                 </div>
               </div>
@@ -78,7 +78,7 @@ function LandingPageNav() {
                 </Disclosure.Button>
               </div>
               <div className="hidden sm:ml-6 sm:block">
-                <div className="flex items-center justify-center space-x-4 my">
+                <div className="flex items-center justify-center space-x-4">
                   {navigation.map((item) => (
                     <a key={item.name} href={item.href}>
                       {item.btnType}
@@ -89,7 +89,7 @@ function LandingPageNav() {
             </div>
           </div>
 
-          <Disclosure.Panel className="flex items-center mt-16 px-4 justify-center bg-[#FFFFFF] sm:hidden">
+          <Disclosure.Panel className="flex items-center mt-8 px-4 justify-centersm:hidden">
             <div className="flex flex-col flex-1 gap-9 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button key={item.name} as="a" href={item.href}>
