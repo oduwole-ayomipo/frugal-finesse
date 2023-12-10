@@ -20,8 +20,7 @@ const testButtonComponent = (ButtonComponent) => {
   });
 };
 
-//Run the above test for each button component
-//Describe group related tests, one for each button type.
+//Describe group related tests &Run the above test for each button component
 describe("Button Components", () => {
   describe("Filled Button", () => {
     testButtonComponent(FilledBtn);

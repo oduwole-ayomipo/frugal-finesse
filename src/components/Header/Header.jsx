@@ -50,7 +50,7 @@ function Header() {
             </div>
           </div>
         </div>
-        <div className="w-full flex items-center justify-center mt-7">
+        <div className="w-full flex items-center justify-center my-7">
           <img src={LandingImg} alt="Frugal Finesse" className="w-full" />
         </div>
       </div>

@@ -1,14 +1,14 @@
 import React from "react";
-import LandingPageNav from "../../components/Landing-Page-Nav/LandingPageNav";
+import LandingNav from "../../components/Landing-nav/LandingNav";
 import Header from "../../components/Header/Header";
 
-function LandingPage() {
+function Landing() {
   return (
     <div className="flex flex-col min-h-[100vh] sm:px-0 custom:px-10">
-      <LandingPageNav />
+      <LandingNav />
       <Header />
     </div>
   );
 }
 
-export default LandingPage;
+export default Landing;

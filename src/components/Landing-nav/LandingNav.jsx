@@ -1,4 +1,5 @@
 import { React } from "react";
+import { Link } from "react-router-dom";
 import smLogo from "../../images/svg-logo/smLogo.svg";
 import FilledBtn from "../Button/Filled-Button/FilledBtn";
 import OutlineBtn from "../Button/Outline-Button/OutlineBtn";
@@ -9,21 +10,21 @@ const navigation = [
   {
     btnType: <TextBtn buttonText={"Learn More"} />,
     name: "Text Button",
-    href: "#",
+    to: "/",
   },
   {
     btnType: <OutlineBtn buttonText={"Login"} />,
     name: "Outlined Button",
-    href: "#",
+    to: "/login",
   },
   {
     btnType: <FilledBtn buttonText={"Sign Up"} />,
     name: "Filled Button",
-    href: "#",
+    to: "/sign-up",
   },
 ];
 
-function LandingPageNav() {
+function LandingNav() {
   return (
     <Disclosure as="nav" className="nav-bar">
       {({ open }) => (
@@ -84,9 +85,9 @@ function LandingPageNav() {
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex items-center justify-center space-x-4">
                   {navigation.map((item) => (
-                    <a key={item.name} href={item.href}>
+                    <Link key={item.name} to={item.to}>
                       {item.btnType}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -108,4 +109,4 @@ function LandingPageNav() {
   );
 }
 
-export default LandingPageNav;
+export default LandingNav;
