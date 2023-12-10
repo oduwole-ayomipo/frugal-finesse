@@ -4,38 +4,54 @@ import LandingImg from "../../images/svg-img/landing-img.svg";
 function Header() {
   return (
     <>
-      <div className="flex bg-[#ffffff] flex-col items-center px-4 py-1 flex-shrink-0">
-        <div className="flex flex-col gap-7 justify-evenly self-stretch p-2">
+      <div className="flex mt-5 gap-6 flex-col items-center justify-between px-5  md:flex-row sm:flex-row  md:px-9 lg:px-16">
+        <div className="flex flex-col gap-7 self-center py-2 md:min-w-[60%]">
           <div className="flex">
-            <h1 className=" text-4xl font-bold font-display tracking-tighter leading-tight">
-              Money & Sense - Master your wealth with{" "}
+            <h1 className=" text-4xl font-bold font-display tracking-tighter leading-tight lg:text-5xl lg:leading-[1.1]">
+              Money & Sense: <br /> Master your wealth with{" "}
               <span className="text-purple-4">Frugal Finesse</span>
             </h1>
           </div>
           <div className="flex">
-            <p>
-              Allocate your income to investments, savings, and expenses.
-              Discover the art of budgeting and manage your money wisely for a
+            <p className="font-body text-sm leading-normal font-medium lg:text-xl">
+              Allocate your income to{" "}
+              <span className="font-medium text-purple-4">
+                investments, savings, and expenses
+              </span>
+              . Discover the art of budgeting and manage your money wisely for a
               brighter financial future.
             </p>
           </div>
-          <div>
-            <div>
-              <h6> 8+ </h6>
-              <p>Budget Principles</p>
+          <div className="flex w-full gap-4 lg:gap-16 items-center custom:gap-10">
+            <div className="flex flex-col">
+              <h6 className="font-display font-bold text-3xl sm:text-2xl lg:text-4xl">
+                8+
+              </h6>
+              <p className="font-body text-sm leading-tighter font-medium sm:text-xs lg:text-xl">
+                Budget <br /> Principles
+              </p>
             </div>
-            <div>
-              <h6> 50+ </h6>
-              <p>Financial Advises</p>
+            <div className="flex flex-col">
+              <h6 className="font-display font-bold text-3xl sm:text-2xl lg:text-4xl">
+                50+
+              </h6>
+              <p className="font-body text-sm leading-tighter font-medium sm:text-xs lg:text-xl">
+                Financial <br /> Advises
+              </p>
             </div>
-            <div>
-              <h6> 100+</h6>
-              <p>Financial Forums</p>
+            <div className="flex flex-col">
+              <h6 className="font-display font-bold text-3xl sm:text-2xl lg:text-4xl">
+                {" "}
+                100+
+              </h6>
+              <p className="font-body text-sm leading-tighter sm:text-xs font-medium lg:text-xl">
+                Financial <br /> Forums
+              </p>
             </div>
           </div>
-          <div>
-            <img src={LandingImg} alt="" />
-          </div>
+        </div>
+        <div className="w-full flex items-center justify-center mt-7">
+          <img src={LandingImg} alt="Frugal Finesse" className="w-full" />
         </div>
       </div>
     </>

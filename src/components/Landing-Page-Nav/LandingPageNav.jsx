@@ -28,11 +28,15 @@ function LandingPageNav() {
     <Disclosure as="nav" className="nav-bar">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl py-9 sm:px-6 lg:px-9">
-            <div className="relative flex items-center justify-end">
+          <div className="mx-auto  max-w-7xl py-9 px-5 md:px-9 lg:px-16">
+            <div className="relative  flex items-center justify-end">
               <div className="absolute inset-y-0 left-0 flex items-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 pl-3 items-center">
-                  <img className="h-14 p-3" src={smLogo} alt="Frugal Finesse" />
+                <div className="flex items-center ">
+                  <img
+                    className="h-14 py-3"
+                    src={smLogo}
+                    alt="Frugal Finesse"
+                  />
                 </div>
               </div>
               <div className="flex flex-1 items-end justify-end sm:hidden">
