@@ -12,7 +12,7 @@ function Header() {
               <span className="text-purple-4">Frugal Finesse</span>
             </h1>
           </div>
-          <div className="flex">
+          <div className="flex lg:max-w-[90%]">
             <p className="font-body text-sm leading-normal font-medium lg:text-xl">
               Allocate your income to{" "}
               <span className="font-medium text-purple-4">
