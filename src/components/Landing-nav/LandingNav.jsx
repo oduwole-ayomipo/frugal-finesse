@@ -9,24 +9,24 @@ import { Disclosure } from "@headlessui/react";
 const navigation = [
   {
     btnType: <TextBtn buttonText={"Learn More"} />,
-    name: "Text Button",
+    name: "Learn More",
     to: "/",
   },
   {
     btnType: <OutlineBtn buttonText={"Login"} />,
-    name: "Outlined Button",
+    name: "Login",
     to: "/login",
   },
   {
     btnType: <FilledBtn buttonText={"Sign Up"} />,
-    name: "Filled Button",
+    name: "Sign Up",
     to: "/sign-up",
   },
 ];
 
 function LandingNav() {
   return (
-    <Disclosure as="nav" className="nav-bar">
+    <Disclosure as="nav" className="nav-bar" data-testid="landing-page-nav">
       {({ open }) => (
         <>
           <div className="mx-auto  max-w-7xl py-9 px-5 md:px-9 lg:px-16">
@@ -85,7 +85,7 @@ function LandingNav() {
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex items-center justify-center space-x-4">
                   {navigation.map((item) => (
-                    <Link key={item.name} to={item.to}>
+                    <Link key={item.name} data-testid={item.name} to={item.to}>
                       {item.btnType}
                     </Link>
                   ))}
@@ -94,10 +94,15 @@ function LandingNav() {
             </div>
           </div>
 
-          <Disclosure.Panel className="flex items-center mt-8 px-4 justify-centersm:hidden">
+          <Disclosure.Panel className="flex items-center mt-8 px-4 justify-center sm:hidden">
             <div className="flex flex-col flex-1 gap-9 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-                <Disclosure.Button key={item.name} as="a" href={item.href}>
+                <Disclosure.Button
+                  key={item.name}
+                  as="a"
+                  data-testid={item.name}
+                  href={item.to}
+                >
                   {item.btnType}
                 </Disclosure.Button>
               ))}
