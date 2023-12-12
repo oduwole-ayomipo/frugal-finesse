@@ -6,11 +6,11 @@ import { MemoryRouter, Routes, Route } from "react-router-dom";
 
 test("renders Login and Sign Up links in LandingNav", () => {
   render(
-    <MemoryRouter initialEntries={["/"]}>
+    <MemoryRouter initialEntries={["/frugal-finesse"]}>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/" element={<LandingNav />} />
+        <Route path="frugal-finesse/login" element={<Login />} />
+        <Route path="frugal-finesse/sign-up" element={<SignUp />} />
+        <Route path="frugal-finesse" element={<LandingNav />} />
       </Routes>
     </MemoryRouter>
   );
@@ -18,10 +18,10 @@ test("renders Login and Sign Up links in LandingNav", () => {
   // Check if the Login link is rendered
   const loginLink = screen.getByTestId("Login");
   expect(loginLink).toBeInTheDocument();
-  expect(loginLink.getAttribute("href")).toBe("/login");
+  expect(loginLink.getAttribute("href")).toBe("/frugal-finesse/login");
 
   // Check if the Sign Up link is rendered
   const signUpLink = screen.getByTestId("Sign Up");
   expect(signUpLink).toBeInTheDocument();
-  expect(signUpLink.getAttribute("href")).toBe("/sign-up");
+  expect(signUpLink.getAttribute("href")).toBe("/frugal-finesse/sign-up");
 });
