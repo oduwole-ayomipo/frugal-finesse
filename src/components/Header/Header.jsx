@@ -1,5 +1,5 @@
 import React from "react";
-import LandingImg from "../../images/svg-img/landing-img.svg";
+import landing from "../../images/svg-img/landing.svg";
 
 function Header() {
   return (
@@ -51,7 +51,7 @@ function Header() {
           </div>
         </div>
         <div className="w-full flex items-center justify-center my-7">
-          <img src={LandingImg} alt="Frugal Finesse" className="w-full" />
+          <img src={landing} alt="Frugal Finesse" className="w-full" />
         </div>
       </div>
     </>

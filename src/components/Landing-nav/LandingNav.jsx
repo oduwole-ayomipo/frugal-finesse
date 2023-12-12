@@ -8,9 +8,9 @@ import { Disclosure } from "@headlessui/react";
 
 const navigation = [
   {
-    btnType: <TextBtn buttonText={"Learn More"} type="button" />,
+    btnType: <TextBtn buttonText={"Contact Us"} type="button" />,
     name: "Learn More",
-    to: "/frugal-finesse",
+    to: "/frugal-finesse/contact-us",
   },
   {
     btnType: <OutlineBtn buttonText={"Login"} type="button" />,
