@@ -1,5 +1,9 @@
 import "./App.css";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
+import Login from "./pages/Login/Login";
+import SignUp from "./pages/Sign-Up/SignUp";
 
 function App() {
   return (
@@ -7,7 +11,11 @@ function App() {
       className="text-purple-dark mx-auto max-w-7xl"
       data-testid="app-container"
     >
-      <Landing />
+      <Routes>
+        <Route path="frugal-finesse" element={<Landing />} />
+        <Route path="frugal-finesse/login" element={<Login />} />
+        <Route path="frugal-finesse/sign-up" element={<SignUp />} />
+      </Routes>
     </div>
   );
 }
