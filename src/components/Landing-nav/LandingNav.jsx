@@ -8,17 +8,17 @@ import { Disclosure } from "@headlessui/react";
 
 const navigation = [
   {
-    btnType: <TextBtn buttonText={"Learn More"} />,
+    btnType: <TextBtn buttonText={"Learn More"} type="button" />,
     name: "Learn More",
     to: "/frugal-finesse",
   },
   {
-    btnType: <OutlineBtn buttonText={"Login"} />,
+    btnType: <OutlineBtn buttonText={"Login"} type="button" />,
     name: "Login",
     to: "/frugal-finesse/login",
   },
   {
-    btnType: <FilledBtn buttonText={"Sign Up"} />,
+    btnType: <FilledBtn buttonText={"Sign Up"} type="button" />,
     name: "Sign Up",
     to: "/frugal-finesse/sign-up",
   },
@@ -99,11 +99,11 @@ function LandingNav() {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
-                  data-testid={item.name}
-                  href={item.to}
+                  as="div" // Use a div wrapper
                 >
-                  {item.btnType}
+                  <Link to={item.to} data-testid={item.name}>
+                    {item.btnType}
+                  </Link>
                 </Disclosure.Button>
               ))}
             </div>

@@ -7,10 +7,7 @@ import SignUp from "./pages/Sign-Up/SignUp";
 
 function App() {
   return (
-    <div
-      className="text-purple-dark mx-auto max-w-7xl"
-      data-testid="app-container"
-    >
+    <div data-testid="app-container">
       <Routes>
         <Route path="frugal-finesse" element={<Landing />} />
         <Route path="frugal-finesse/login" element={<Login />} />
