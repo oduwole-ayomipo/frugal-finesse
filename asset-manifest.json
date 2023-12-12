@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/frugal-finesse/static/css/main.085f3900.css",
-    "main.js": "/frugal-finesse/static/js/main.d31bc2a1.js",
+    "main.js": "/frugal-finesse/static/js/main.5f037853.js",
     "static/media/landing-img.svg": "/frugal-finesse/static/media/landing-img.52094964dbf0abe7ba3a699cd568da3c.svg",
     "static/media/smLogo.svg": "/frugal-finesse/static/media/smLogo.dfa6b33d83e5843e364e15db4375020c.svg",
     "index.html": "/frugal-finesse/index.html",
     "main.085f3900.css.map": "/frugal-finesse/static/css/main.085f3900.css.map",
-    "main.d31bc2a1.js.map": "/frugal-finesse/static/js/main.d31bc2a1.js.map"
+    "main.5f037853.js.map": "/frugal-finesse/static/js/main.5f037853.js.map"
   },
   "entrypoints": [
     "static/css/main.085f3900.css",
-    "static/js/main.d31bc2a1.js"
+    "static/js/main.5f037853.js"
   ]
 }
