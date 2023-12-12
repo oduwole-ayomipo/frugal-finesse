@@ -29,8 +29,8 @@ function LandingNav() {
     <Disclosure as="nav" className="nav-bar" data-testid="landing-page-nav">
       {({ open }) => (
         <>
-          <div className="mx-auto  max-w-7xl py-9 px-5 md:px-9 lg:px-16">
-            <div className="relative  flex items-center justify-end">
+          <div className="mx-auto max-w-7xl py-9 px-5 md:px-9">
+            <div className="relative flex items-center justify-end">
               <div className="absolute inset-y-0 left-0 flex items-center sm:items-stretch sm:justify-start">
                 <div className="flex items-center ">
                   <img

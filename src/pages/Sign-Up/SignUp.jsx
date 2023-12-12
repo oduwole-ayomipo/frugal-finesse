@@ -9,7 +9,7 @@ import authImg from "../../images/svg-img/auth.svg";
 function SignUp() {
   return (
     <>
-      <div className="w-full rounded-sm bg-white text-purple-light shadow-default mx-auto max-w-[100rem]">
+      <div className="w-full rounded-sm bg-white text-purple-light">
         <div className="flex items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
@@ -40,7 +40,8 @@ function SignUp() {
               <form>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-display font-semibold text-purple-dark">
-                    Full Name
+                    Full Name{" "}
+                    <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
@@ -76,7 +77,8 @@ function SignUp() {
 
                 <div className="mb-4">
                   <label className="mb-2.5 block font-display font-semibold text-purple-dark">
-                    Email
+                    Email{" "}
+                    <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
@@ -108,7 +110,8 @@ function SignUp() {
 
                 <div className="mb-6">
                   <label className="mb-2.5 block font-medium text-black">
-                    Password
+                    Password{" "}
+                    <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
@@ -144,7 +147,8 @@ function SignUp() {
 
                 <div className="mb-6">
                   <label className="mb-2.5 block font-medium text-black">
-                    Re-type Password
+                    Re-type Password{" "}
+                    <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input

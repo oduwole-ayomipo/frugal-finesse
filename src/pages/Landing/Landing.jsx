@@ -5,7 +5,7 @@ import Header from "../../components/Header/Header";
 function Landing() {
   return (
     <div
-      className="flex flex-col text-purple-dark mx-auto max-w-7xl min-h-[100vh] sm:px-0 custom:px-10 "
+      className="flex flex-col text-purple-dark min-h-[100vh]"
       data-testid="landing-page"
     >
       <LandingNav />

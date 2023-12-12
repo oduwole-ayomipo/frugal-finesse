@@ -8,7 +8,10 @@ import SignUp from "./pages/Sign-Up/SignUp";
 
 function App() {
   return (
-    <div data-testid="app-container">
+    <div
+      className="mx-auto max-w-7xl shadow-default"
+      data-testid="app-container"
+    >
       <Routes>
         <Route path="frugal-finesse" element={<Landing />} />
         <Route path="frugal-finesse/contact-us" element={<Contact />} />

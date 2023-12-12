@@ -4,8 +4,8 @@ import landing from "../../images/svg-img/landing.svg";
 function Header() {
   return (
     <>
-      <div className="flex mt-5 gap-6 flex-col items-center justify-between px-5  md:flex-row sm:flex-row  md:px-9 lg:px-16">
-        <div className="flex flex-col gap-7 self-center py-2 md:min-w-[60%]">
+      <div className="flex gap-6 flex-col items-center justify-between px-5  md:flex-row sm:flex-row md:px-9">
+        <div className="flex flex-col gap-7 self-center py-2 md:min-w-[58%]">
           <div className="flex">
             <h1 className=" text-4xl font-bold font-display tracking-tighter leading-tight lg:text-5xl lg:leading-[1.1]">
               Money & Sense: <br /> Master your wealth with{" "}

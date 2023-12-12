@@ -6,7 +6,6 @@ module.exports = {
   theme: {
     screens: {
       "2xsm": "375px",
-      custom: "400px",
       xsm: "425px",
       "3xl": "2000px",
       ...defaultTheme.screens,
@@ -26,6 +25,7 @@ module.exports = {
       "purple-7": "#573D7F",
       "purple-8": "#46325D",
       "purple-dark": "#3F3649",
+      "meta-1": "#DC3545",
     },
     fontFamily: {
       display: 'Montserrat, "sans-serif"',
@@ -184,12 +184,6 @@ module.exports = {
       },
       opacity: {
         65: ".65",
-      },
-      backgroundImage: {
-        video: "url('../images/video/video.png')",
-      },
-      content: {
-        "icon-copy": 'url("../images/icon/icon-copy-alt.svg")',
       },
       transitionProperty: { width: "width", stroke: "stroke" },
       borderWidth: {
