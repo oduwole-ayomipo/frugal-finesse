@@ -109,7 +109,9 @@ function Login() {
                 </div>
 
                 <div className="mb-5">
-                  <FilledBtn buttonText={"Login"} type={"submit"} />
+                  <Link to="/frugal-finesse/basic-setup-1">
+                    <FilledBtn buttonText={"Login"} type={"submit"} />
+                  </Link>
                 </div>
 
                 <OutlineBtn
