@@ -25,7 +25,7 @@ function BudgetPrincipleCard({ onClick, cardId }) {
   return (
     <>
       <div
-        className="col-span-5 xl:col-span-2 my-4 mx-auto  w-[25rem]"
+        className="col-span-5 xl:col-span-2 my-4 mx-auto cursor-pointer w-[25rem] hover:translate-y-1"
         onClick={handleCardClick}
       >
         <div className="rounded-sm border border-stroke bg-white shadow-default text-purple-dark">
