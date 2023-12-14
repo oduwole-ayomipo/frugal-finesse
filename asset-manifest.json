@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/frugal-finesse/static/css/main.9068deee.css",
-    "main.js": "/frugal-finesse/static/js/main.0312ccbf.js",
+    "main.css": "/frugal-finesse/static/css/main.1ea1be1e.css",
+    "main.js": "/frugal-finesse/static/js/main.2c79be37.js",
     "static/media/landing.svg": "/frugal-finesse/static/media/landing.0b2a130527113b8a09e1e303de91cdfc.svg",
     "static/media/auth.svg": "/frugal-finesse/static/media/auth.dbe913a088a9d7344affe62e09670fba.svg",
     "static/media/smLogo.svg": "/frugal-finesse/static/media/smLogo.dfa6b33d83e5843e364e15db4375020c.svg",
     "static/media/lgLogo.svg": "/frugal-finesse/static/media/lgLogo.125a57f0a73d5343e60ce342899f0efa.svg",
     "index.html": "/frugal-finesse/index.html",
-    "main.9068deee.css.map": "/frugal-finesse/static/css/main.9068deee.css.map",
-    "main.0312ccbf.js.map": "/frugal-finesse/static/js/main.0312ccbf.js.map"
+    "main.1ea1be1e.css.map": "/frugal-finesse/static/css/main.1ea1be1e.css.map",
+    "main.2c79be37.js.map": "/frugal-finesse/static/js/main.2c79be37.js.map"
   },
   "entrypoints": [
-    "static/css/main.9068deee.css",
-    "static/js/main.0312ccbf.js"
+    "static/css/main.1ea1be1e.css",
+    "static/js/main.2c79be37.js"
   ]
 }
