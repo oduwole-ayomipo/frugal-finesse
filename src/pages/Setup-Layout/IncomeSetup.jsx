@@ -61,7 +61,7 @@ function IncomeSetup() {
                     </span>
                     <select
                       required
-                      className="relative z-20 w-full text-center appearance-none font-medium font-display border-stroke border-purple-light rounded border border-stroke bg-transparent py-3 outline-none transition focus:border-purple-6 focus-visible:shadow-none active:border-purple-6"
+                      className="relative z-20 w-full text-center appearance-none font-medium font-display  border-purple-light rounded border bg-transparent py-3 outline-none transition focus:border-purple-6 focus-visible:shadow-none active:border-purple-6"
                     >
                       <option value="">Bi-Weekly</option>
                       <option value="">Monthly</option>

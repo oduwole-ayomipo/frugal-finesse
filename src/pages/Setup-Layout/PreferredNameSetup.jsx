@@ -21,7 +21,7 @@ function PreferredNameSetup() {
                   required
                   type="text"
                   placeholder="Enter your preferred name"
-                  className="w-full text-center rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                  className="w-full text-center rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                 />
               </div>
               <div className="mt-5">

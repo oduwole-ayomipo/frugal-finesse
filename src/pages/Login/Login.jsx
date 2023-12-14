@@ -48,7 +48,7 @@ function Login() {
                       required
                       type="email"
                       placeholder="Enter your email"
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
                     <span className="absolute right-4 top-4 text-purple-6">
@@ -81,7 +81,7 @@ function Login() {
                       required
                       type="password"
                       placeholder="Enter your password"
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
                     <span className="absolute right-4 top-4 text-purple-6">
