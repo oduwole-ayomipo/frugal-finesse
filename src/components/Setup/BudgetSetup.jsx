@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
-import FilledBtn from "../../components/Button/Filled-Button/FilledBtn";
-import BudgetPrincipleCard from "../../components/Budget-Principle-Card/BudgetPrincipleCard";
+import FilledBtn from "../Button/Filled-Button/FilledBtn";
+import BudgetPrincipleCard from "../Budget-Principle-Card/BudgetPrincipleCard";
 
 function BudgetSetup() {
   const [selectedCard, isSelectedCard] = useState("");

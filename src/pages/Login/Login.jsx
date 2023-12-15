@@ -109,7 +109,7 @@ function Login() {
                 </div>
 
                 <div className="mb-5">
-                  <Link to="/frugal-finesse/basic-setup-1">
+                  <Link to="/frugal-finesse/basic-setup">
                     <FilledBtn buttonText={"Login"} type={"submit"} />
                   </Link>
                 </div>
