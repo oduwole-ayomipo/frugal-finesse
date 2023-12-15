@@ -9,12 +9,10 @@ function IncomeForm({ onSubmit }) {
     initialValues: { income: "", period: "Monthly" },
 
     onSubmit: (values) => {
-      console.log("period", values.period);
-
       // Clean up the income value by removing commas and extra spaces
       const cleanedIncome = values.income.replace(/[, ]/g, "");
       console.log("income", cleanedIncome);
-      onSubmit(cleanedIncome, values.period);
+      onSubmit(cleanedIncome);
     },
 
     validationSchema: Yup.object({
@@ -43,34 +41,15 @@ function IncomeForm({ onSubmit }) {
             </span>
             <div className="w-full">
               <input
-                className="w-full rounded-lg border text-purple-6 border-purple-light bg-transparent py-4 pr-6 pl-20 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                className="w-full rounded-lg border text-center text-purple-6 border-purple-light bg-transparent py-4 pr-6 outline-none focus:border-purple-6 focus-visible:shadow-none"
                 required
                 name="income"
                 type="text"
-                placeholder="Enter your Income"
+                placeholder="Monthly income after tax"
                 value={formik.values.income}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              <div className="h-full absolute inset-y-0 right-4 flex items-center">
-                <label htmlFor="period" className="sr-only">
-                  Period
-                </label>
-                <select
-                  required
-                  id="period"
-                  name="period"
-                  value={formik.values.period}
-                  onBlur={formik.onBlur}
-                  onChange={formik.handleChange}
-                  className="h-full rounded-md border-0 bg-transparent py-0 pl-2  outline-none ease-in-out  font-display opacity-70 capitalize focus:border-purple-6 active:border-purple-6 focus-visible:shadow-none sm:text-sm"
-                >
-                  <option>Monthly</option>
-                  <option>Quaterly</option>
-                  <option>Annually</option>
-                  <option>Bi-weekly</option>
-                </select>
-              </div>
             </div>
           </div>
         </div>

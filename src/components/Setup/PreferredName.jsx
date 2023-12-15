@@ -10,7 +10,7 @@ function PreferredName({ onSubmit }) {
 
     onSubmit: (values) => {
       //onsubmit from formik
-      onSubmit(values);
+      onSubmit(values.username);
       console.log("name is", values.username);
     },
 
@@ -51,7 +51,7 @@ function PreferredName({ onSubmit }) {
           </p>
         </div>
         <div className="mt-5">
-          <FilledBtn buttonText={"Next"} type={"submit"} />
+          <FilledBtn buttonText={"PROCEED"} type={"submit"} />
         </div>
       </form>
     </>

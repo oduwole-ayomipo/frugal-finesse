@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import PreferredName from "../../components/Setup/PreferredName";
 import IncomeForm from "../../components/Setup/IncomeForm";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
+import BudgetSetup from "../../components/Setup/BudgetSetup";
+import Dashboard from "../Dashbord/Dashboard";
 
 function SetupLayout() {
   const [currentForm, setCurrentForm] = useState(1);
   const [formData, setFormData] = useState({
     PreferredNameForm: {},
     IncomeSetup: {},
+    BudgetSetup: {},
   });
 
   const handlePreferredNameFormSubmit = (data) => {
@@ -25,6 +28,14 @@ function SetupLayout() {
     }));
     setCurrentForm(3);
   };
+
+  const handleDisplayDashboard = (data) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      BudgetSetup: data,
+    }));
+    setCurrentForm(4);
+  };
   return (
     <>
       <div className="w-full flex items-center min-h-screen mx-auto max-w-[30rem]">
@@ -39,7 +50,11 @@ function SetupLayout() {
             {currentForm === 2 && (
               <IncomeForm onSubmit={handleIncomeFormSubmit} />
             )}
-            {currentForm === 3 && <div>suppp</div>}
+            {currentForm === 3 && (
+              <BudgetSetup onSubmit={handleDisplayDashboard} />
+            )}
+            {currentForm === 4 && <Dashboard formData={formData} />}
+
             <div className="flex w-full items-center justify-between">
               <div className="w-[32%] rounded h-1 bg-purple-6"></div>
               <div className="w-[32%] rounded h-1 bg-purple-light"></div>
