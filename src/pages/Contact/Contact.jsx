@@ -1,10 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/Button/Filled-Button/FilledBtn";
 import authImg from "../../images/svg-img/auth.svg";
 
 function Contact() {
+  const formik = useFormik({
+    initialValues: {
+      Firstname: "",
+      Lastname: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+    onSubmit: (values) => {
+      console.log("contact data", values);
+    },
+    validationSchema: Yup.object({
+      Firstname: Yup.string().min(3, "First name must be above 3 letters"),
+      Lastname: Yup.string().min(3, "Last name must be above 3 letters"),
+      email: Yup.string().email("Please provide a valid email"),
+      subject: Yup.string().min(10, "Subject name must be above 10 letters"),
+      message: Yup.string().min(10, "Message name must be above 10 letters"),
+    }),
+  });
+
   return (
     <>
       <div className="w-full rounded-sm bg-white text-purple-light">
@@ -35,7 +57,7 @@ function Contact() {
                 Contact Us
               </h2>
 
-              <form>
+              <form onSubmit={formik.handleSubmit}>
                 <div className="mb-4.5 flex flex-col gap-6 xl:flex-row font-body font-medium text-purple-6">
                   <div className="w-full xl:w-1/2">
                     <label className="mb-2.5 block font-display font-semibold text-purple-dark">
@@ -43,11 +65,21 @@ function Contact() {
                       <span className="text-meta-1 font-body font-thin">*</span>
                     </label>
                     <input
+                      id="Firstname"
+                      name="Firstname"
                       required
                       type="text"
                       placeholder="Enter your first name"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.Firstname}
                       className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
+                    <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                      {formik.errors.Firstname &&
+                        formik.touched.Firstname &&
+                        formik.errors.Firstname}
+                    </p>
                   </div>
 
                   <div className="w-full xl:w-1/2">
@@ -56,10 +88,20 @@ function Contact() {
                       <span className="text-meta-1 font-body font-thin">*</span>
                     </label>
                     <input
+                      id="Lastname"
+                      name="Lastname"
                       type="text"
                       placeholder="Enter your last name"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.Lastname}
                       className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
+                    <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                      {formik.errors.Lastname &&
+                        formik.touched.Lastname &&
+                        formik.errors.Lastname}
+                    </p>
                   </div>
                 </div>
 
@@ -70,11 +112,21 @@ function Contact() {
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
+                      id="email"
+                      name="email"
                       required
                       type="email"
                       placeholder="Enter your email"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.email}
                       className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
+                    <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                      {formik.errors.email &&
+                        formik.touched.email &&
+                        formik.errors.email}
+                    </p>
                   </div>
                 </div>
 
@@ -85,26 +137,47 @@ function Contact() {
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
+                      id="subject"
+                      name="subject"
                       required
                       type="text"
                       placeholder="Message Subject"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.subject}
                       className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
+                    <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                      {formik.errors.subject &&
+                        formik.touched.subject &&
+                        formik.errors.subject}
+                    </p>
                   </div>
                 </div>
 
                 <div className="mb-4">
                   <label className="mb-2.5 block font-display font-semibold text-purple-dark">
-                    Message{" "}
+                    Message
                     <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <textarea
+                      id="message"
+                      name="message"
+                      required
                       rows={6}
                       placeholder="Type your message"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.message}
                       className="w-full rounded border border-stroke border-purple-light border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-purple-6 focus-visible:shadow-none active:border-primary disabled:cursor-default"
                     ></textarea>
                   </div>
+                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                    {formik.errors.message &&
+                      formik.touched.message &&
+                      formik.errors.message}
+                  </p>
                 </div>
 
                 <div className="mb-5">
