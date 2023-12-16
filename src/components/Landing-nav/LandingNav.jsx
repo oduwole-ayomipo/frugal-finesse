@@ -55,9 +55,9 @@ function LandingNav() {
                         <path
                           d="M2 12L7 7L12 12M12 2L6.99905 7L2 2"
                           stroke="#3F3649"
-                          stroke-width="3"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </div>
@@ -73,9 +73,9 @@ function LandingNav() {
                         <path
                           d="M1 11H19M1 6H19M1 1H19"
                           stroke="black"
-                          stroke-width="3"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </div>

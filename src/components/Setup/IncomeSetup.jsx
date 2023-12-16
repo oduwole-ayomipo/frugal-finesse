@@ -28,18 +28,18 @@ function IncomeSetup({ onSubmit }) {
         <div>
           <label
             htmlFor="income"
-            className="mb-2.5 block font-display text-lg text-center font-semibold text-purple-dark"
+            className="mb-2.5 block font-display text-base text-center font-semibold text-purple-dark lg:text-lg"
           >
-            Precise Total Montly Income?{" "}
+            Total Montly Income?
             <span className="text-meta-1 font-body font-thin">*</span>
           </label>
           <div className="relative font-body font-medium text-purple-7">
-            <span className="absolute left-4 top-4 text-base font-bold opacity-70 font-display">
+            <span className="absolute left-4 top-4 font-bold opacity-70 font-display text-xs lg:text-base">
               NGN
             </span>
             <div className="w-full">
               <input
-                className="w-full rounded-lg border text-center text-purple-6 border-purple-light bg-transparent py-4 pr-6 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                className="w-full rounded-lg text-xs border text-center text-purple-6 border-purple-light bg-transparent py-4 outline-none focus:border-purple-6 focus-visible:shadow-none lg:text-base"
                 required
                 name="income"
                 type="text"
@@ -52,7 +52,7 @@ function IncomeSetup({ onSubmit }) {
           </div>
         </div>
         <div>
-          <p className="text-meta-1 py-2 font-body text-xs font-thin">
+          <p className="text-meta-1 py-1 font-body text-xs font-thin">
             {formik.errors.income &&
               formik.touched.income &&
               formik.errors.income}
@@ -65,25 +65,5 @@ function IncomeSetup({ onSubmit }) {
     </>
   );
 }
-
-/* TL;DR
-
-function onSubmit(values) {
-    // Convert the string to a number
-    const cleanedIncome = parseFloat(values.replace(/,/g, '')); // Remove existing commas, if any
-
-    // Check if numericValue is a valid number
-    if (!isNaN(cleanedIncome)) {
-        let formattedIncome = cleanedIncome.toLocaleString();
-        console.log(formattedIncome);
-        //Update the ui with the formatted income value
-    }
-}
-
-// Example usage
-onSubmit("5,000,000");
-
-
-*/
 
 export default IncomeSetup;

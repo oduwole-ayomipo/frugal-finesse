@@ -15,10 +15,7 @@ function UsernameSetup({ onSubmit }) {
     },
 
     validationSchema: Yup.object({
-      username: Yup.string().min(
-        3,
-        "Preferred name must be more than 3 character"
-      ),
+      username: Yup.string().min(3, "Name must be more than 3 character"),
     }),
   });
 
@@ -28,7 +25,7 @@ function UsernameSetup({ onSubmit }) {
         <div className="w-full">
           <label
             htmlFor="username"
-            className="mb-2.5 block font-display text-lg text-center font-semibold text-purple-dark"
+            className="mb-2.5 block font-display text-base text-center font-semibold text-purple-dark lg:text-lg"
           >
             How shall we call you?
             <span className="text-meta-1 font-body font-thin">*</span>
@@ -41,11 +38,11 @@ function UsernameSetup({ onSubmit }) {
             value={formik.values.username}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            className="w-full text-center rounded-lg border border-purple-light  py-4 pl-6 pr-10 outline-none bg-white focus:border-purple-6 focus-visible:shadow-none"
+            className="w-full text-center rounded-lg border border-purple-light  py-4 outline-none bg-white focus:border-purple-6 focus-visible:shadow-none"
           />
         </div>
         <div>
-          <p className="text-meta-1 py-2 font-body text-xs font-thin">
+          <p className="text-meta-1 py-1 font-body text-xs font-thin">
             {formik.errors.username &&
               formik.touched.username &&
               formik.errors.username}

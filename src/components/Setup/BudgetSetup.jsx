@@ -19,9 +19,10 @@ function BudgetSetup({ onSubmit }) {
         <div>
           <label
             htmlFor="budgetrule"
-            className="mb-2.5 block font-display text-lg text-center font-semibold text-purple-dark"
+            className="mb-2.5 block font-display text-base text-center font-semibold text-purple-dark lg:text-lg"
           >
-            Select a preferred budget rule
+            Preferred Budget Rule?
+            <span className="text-meta-1 font-body font-thin">*</span>
           </label>
           <div className="relative font-body font-medium mt-5 text-purple-7">
             <div className="relative z-20 bg-white">
@@ -80,7 +81,7 @@ function BudgetSetup({ onSubmit }) {
           </div>
         </div>
         <div>
-          <p className="text-meta-1 py-2 font-body text-xs font-thin">
+          <p className="text-meta-1 py-1 font-body text-xs font-thin">
             {formik.errors.income &&
               formik.touched.income &&
               formik.errors.income}

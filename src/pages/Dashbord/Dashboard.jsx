@@ -8,8 +8,6 @@ function Dashboard() {
   const formatIncomeUI = () => {
     const income = parseFloat(formData.IncomeSetup);
 
-    console.log(formData);
-
     if (!isNaN(income)) {
       const formatIncome = income.toLocaleString();
       return formatIncome;

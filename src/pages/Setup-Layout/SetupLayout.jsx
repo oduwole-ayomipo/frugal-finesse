@@ -38,7 +38,6 @@ function SetupLayout() {
       BudgetSetup: data,
     }));
 
-    console.log(formData);
     setCurrentForm(4);
   };
 
@@ -56,8 +55,8 @@ function SetupLayout() {
 
   return (
     <>
-      <div className="w-full flex items-center min-h-screen">
-        <div className="w-full flex items-center justify-center m-auto p-6 gap-8 flex-col min-w-[30rem]">
+      <div className="w-full flex items-center min-h-screen mx-auto lg:w-1/2">
+        <div className="w-full flex items-center justify-center m-auto gap-8 flex-col p-4 sm:p-12.5 xl:p-17.5">
           <div className="p-3">
             <img src={lgLogo} alt="Frugal Finesse" />
           </div>
