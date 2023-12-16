@@ -24,7 +24,7 @@ function UsernameSetup({ onSubmit }) {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className="w-full ">
+      <form onSubmit={formik.handleSubmit} className="w-full">
         <div className="w-full">
           <label
             htmlFor="username"

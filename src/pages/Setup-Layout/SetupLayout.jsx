@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UsernameSetup from "../../components/Setup/UsernameSetup";
 import IncomeSetup from "../../components/Setup/IncomeSetup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import BudgetSetup from "../../components/Setup/BudgetSetup";
-import Dashboard from "../Dashbord/Dashboard";
 
 function SetupLayout() {
+  const navigate = useNavigate();
   const [currentForm, setCurrentForm] = useState(1);
   const [formData, setFormData] = useState({
     UsernameSetup: "",
@@ -13,7 +14,7 @@ function SetupLayout() {
     BudgetSetup: "",
   });
 
-  const totalSteps = 4;
+  const totalSteps = 3;
 
   const handleUsernameSetupSubmit = (data) => {
     setFormData((prevData) => ({
@@ -36,10 +37,12 @@ function SetupLayout() {
       ...prevData,
       BudgetSetup: data,
     }));
+
+    console.log(formData);
     setCurrentForm(4);
   };
 
-  const renderProgressBar = () => {
+  const progressBar = () => {
     const progress = (currentForm / totalSteps) * 100;
     return (
       <div className="w-full ease-in-out bg-purple-light h-1 rounded">
@@ -53,7 +56,7 @@ function SetupLayout() {
 
   return (
     <>
-      <div className="w-full flex items-center min-h-screen mx-auto max-w-[30rem]">
+      <div className="w-full flex items-center min-h-screen">
         <div className="w-full flex items-center justify-center m-auto p-6 gap-8 flex-col min-w-[30rem]">
           <div className="p-3">
             <img src={lgLogo} alt="Frugal Finesse" />
@@ -62,15 +65,19 @@ function SetupLayout() {
             {currentForm === 1 && (
               <UsernameSetup onSubmit={handleUsernameSetupSubmit} />
             )}
+
             {currentForm === 2 && (
               <IncomeSetup onSubmit={handleIncomeSetupSubmit} />
             )}
+
             {currentForm === 3 && (
               <BudgetSetup onSubmit={handleBudgetSetupSubmit} />
             )}
-            {currentForm === 4 && <Dashboard formData={formData} />}
 
-            {renderProgressBar()}
+            {currentForm === 4 &&
+              navigate("/frugal-finesse/dashboard", { state: { formData } })}
+
+            {progressBar()}
           </div>
         </div>
       </div>

@@ -1,28 +1,14 @@
+import { useLocation } from "react-router-dom";
 import React from "react";
 
-function Dashboard({ formData }) {
-  /* TL;DR
-
-function onSubmit(values) {
-    // Convert the string to a number
-    const cleanedIncome = parseFloat(values.replace(/,/g, '')); // Remove existing commas, if any
-
-    // Check if numericValue is a valid number
-    if (!isNaN(cleanedIncome)) {
-        let formattedIncome = cleanedIncome.toLocaleString();
-        console.log(formattedIncome);
-        //Update the ui with the formatted income value
-    }
-}
-
-// Example usage
-onSubmit("5,000,000");
-
-
-*/
+function Dashboard() {
+  const location = useLocation();
+  const formData = location.state?.formData;
 
   const formatIncomeUI = () => {
     const income = parseFloat(formData.IncomeSetup);
+
+    console.log(formData);
 
     if (!isNaN(income)) {
       const formatIncome = income.toLocaleString();
@@ -31,6 +17,11 @@ onSubmit("5,000,000");
       return formData.IncomeSetup;
     }
   };
+
+  if (!formData) {
+    return <h1>Kindly Login to have access to your dashboard</h1>;
+  }
+
   return (
     <div className="flex">
       <div className="m-24 mx-auto font-display text-lg font-semibold">
