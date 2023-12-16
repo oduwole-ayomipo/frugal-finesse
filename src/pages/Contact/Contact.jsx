@@ -73,7 +73,7 @@ function Contact() {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.Firstname}
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
                     <p className="text-meta-1 py-2 font-body text-xs font-thin">
                       {formik.errors.Firstname &&
@@ -91,11 +91,12 @@ function Contact() {
                       id="Lastname"
                       name="Lastname"
                       type="text"
+                      required
                       placeholder="Enter your last name"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.Lastname}
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
                     <p className="text-meta-1 py-2 font-body text-xs font-thin">
                       {formik.errors.Lastname &&
@@ -120,7 +121,7 @@ function Contact() {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.email}
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
                     <p className="text-meta-1 py-2 font-body text-xs font-thin">
                       {formik.errors.email &&
@@ -145,7 +146,7 @@ function Contact() {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.subject}
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
                     <p className="text-meta-1 py-2 font-body text-xs font-thin">
                       {formik.errors.subject &&
@@ -170,7 +171,7 @@ function Contact() {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.message}
-                      className="w-full rounded border border-stroke border-purple-light border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-purple-6 focus-visible:shadow-none active:border-primary disabled:cursor-default"
+                      className="w-full rounded border border-purple-light bg-transparent py-3 px-5 font-medium outline-none transition focus:border-purple-6 focus-visible:shadow-none active:border-primary disabled:cursor-default"
                     ></textarea>
                   </div>
                   <p className="text-meta-1 py-2 font-body text-xs font-thin">

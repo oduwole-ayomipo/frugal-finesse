@@ -6,7 +6,7 @@ function BudgetSetup({ onSubmit }) {
   //Formik
   const formik = useFormik({
     // Replace this with "" - empty string. This is custom cause all other options are disabled
-    initialValues: { budgetrule: "The 50-30-20 Rule" },
+    initialValues: { budgetrule: "50-30-20 Rule" },
 
     onSubmit: (values) => {
       console.log("budgetrule", values.budgetrule);
@@ -45,17 +45,17 @@ function BudgetSetup({ onSubmit }) {
                 value={formik.values.budgetrule}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="relative z-20 w-full text-center appearance-none font-medium font-display  border-purple-light rounded border bg-transparent py-3 outline-none transition focus:border-purple-6 focus-visible:shadow-none active:border-purple-6"
+                className="relative z-20 w-full text-center appearance-none font-medium font-display  border-purple-light rounded-lg border bg-transparent py-3 outline-none transition focus:border-purple-6 focus-visible:shadow-none active:border-purple-6"
               >
-                <option value="The 50-30-20 Rule">The 50-30-20 Rule</option>
-                <option disabled value="The 70-30 Rule">
-                  The 70-30 Rule
+                <option value="50-30-20 Rule">The 50-30-20 Rule</option>
+                <option disabled value="70-20-10 Rule">
+                  70-20-10 Rule
                 </option>
-                <option disabled value=" Pay-Your-Self First">
-                  Pay-Your-Self First
+                <option disabled value="80-20 Rule">
+                  80-20 Rule
                 </option>
-                <option disabled value="Live Lavish">
-                  Live Lavish
+                <option disabled value="Zero-Based Budgeting">
+                  Zero-Based Budgeting
                 </option>
               </select>
               <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
@@ -79,7 +79,13 @@ function BudgetSetup({ onSubmit }) {
             </div>
           </div>
         </div>
-        <div></div>
+        <div>
+          <p className="text-meta-1 py-2 font-body text-xs font-thin">
+            {formik.errors.income &&
+              formik.touched.income &&
+              formik.errors.income}
+          </p>
+        </div>
         <div className="mt-5">
           <FilledBtn buttonText={"PROCEED"} type={"submit"} />
         </div>

@@ -1,17 +1,14 @@
 import React from "react";
 
 function Dashboard({ formData }) {
-  const renderFormData = () => {
-    return Object.keys(formData).map((data) => (
-      <div key={data} className="mb-2">
-        {formData[data]}
-      </div>
-    ));
-  };
   return (
     <div className="flex">
       <div className="m-24 mx-auto font-display text-lg font-semibold">
-        {renderFormData()}
+        <div>
+          <p>{formData.UsernameSetup}</p>
+          <p>{formData.IncomeSetup}</p>
+          <p>{formData.BudgetSetup}</p>
+        </div>
         Welcome to something that will eventually look like a dashboard!!!
       </div>
     </div>

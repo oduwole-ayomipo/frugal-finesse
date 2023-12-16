@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import PreferredName from "../../components/Setup/PreferredName";
-import IncomeForm from "../../components/Setup/IncomeForm";
+import UsernameSetup from "../../components/Setup/UsernameSetup";
+import IncomeSetup from "../../components/Setup/IncomeSetup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import BudgetSetup from "../../components/Setup/BudgetSetup";
 import Dashboard from "../Dashbord/Dashboard";
@@ -8,20 +8,22 @@ import Dashboard from "../Dashbord/Dashboard";
 function SetupLayout() {
   const [currentForm, setCurrentForm] = useState(1);
   const [formData, setFormData] = useState({
-    PreferredNameForm: {},
-    IncomeSetup: {},
-    BudgetSetup: {},
+    UsernameSetup: "",
+    IncomeSetup: "",
+    BudgetSetup: "",
   });
 
-  const handlePreferredNameFormSubmit = (data) => {
+  const totalSteps = 4;
+
+  const handleUsernameSetupSubmit = (data) => {
     setFormData((prevData) => ({
       ...prevData,
-      PreferredNameForm: data,
+      UsernameSetup: data,
     }));
     setCurrentForm(2);
   };
 
-  const handleIncomeFormSubmit = (data) => {
+  const handleIncomeSetupSubmit = (data) => {
     setFormData((prevData) => ({
       ...prevData,
       IncomeSetup: data,
@@ -29,13 +31,26 @@ function SetupLayout() {
     setCurrentForm(3);
   };
 
-  const handleDisplayDashboard = (data) => {
+  const handleBudgetSetupSubmit = (data) => {
     setFormData((prevData) => ({
       ...prevData,
       BudgetSetup: data,
     }));
     setCurrentForm(4);
   };
+
+  const renderProgressBar = () => {
+    const progress = (currentForm / totalSteps) * 100;
+    return (
+      <div className="w-full ease-in-out bg-purple-light h-1 rounded">
+        <div
+          className=" bg-purple-dark h-full rounded"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="w-full flex items-center min-h-screen mx-auto max-w-[30rem]">
@@ -45,21 +60,17 @@ function SetupLayout() {
           </div>
           <div className="w-full flex flex-col items-center gap-5">
             {currentForm === 1 && (
-              <PreferredName onSubmit={handlePreferredNameFormSubmit} />
+              <UsernameSetup onSubmit={handleUsernameSetupSubmit} />
             )}
             {currentForm === 2 && (
-              <IncomeForm onSubmit={handleIncomeFormSubmit} />
+              <IncomeSetup onSubmit={handleIncomeSetupSubmit} />
             )}
             {currentForm === 3 && (
-              <BudgetSetup onSubmit={handleDisplayDashboard} />
+              <BudgetSetup onSubmit={handleBudgetSetupSubmit} />
             )}
             {currentForm === 4 && <Dashboard formData={formData} />}
 
-            <div className="flex w-full items-center justify-between">
-              <div className="w-[32%] rounded h-1 bg-purple-6"></div>
-              <div className="w-[32%] rounded h-1 bg-purple-light"></div>
-              <div className="w-[32%] rounded h-1 bg-purple-light"></div>
-            </div>
+            {renderProgressBar()}
           </div>
         </div>
       </div>

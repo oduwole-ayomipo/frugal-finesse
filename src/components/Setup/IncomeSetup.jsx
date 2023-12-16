@@ -3,14 +3,14 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import FilledBtn from "../Button/Filled-Button/FilledBtn";
 
-function IncomeForm({ onSubmit }) {
+function IncomeSetup({ onSubmit }) {
   //Formik
   const formik = useFormik({
-    initialValues: { income: "", period: "Monthly" },
+    initialValues: { income: "" },
 
     onSubmit: (values) => {
       // Clean up the income value by removing commas and extra spaces
-      const cleanedIncome = values.income.replace(/[, ]/g, "");
+      let cleanedIncome = parseFloat(values.income.replace(/[, ]/g, ""));
       console.log("income", cleanedIncome);
       onSubmit(cleanedIncome);
     },
@@ -30,10 +30,8 @@ function IncomeForm({ onSubmit }) {
             htmlFor="income"
             className="mb-2.5 block font-display text-lg text-center font-semibold text-purple-dark"
           >
-            What is your total income? <br />
-            <span className="text-meta-1 font-body text-xs font-thin">
-              Be as precise as possible.
-            </span>
+            Precise Total Montly Income?{" "}
+            <span className="text-meta-1 font-body font-thin">*</span>
           </label>
           <div className="relative font-body font-medium text-purple-7">
             <span className="absolute left-4 top-4 text-base font-bold opacity-70 font-display">
@@ -68,4 +66,24 @@ function IncomeForm({ onSubmit }) {
   );
 }
 
-export default IncomeForm;
+/* TL;DR
+
+function onSubmit(values) {
+    // Convert the string to a number
+    const cleanedIncome = parseFloat(values.replace(/,/g, '')); // Remove existing commas, if any
+
+    // Check if numericValue is a valid number
+    if (!isNaN(cleanedIncome)) {
+        let formattedIncome = cleanedIncome.toLocaleString();
+        console.log(formattedIncome);
+        //Update the ui with the formatted income value
+    }
+}
+
+// Example usage
+onSubmit("5,000,000");
+
+
+*/
+
+export default IncomeSetup;

@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import FilledBtn from "../Button/Filled-Button/FilledBtn";
 
-function PreferredName({ onSubmit }) {
+function UsernameSetup({ onSubmit }) {
   //Formik
   const formik = useFormik({
     initialValues: { username: "" },
@@ -31,6 +31,7 @@ function PreferredName({ onSubmit }) {
             className="mb-2.5 block font-display text-lg text-center font-semibold text-purple-dark"
           >
             How shall we call you?
+            <span className="text-meta-1 font-body font-thin">*</span>
           </label>
           <input
             required
@@ -58,4 +59,4 @@ function PreferredName({ onSubmit }) {
   );
 }
 
-export default PreferredName;
+export default UsernameSetup;
