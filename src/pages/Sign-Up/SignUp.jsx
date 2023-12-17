@@ -9,7 +9,7 @@ import authImg from "../../images/svg-img/auth.svg";
 function SignUp() {
   return (
     <>
-      <div className="w-full rounded-sm bg-white text-purple-light">
+      <div className="mx-auto max-w-7xl shadow-default rounded-sm bg-white text-purple-light">
         <div className="flex items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
@@ -48,7 +48,7 @@ function SignUp() {
                       required
                       type="text"
                       placeholder="Enter your full name"
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
                     <span className="absolute right-4 top-4 text-purple-6">
@@ -85,7 +85,7 @@ function SignUp() {
                       required
                       type="email"
                       placeholder="Enter your email"
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
                     <span className="absolute right-4 top-4 text-purple-6">
@@ -118,7 +118,7 @@ function SignUp() {
                       required
                       type="password"
                       placeholder="Enter your password"
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
                     <span className="absolute right-4 top-4 text-purple-6">
@@ -155,7 +155,7 @@ function SignUp() {
                       required
                       type="password"
                       placeholder="Re-enter your password"
-                      className="w-full rounded-lg border border-stroke border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
                     <span className="absolute right-4 top-4 text-purple-6">

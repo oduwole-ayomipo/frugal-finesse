@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
 import React from "react";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import Sidebar from "../Setup-Layout/Sidebar/Sidebar";
 
 function Dashboard() {
   const location = useLocation();
@@ -22,6 +24,7 @@ function Dashboard() {
 
   return (
     <div className="flex">
+      <Sidebar />
       <div className="m-24 mx-auto font-display text-lg font-semibold">
         <div>
           <p>{formData.UsernameSetup}</p>
@@ -30,6 +33,7 @@ function Dashboard() {
         </div>
         Welcome to something that will eventually look like a dashboard!!!
       </div>
+      <Breadcrumbs pageName={"Dashboard"} />
     </div>
   );
 }

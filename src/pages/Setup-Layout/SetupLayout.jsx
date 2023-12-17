@@ -55,28 +55,30 @@ function SetupLayout() {
 
   return (
     <>
-      <div className="w-full flex items-center min-h-screen mx-auto lg:w-1/2">
-        <div className="w-full flex items-center justify-center m-auto gap-8 flex-col p-4 sm:p-12.5 xl:p-17.5">
-          <div className="p-3">
-            <img src={lgLogo} alt="Frugal Finesse" />
-          </div>
-          <div className="w-full flex flex-col items-center gap-5">
-            {currentForm === 1 && (
-              <UsernameSetup onSubmit={handleUsernameSetupSubmit} />
-            )}
+      <div className="max-w-7xl shadow-default mx-auto">
+        <div className="flex items-center min-h-screen mx-auto lg:w-1/2">
+          <div className="w-full flex items-center justify-center m-auto gap-8 flex-col p-4 sm:p-12.5 xl:p-17.5">
+            <div className="p-3">
+              <img src={lgLogo} alt="Frugal Finesse" />
+            </div>
+            <div className="w-full flex flex-col items-center gap-5">
+              {currentForm === 1 && (
+                <UsernameSetup onSubmit={handleUsernameSetupSubmit} />
+              )}
 
-            {currentForm === 2 && (
-              <IncomeSetup onSubmit={handleIncomeSetupSubmit} />
-            )}
+              {currentForm === 2 && (
+                <IncomeSetup onSubmit={handleIncomeSetupSubmit} />
+              )}
 
-            {currentForm === 3 && (
-              <BudgetSetup onSubmit={handleBudgetSetupSubmit} />
-            )}
+              {currentForm === 3 && (
+                <BudgetSetup onSubmit={handleBudgetSetupSubmit} />
+              )}
 
-            {currentForm === 4 &&
-              navigate("/frugal-finesse/dashboard", { state: { formData } })}
+              {currentForm === 4 &&
+                navigate("/frugal-finesse/dashboard", { state: { formData } })}
 
-            {progressBar()}
+              {progressBar()}
+            </div>
           </div>
         </div>
       </div>

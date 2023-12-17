@@ -6,14 +6,11 @@ import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/Sign-Up/SignUp";
 import SetupLayout from "./pages/Setup-Layout/SetupLayout";
-import Dashboard from "./pages/Dashbord/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
   return (
-    <div
-      className="mx-auto max-w-7xl shadow-default"
-      data-testid="app-container"
-    >
+    <div data-testid="app-container">
       <Routes>
         <Route path="frugal-finesse" element={<Landing />} />
         <Route path="frugal-finesse/contact-us" element={<Contact />} />

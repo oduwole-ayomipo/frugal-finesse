@@ -29,7 +29,7 @@ function Contact() {
 
   return (
     <>
-      <div className="w-full rounded-sm bg-white text-purple-light">
+      <div className="w-full rounded-sm bg-white text-purple-light mx-auto max-w-7xl shadow-default">
         <div className="flex items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">

@@ -4,13 +4,15 @@ import Header from "../../components/Header/Header";
 
 function Landing() {
   return (
-    <div
-      className="flex flex-col text-purple-dark min-h-[100vh]"
-      data-testid="landing-page"
-    >
-      <LandingNav />
-      <Header />
-    </div>
+    <>
+      <div
+        className="flex flex-col text-purple-dark min-h-[100vh] mx-auto max-w-7xl shadow-default"
+        data-testid="landing-page"
+      >
+        <LandingNav />
+        <Header />
+      </div>
+    </>
   );
 }
 
