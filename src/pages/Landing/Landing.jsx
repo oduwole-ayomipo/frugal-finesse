@@ -1,6 +1,6 @@
 import React from "react";
 import LandingNav from "../../components/Landing-nav/LandingNav";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Landing-Header/Header";
 
 function Landing() {
   return (
