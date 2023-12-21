@@ -13,7 +13,7 @@ function SignUp() {
         <div className="flex items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
-              <Link className="mb-5.5 inline-block" to="/">
+              <Link className="mb-5.5 inline-block" to="/frugal-finesse">
                 <img src={lgLogo} alt="Logo" />
               </Link>
 
@@ -183,7 +183,7 @@ function SignUp() {
                 </div>
 
                 <div className="mb-5">
-                  <Link to="/basic-setup">
+                  <Link to="/frugal-finesse/basic-setup">
                     <FilledBtn buttonText={"Sign In"} type={"submit"} />
                   </Link>
                 </div>
@@ -229,7 +229,7 @@ function SignUp() {
                 />
 
                 <div className="mt-6 text-center">
-                  <Link to="/login" className="text-primary">
+                  <Link to="/frugal-finesse/login" className="text-primary">
                     <TextBtn buttonText={"Already have an accout? Login"} />
                   </Link>
                 </div>

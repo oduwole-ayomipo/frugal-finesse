@@ -50,7 +50,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
           </button>
           {/* <!-- Hamburger Toggle BTN --> */}
 
-          <Link className="block flex-shrink-0 lg:hidden" to="/">
+          <Link className="block flex-shrink-0 lg:hidden" to="/frugal-finesse">
             <img src={smLogo} alt="Logo" />
           </Link>
         </div>

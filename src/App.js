@@ -12,12 +12,12 @@ function App() {
   return (
     <div data-testid="app-container">
       <Routes>
-        <Route index element={<Landing />} />
-        <Route path="contact-us" element={<Contact />} />
-        <Route path="login" element={<Login />} />
-        <Route path="sign-up" element={<SignUp />} />
-        <Route path="basic-setup" element={<SetupLayout />} />
-        <Route path="dashboard" element={<Layout />} />
+        <Route path="frugal-finesse" element={<Landing />} />
+        <Route path="frugal-finesse/contact-us" element={<Contact />} />
+        <Route path="frugal-finesse/login" element={<Login />} />
+        <Route path="frugal-finesse/sign-up" element={<SignUp />} />
+        <Route path="frugal-finesse/basic-setup" element={<SetupLayout />} />
+        <Route path="frugal-finesse/dashboard" element={<Layout />} />
       </Routes>
     </div>
   );

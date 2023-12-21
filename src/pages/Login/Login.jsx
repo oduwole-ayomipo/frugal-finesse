@@ -33,7 +33,8 @@ function Login() {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/dashboard");
+          navigate("/frugal-finesse/dashboard");
+          console.log(user);
         })
         .catch((error) => {
           alert("Wrong Email or Password. Try Again!");
@@ -46,7 +47,7 @@ function Login() {
         <div className="flex items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
-              <Link className="mb-5.5 inline-block" to="/">
+              <Link className="mb-5.5 inline-block" to="/frugal-finesse">
                 <img src={lgLogo} alt="Logo" />
               </Link>
 
@@ -205,7 +206,7 @@ function Login() {
                 />
 
                 <div className="mt-6 text-center">
-                  <Link to="/sign-up">
+                  <Link to="/frugal-finesse/sign-up">
                     <TextBtn
                       buttonText={"Don't have an account? Sign Up"}
                       type={"button"}

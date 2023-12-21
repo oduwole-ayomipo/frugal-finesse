@@ -75,7 +75,7 @@ function SetupLayout() {
               )}
 
               {currentForm === 4 &&
-                navigate("/dashboard", { state: { formData } })}
+                navigate("/frugal-finesse/dashboard", { state: { formData } })}
 
               {progressBar()}
             </div>
