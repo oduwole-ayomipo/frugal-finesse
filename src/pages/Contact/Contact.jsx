@@ -33,7 +33,7 @@ function Contact() {
         <div className="flex items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
-              <Link className="mb-5.5 inline-block" to="/frugal-finesse">
+              <Link className="mb-5.5 inline-block" to="/">
                 <img src={lgLogo} alt="Logo" />
               </Link>
 

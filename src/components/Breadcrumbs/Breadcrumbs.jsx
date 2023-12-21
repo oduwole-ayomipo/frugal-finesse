@@ -8,7 +8,7 @@ function Breadcrumbs({ pageName }) {
         <nav>
           <ol className="flex items-center gap-2">
             <li>
-              <Link to="/frugal-finesse"> Home / </Link>
+              <Link to="/"> Home / </Link>
               <span>Dashboard / </span>
             </li>
             <li className="text-meta-1">{pageName}</li>

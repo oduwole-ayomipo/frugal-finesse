@@ -1,5 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { auth } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/Button/Filled-Button/FilledBtn";
 import TextBtn from "../../components/Button/Text-Button/TextBtn";
@@ -7,13 +11,42 @@ import OutlineBtn from "../../components/Button/Outline-Button/OutlineBtn";
 import authImg from "../../images/svg-img/auth.svg";
 
 function Login() {
+  const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Please provide a valid email"),
+      password: Yup.string()
+        .min(8, "Password must be 8 characters long")
+        .matches(/[0-9]/, "Password requires a number")
+        .matches(/[a-z]/, "Password requires a lowercase letter")
+        .matches(/[A-Z]/, "Password requires an uppercase letter")
+        .matches(/[^\w]/, "Password requires a symbol"),
+    }),
+
+    onSubmit: (values) => {
+      signInWithEmailAndPassword(auth, values.email, values.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          navigate("/dashboard");
+        })
+        .catch((error) => {
+          alert("Wrong Email or Password. Try Again!");
+        });
+    },
+  });
   return (
     <>
       <div className="w-full rounded-sm bg-white text-purple-light mx-auto max-w-7xl shadow-default">
         <div className="flex items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
-              <Link className="mb-5.5 inline-block" to="/frugal-finesse">
+              <Link className="mb-5.5 inline-block" to="/">
                 <img src={lgLogo} alt="Logo" />
               </Link>
 
@@ -37,7 +70,7 @@ function Login() {
                 Login to Frugal Finesse
               </h2>
 
-              <form>
+              <form onSubmit={formik.handleSubmit}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-display font-semibold text-purple-dark">
                     Email Address{" "}
@@ -45,9 +78,14 @@ function Login() {
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
+                      name="email"
+                      id="email"
                       required
                       type="email"
                       placeholder="Enter your email"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.email}
                       className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
@@ -69,6 +107,11 @@ function Login() {
                       </svg>
                     </span>
                   </div>
+                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                    {formik.errors.email &&
+                      formik.touched.email &&
+                      formik.errors.email}
+                  </p>
                 </div>
 
                 <div className="mb-6">
@@ -78,9 +121,14 @@ function Login() {
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
+                      name="password"
+                      id="password"
                       required
                       type="password"
                       placeholder="Enter your password"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.password}
                       className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
@@ -106,12 +154,15 @@ function Login() {
                       </svg>
                     </span>
                   </div>
+                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                    {formik.errors.password &&
+                      formik.touched.password &&
+                      formik.errors.password}
+                  </p>
                 </div>
 
                 <div className="mb-5">
-                  <Link to="/frugal-finesse/basic-setup">
-                    <FilledBtn buttonText={"Login"} type={"submit"} />
-                  </Link>
+                  <FilledBtn buttonText={"Login"} type={"submit"} />
                 </div>
 
                 <OutlineBtn
@@ -151,12 +202,14 @@ function Login() {
                       Login with Google
                     </span>
                   }
-                  type={"submit"}
                 />
 
                 <div className="mt-6 text-center">
-                  <Link to="/frugal-finesse/sign-up" className="text-primary">
-                    <TextBtn buttonText={"Don't have an account? Sign Up"} />
+                  <Link to="/sign-up">
+                    <TextBtn
+                      buttonText={"Don't have an account? Sign Up"}
+                      type={"button"}
+                    />
                   </Link>
                 </div>
               </form>

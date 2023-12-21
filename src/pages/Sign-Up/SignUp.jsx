@@ -13,7 +13,7 @@ function SignUp() {
         <div className="flex items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
-              <Link className="mb-5.5 inline-block" to="/frugal-finesse">
+              <Link className="mb-5.5 inline-block" to="/">
                 <img src={lgLogo} alt="Logo" />
               </Link>
 
@@ -62,10 +62,10 @@ function SignUp() {
                           opacity="0.5"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="1.5"
+                          strokeWidth="1.5"
                         >
                           <path
-                            stroke-linejoin="round"
+                            strokeLinejoin="round"
                             d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"
                           />
                           <circle cx="12" cy="7" r="3" />
@@ -183,7 +183,9 @@ function SignUp() {
                 </div>
 
                 <div className="mb-5">
-                  <FilledBtn buttonText={"Sign In"} type={"submit"} />
+                  <Link to="/basic-setup">
+                    <FilledBtn buttonText={"Sign In"} type={"submit"} />
+                  </Link>
                 </div>
 
                 <OutlineBtn
@@ -227,7 +229,7 @@ function SignUp() {
                 />
 
                 <div className="mt-6 text-center">
-                  <Link to="/frugal-finesse/login" className="text-primary">
+                  <Link to="/login" className="text-primary">
                     <TextBtn buttonText={"Already have an accout? Login"} />
                   </Link>
                 </div>
