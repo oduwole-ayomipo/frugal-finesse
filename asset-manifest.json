@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/frugal-finesse/static/css/main.65aacff1.css",
-    "main.js": "/frugal-finesse/static/js/main.8a1a0b7a.js",
-    "static/media/landing.svg": "/frugal-finesse/static/media/landing.0b2a130527113b8a09e1e303de91cdfc.svg",
-    "static/media/auth.svg": "/frugal-finesse/static/media/auth.dbe913a088a9d7344affe62e09670fba.svg",
-    "static/media/smLogo.svg": "/frugal-finesse/static/media/smLogo.dfa6b33d83e5843e364e15db4375020c.svg",
-    "static/media/lgLogo.svg": "/frugal-finesse/static/media/lgLogo.125a57f0a73d5343e60ce342899f0efa.svg",
-    "index.html": "/frugal-finesse/index.html",
-    "main.65aacff1.css.map": "/frugal-finesse/static/css/main.65aacff1.css.map",
-    "main.8a1a0b7a.js.map": "/frugal-finesse/static/js/main.8a1a0b7a.js.map"
+    "main.css": "/static/css/main.81df9e26.css",
+    "main.js": "/static/js/main.e0286f73.js",
+    "static/media/landing.svg": "/static/media/landing.0b2a130527113b8a09e1e303de91cdfc.svg",
+    "static/media/auth.svg": "/static/media/auth.dbe913a088a9d7344affe62e09670fba.svg",
+    "static/media/smLogo.svg": "/static/media/smLogo.dfa6b33d83e5843e364e15db4375020c.svg",
+    "static/media/lgLogo.svg": "/static/media/lgLogo.125a57f0a73d5343e60ce342899f0efa.svg",
+    "index.html": "/index.html",
+    "main.81df9e26.css.map": "/static/css/main.81df9e26.css.map",
+    "main.e0286f73.js.map": "/static/js/main.e0286f73.js.map"
   },
   "entrypoints": [
-    "static/css/main.65aacff1.css",
-    "static/js/main.8a1a0b7a.js"
+    "static/css/main.81df9e26.css",
+    "static/js/main.e0286f73.js"
   ]
 }
