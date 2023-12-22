@@ -1,14 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/Button/Filled-Button/FilledBtn";
 import TextBtn from "../../components/Button/Text-Button/TextBtn";
 import OutlineBtn from "../../components/Button/Outline-Button/OutlineBtn";
 import authImg from "../../images/svg-img/auth.svg";
+import { AuthContext } from "../../Context/AuthContext";
 
 function SignUp() {
+  const navigate = useNavigate();
+
+  const { dispatch } = useContext(AuthContext);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -34,7 +41,17 @@ function SignUp() {
     }),
 
     onSubmit: (values) => {
-      console.log(values);
+      createUserWithEmailAndPassword(auth, values.email, values.password)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          alert("Account successfully created!");
+          dispatch({ type: "SIGNUP", payload: user });
+          navigate("/basic-setup");
+        })
+        .catch((error) => {
+          alert("Wrong Email or Password. Try Again!");
+        });
     },
   });
   return (
@@ -297,7 +314,10 @@ function SignUp() {
 
                 <div className="mt-6 text-center">
                   <Link to="/login" className="text-primary">
-                    <TextBtn buttonText={"Already have an accout? Login"} />
+                    <TextBtn
+                      buttonText={"Already have an accout? Login"}
+                      type={"button"}
+                    />
                   </Link>
                 </div>
               </form>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { auth } from "../../firebase";
@@ -9,9 +9,12 @@ import FilledBtn from "../../components/Button/Filled-Button/FilledBtn";
 import TextBtn from "../../components/Button/Text-Button/TextBtn";
 import OutlineBtn from "../../components/Button/Outline-Button/OutlineBtn";
 import authImg from "../../images/svg-img/auth.svg";
+import { AuthContext } from "../../Context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
+
+  const { dispatch } = useContext(AuthContext);
 
   const formik = useFormik({
     initialValues: {
@@ -33,8 +36,8 @@ function Login() {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          dispatch({ type: "LOGIN", payload: user });
           navigate("/dashboard");
-          console.log(user);
         })
         .catch((error) => {
           alert("Wrong Email or Password. Try Again!");

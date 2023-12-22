@@ -1,14 +1,21 @@
 import "./App.css";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
 import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/Sign-Up/SignUp";
 import SetupLayout from "./pages/Setup-Layout/SetupLayout";
 import Layout from "./pages/Dashboard-Layout/Layout";
+import { AuthContext } from "./Context/AuthContext";
 
 function App() {
+  const { currentUser } = useContext(AuthContext);
+
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/login" />;
+  };
+  console.log(currentUser);
   return (
     <div data-testid="app-container">
       <Routes>
@@ -16,8 +23,22 @@ function App() {
         <Route path="contact-us" element={<Contact />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route path="basic-setup" element={<SetupLayout />} />
-        <Route path="dashboard" element={<Layout />} />
+        <Route
+          path="basic-setup"
+          element={
+            <RequireAuth>
+              <SetupLayout />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <Layout />
+            </RequireAuth>
+          }
+        />
       </Routes>
     </div>
   );
