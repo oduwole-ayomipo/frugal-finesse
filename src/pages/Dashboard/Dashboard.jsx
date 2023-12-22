@@ -18,7 +18,11 @@ function Dashboard() {
   };
 
   if (!formData) {
-    return <h1>Kindly Login to have access to your dashboard</h1>;
+    return (
+      <h1>
+        Once I setup my db using firestore, you'll see some really cool stuffs
+      </h1>
+    );
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { auth } from "../../firebase";
@@ -13,8 +13,14 @@ import { AuthContext } from "../../Context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { dispatch } = useContext(AuthContext);
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -31,17 +37,28 @@ function Login() {
         .matches(/[^\w]/, "Password requires a symbol"),
     }),
 
-    onSubmit: (values) => {
-      signInWithEmailAndPassword(auth, values.email, values.password)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          dispatch({ type: "LOGIN", payload: user });
-          navigate("/dashboard");
-        })
-        .catch((error) => {
-          alert("Wrong Email or Password. Try Again!");
-        });
+    onSubmit: async (values) => {
+      try {
+        setLoading(true);
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          values.email,
+          values.password
+        );
+
+        // Signed in
+        const user = userCredential.user;
+
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        // A delay of at least 3 seconds using a promise and setTimeout
+
+        dispatch({ type: "LOGIN", payload: user });
+        navigate("/dashboard");
+      } catch (error) {
+        alert("Wrong Email or Password. Try Again!");
+      } finally {
+        setLoading(false);
+      }
     },
   });
   return (
@@ -128,7 +145,7 @@ function Login() {
                       name="password"
                       id="password"
                       required
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
@@ -136,26 +153,48 @@ function Login() {
                       className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
-                    <span className="absolute right-4 top-4 text-purple-6">
-                      <svg
-                        className="fill-current"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 22 22"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g opacity="0.5">
+                    <span
+                      className="absolute right-4 top-4 text-purple-6"
+                      onClick={togglePassword}
+                    >
+                      {showPassword ? (
+                        <svg
+                          opacity="0.5"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="w-6 h-6"
+                        >
                           <path
-                            d="M16.1547 6.80626V5.91251C16.1547 3.16251 14.0922 0.825009 11.4797 0.618759C10.0359 0.481259 8.59219 0.996884 7.52656 1.95938C6.46094 2.92188 5.84219 4.29688 5.84219 5.70626V6.80626C3.84844 7.18438 2.33594 8.93751 2.33594 11.0688V17.2906C2.33594 19.5594 4.19219 21.3813 6.42656 21.3813H15.5016C17.7703 21.3813 19.6266 19.525 19.6266 17.2563V11C19.6609 8.93751 18.1484 7.21876 16.1547 6.80626ZM8.55781 3.09376C9.31406 2.40626 10.3109 2.06251 11.3422 2.16563C13.1641 2.33751 14.6078 3.98751 14.6078 5.91251V6.70313H7.38906V5.67188C7.38906 4.70938 7.80156 3.78126 8.55781 3.09376ZM18.1141 17.2906C18.1141 18.7 16.9453 19.8688 15.5359 19.8688H6.46094C5.05156 19.8688 3.91719 18.7344 3.91719 17.325V11.0688C3.91719 9.52189 5.15469 8.28438 6.70156 8.28438H15.2953C16.8422 8.28438 18.1141 9.52188 18.1141 11V17.2906Z"
-                            fill=""
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
                           />
                           <path
-                            d="M10.9977 11.8594C10.5852 11.8594 10.207 12.2031 10.207 12.65V16.2594C10.207 16.6719 10.5508 17.05 10.9977 17.05C11.4102 17.05 11.7883 16.7063 11.7883 16.2594V12.6156C11.7883 12.2031 11.4102 11.8594 10.9977 11.8594Z"
-                            fill=""
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                           />
-                        </g>
-                      </svg>
+                        </svg>
+                      ) : (
+                        <svg
+                          opacity="0.5"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="w-6 h-6"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+                          />
+                        </svg>
+                      )}
                     </span>
                   </div>
                   <p className="text-meta-1 py-2 font-body text-xs font-thin">
@@ -166,7 +205,11 @@ function Login() {
                 </div>
 
                 <div className="mb-5">
-                  <FilledBtn buttonText={"Login"} type={"submit"} />
+                  <FilledBtn
+                    disabled={loading}
+                    buttonText={loading ? "Logining in..." : "Log In"}
+                    type={"submit"}
+                  />
                 </div>
 
                 <OutlineBtn
