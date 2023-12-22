@@ -13,11 +13,11 @@ function App() {
     <div data-testid="app-container">
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="contact-us" element={<Contact />} />
-        <Route path="login" element={<Login />} />
-        <Route path="sign-up" element={<SignUp />} />
-        <Route path="basic-setup" element={<SetupLayout />} />
-        <Route path="dashboard" element={<Layout />} />
+        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/basic-setup" element={<SetupLayout />} />
+        <Route path="/dashboard" element={<Layout />} />
       </Routes>
     </div>
   );
