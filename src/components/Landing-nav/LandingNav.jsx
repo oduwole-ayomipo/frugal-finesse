@@ -10,17 +10,17 @@ const navigation = [
   {
     btnType: <TextBtn buttonText={"Contact Us"} type="button" />,
     name: "Learn More",
-    to: "/frugal-finesse/contact-us",
+    to: "/contact-us",
   },
   {
     btnType: <OutlineBtn buttonText={"Login"} type="button" />,
     name: "Login",
-    to: "/frugal-finesse/login",
+    to: "/login",
   },
   {
     btnType: <FilledBtn buttonText={"Sign Up"} type="button" />,
     name: "Sign Up",
-    to: "/frugal-finesse/sign-up",
+    to: "/sign-up",
   },
 ];
 
