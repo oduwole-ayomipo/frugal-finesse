@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
 import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Login/Login";
@@ -11,14 +11,16 @@ import Layout from "./pages/Dashboard-Layout/Layout";
 function App() {
   return (
     <div data-testid="app-container">
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/contact-us" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/basic-setup" element={<SetupLayout />} />
-        <Route path="/dashboard" element={<Layout />} />
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/contact-us" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/basic-setup" element={<SetupLayout />} />
+          <Route path="/dashboard" element={<Layout />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
