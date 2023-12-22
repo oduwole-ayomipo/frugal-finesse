@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/Button/Filled-Button/FilledBtn";
 import TextBtn from "../../components/Button/Text-Button/TextBtn";
@@ -7,6 +9,34 @@ import OutlineBtn from "../../components/Button/Outline-Button/OutlineBtn";
 import authImg from "../../images/svg-img/auth.svg";
 
 function SignUp() {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      fullname: "",
+      confirm_password: "",
+    },
+    validationSchema: Yup.object({
+      fullname: Yup.string()
+        .max(32, "Full Name must be maximum of 32 Characters")
+        .min(5, "Full Name must be minimum of 5 Characters"),
+      email: Yup.string().email("Please provide a valid email"),
+      password: Yup.string()
+        .min(8, "Password must be 8 characters long")
+        .matches(/[0-9]/, "Password requires a number")
+        .matches(/[a-z]/, "Password requires a lowercase letter")
+        .matches(/[A-Z]/, "Password requires an uppercase letter")
+        .matches(/[^\w]/, "Password requires a symbol"),
+      confirm_password: Yup.string().oneOf(
+        [Yup.ref("password"), null],
+        "Password does not match"
+      ),
+    }),
+
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <>
       <div className="mx-auto max-w-7xl shadow-default rounded-sm bg-white text-purple-light">
@@ -37,7 +67,7 @@ function SignUp() {
                 Sign In to Frugal Finesse
               </h2>
 
-              <form>
+              <form onSubmit={formik.handleSubmit}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-display font-semibold text-purple-dark">
                     Full Name{" "}
@@ -45,9 +75,14 @@ function SignUp() {
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
+                      name="fullname"
+                      id="fullname"
                       required
                       type="text"
-                      placeholder="Enter your full name"
+                      placeholder="John Doe"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.fullname}
                       className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
@@ -73,6 +108,11 @@ function SignUp() {
                       </svg>
                     </span>
                   </div>
+                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                    {formik.errors.fullname &&
+                      formik.touched.fullname &&
+                      formik.errors.fullname}
+                  </p>
                 </div>
 
                 <div className="mb-4">
@@ -82,9 +122,14 @@ function SignUp() {
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
+                      name="email"
+                      id="email"
                       required
                       type="email"
                       placeholder="Enter your email"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.email}
                       className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
@@ -106,6 +151,11 @@ function SignUp() {
                       </svg>
                     </span>
                   </div>
+                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                    {formik.errors.email &&
+                      formik.touched.email &&
+                      formik.errors.email}
+                  </p>
                 </div>
 
                 <div className="mb-6">
@@ -115,9 +165,14 @@ function SignUp() {
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
+                      name="password"
+                      id="password"
                       required
                       type="password"
                       placeholder="Enter your password"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.password}
                       className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
@@ -143,6 +198,11 @@ function SignUp() {
                       </svg>
                     </span>
                   </div>
+                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                    {formik.errors.password &&
+                      formik.touched.password &&
+                      formik.errors.password}
+                  </p>
                 </div>
 
                 <div className="mb-6">
@@ -152,9 +212,14 @@ function SignUp() {
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
                     <input
+                      name="confirm_password"
+                      id="confirm_password"
                       required
                       type="password"
                       placeholder="Re-enter your password"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.confirm_password}
                       className="w-full rounded-lg border border-purple-light bg-transparent py-4 pl-6 pr-10 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
@@ -180,12 +245,15 @@ function SignUp() {
                       </svg>
                     </span>
                   </div>
+                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                    {formik.errors.confirm_password &&
+                      formik.touched.confirm_password &&
+                      formik.errors.confirm_password}
+                  </p>
                 </div>
 
                 <div className="mb-5">
-                  <Link to="/basic-setup">
-                    <FilledBtn buttonText={"Sign In"} type={"submit"} />
-                  </Link>
+                  <FilledBtn buttonText={"Sign In"} type={"submit"} />
                 </div>
 
                 <OutlineBtn
@@ -225,7 +293,6 @@ function SignUp() {
                       Sign In with Google
                     </span>
                   }
-                  type={"submit"}
                 />
 
                 <div className="mt-6 text-center">
