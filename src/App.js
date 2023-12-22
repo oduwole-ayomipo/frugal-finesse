@@ -12,7 +12,7 @@ function App() {
   return (
     <div data-testid="app-container">
       <Routes>
-        <Route index element={<Landing />} />
+        <Route path="/" element={<Landing />} />
         <Route path="contact-us" element={<Contact />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />
