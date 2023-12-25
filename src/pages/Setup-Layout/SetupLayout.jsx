@@ -4,9 +4,11 @@ import UsernameSetup from "../../components/Setup/UsernameSetup";
 import IncomeSetup from "../../components/Setup/IncomeSetup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import BudgetSetup from "../../components/Setup/BudgetSetup";
+import SignupWarning from "../../components/SignUp-Warning/SignupWarning";
 
 function SetupLayout() {
   const navigate = useNavigate();
+  const [signupWarning, setSignupWarning] = useState(true);
   const [currentForm, setCurrentForm] = useState(1);
   const [formData, setFormData] = useState({
     UsernameSetup: "",
@@ -37,7 +39,6 @@ function SetupLayout() {
       ...prevData,
       BudgetSetup: data,
     }));
-
     setCurrentForm(4);
   };
 
@@ -53,35 +54,43 @@ function SetupLayout() {
     );
   };
 
+  //Just one more step. Your account is almost ready! Please do not close the browser
+  //Later, if this form is not filled.. sign up will not be successful
+
   return (
     <>
-      <div className="max-w-7xl shadow-default mx-auto">
-        <div className="flex items-center min-h-screen mx-auto lg:w-1/2">
-          <div className="w-full flex items-center justify-center m-auto gap-8 flex-col p-4 sm:p-12.5 xl:p-17.5">
-            <div className="p-3">
-              <img src={lgLogo} alt="Frugal Finesse" />
-            </div>
-            <div className="w-full flex flex-col items-center gap-5">
-              {currentForm === 1 && (
-                <UsernameSetup onSubmit={handleUsernameSetupSubmit} />
-              )}
+      {signupWarning ? (
+        <SignupWarning setSignupWarning={setSignupWarning} />
+      ) : (
+        <div className="max-w-7xl shadow-default mx-auto">
+          <div className="flex items-center min-h-screen mx-auto lg:w-1/2">
+            <div className="w-full flex items-center justify-center m-auto gap-8 flex-col p-4 sm:p-12.5 xl:p-17.5">
+              <div className="p-3">
+                <img src={lgLogo} alt="Frugal Finesse" />
+              </div>
 
-              {currentForm === 2 && (
-                <IncomeSetup onSubmit={handleIncomeSetupSubmit} />
-              )}
+              <div className="w-full flex flex-col items-center gap-5">
+                {currentForm === 1 && (
+                  <UsernameSetup onSubmit={handleUsernameSetupSubmit} />
+                )}
 
-              {currentForm === 3 && (
-                <BudgetSetup onSubmit={handleBudgetSetupSubmit} />
-              )}
+                {currentForm === 2 && (
+                  <IncomeSetup onSubmit={handleIncomeSetupSubmit} />
+                )}
 
-              {currentForm === 4 &&
-                navigate("/dashboard", { state: { formData } })}
+                {currentForm === 3 && (
+                  <BudgetSetup onSubmit={handleBudgetSetupSubmit} />
+                )}
 
-              {progressBar()}
+                {currentForm === 4 &&
+                  navigate("/dashboard", { state: { formData } })}
+
+                {progressBar()}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
