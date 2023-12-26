@@ -1,12 +1,11 @@
-import { useLocation } from "react-router-dom";
 import React from "react";
-import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
+import CardOne from "../../components/dashboard-components/CardOne";
+import CardTwo from "../../components/dashboard-components/CardTwo";
+import CardThree from "../../components/dashboard-components/CardThree";
+import CardFour from "../../components/dashboard-components/CardFour";
 
 function Dashboard() {
-  const location = useLocation();
-  const formData = location.state?.formData;
-
-  const formatIncomeUI = () => {
+  /*   const formatIncomeUI = () => {
     const income = parseFloat(formData.IncomeSetup);
 
     if (!isNaN(income)) {
@@ -15,28 +14,17 @@ function Dashboard() {
     } else {
       return formData.IncomeSetup;
     }
-  };
-
-  if (!formData) {
-    return (
-      <h1>
-        Once I setup my db using firestore, you'll see some really cool stuffs
-      </h1>
-    );
-  }
+  }; */
 
   return (
-    <div className="flex">
-      <div className="m-24 mx-auto font-display text-lg font-semibold">
-        <Breadcrumbs pageName={"Dashboard"} />
-        <div>
-          <p>{formData.UsernameSetup}</p>
-          <p>{formatIncomeUI()}</p>
-          <p>{formData.BudgetSetup}</p>
-        </div>
-        Welcome to something that will eventually look like a dashboard!!!
+    <>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+        <CardOne />
+        <CardTwo />
+        <CardThree />
+        <CardFour />
       </div>
-    </div>
+    </>
   );
 }
 

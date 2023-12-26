@@ -7,7 +7,7 @@ function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="dark:bg-boxdark-2 dark:text-bodydark">
+    <div className="bg-[#F9F6FF]">
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}
