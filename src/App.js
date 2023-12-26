@@ -5,7 +5,6 @@ import Landing from "./pages/Landing/Landing";
 import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/Sign-Up/SignUp";
-import SetupLayout from "./pages/Setup-Layout/SetupLayout";
 import Layout from "./pages/Dashboard-Layout/Layout";
 import { AuthContext } from "./Context/AuthContext";
 
@@ -23,14 +22,6 @@ function App() {
         <Route path="contact-us" element={<Contact />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route
-          path="basic-setup"
-          element={
-            <RequireAuth>
-              <SetupLayout />
-            </RequireAuth>
-          }
-        />
         <Route
           path="dashboard"
           element={
