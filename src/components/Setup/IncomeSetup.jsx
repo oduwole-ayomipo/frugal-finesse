@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import FilledBtn from "../Button/Filled-Button/FilledBtn";
+import FilledBtn from "../button/FilledBtn";
 
 function IncomeSetup({ onSubmit }) {
   //Formik

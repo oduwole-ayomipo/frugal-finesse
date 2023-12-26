@@ -5,11 +5,11 @@ import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
-import FilledBtn from "../../components/Button/Filled-Button/FilledBtn";
-import TextBtn from "../../components/Button/Text-Button/TextBtn";
-import OutlineBtn from "../../components/Button/Outline-Button/OutlineBtn";
+import FilledBtn from "../../components/button/FilledBtn";
+import TextBtn from "../../components/button/TextBtn";
+import OutlineBtn from "../../components/button/OutlineBtn";
 import authImg from "../../images/svg-img/auth.svg";
-import { AuthContext } from "../../Context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();

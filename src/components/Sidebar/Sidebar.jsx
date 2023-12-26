@@ -3,7 +3,7 @@ import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import lgLogo from "../../images/svg-logo/lgLogo-dark.svg";
 import { NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const navigate = useNavigate();

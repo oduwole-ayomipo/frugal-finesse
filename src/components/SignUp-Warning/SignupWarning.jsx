@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Loading from "../Loading/Loading";
-import SetupLayout from "../../pages/Setup-Layout/SetupLayout";
+import Loading from "../loading/Loading";
+import SetupLayout from "../../pages/sign-up/Setup";
 
 function SignupWarning({ setSignupWarning }) {
   const [currentForm, setCurrentForm] = useState(0);

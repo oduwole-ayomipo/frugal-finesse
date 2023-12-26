@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import React from "react";
-import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 
 function Dashboard() {
   const location = useLocation();

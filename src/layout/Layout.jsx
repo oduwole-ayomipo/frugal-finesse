@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Header from "../../components/Dashboard-Header/Header";
-import Dashboard from "../Dashboard/Dashboard";
+import Sidebar from "../components/sidebar/Sidebar";
+import Header from "../components/dashboard-header/Header";
+import Dashboard from "../pages/dashboard/Dashboard";
 
 function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);

@@ -1,12 +1,12 @@
 import "./App.css";
 import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Landing from "./pages/Landing/Landing";
-import Contact from "./pages/Contact/Contact";
-import Login from "./pages/Login/Login";
-import SignUp from "./pages/Sign-Up/SignUp";
-import Layout from "./pages/Dashboard-Layout/Layout";
-import { AuthContext } from "./Context/AuthContext";
+import Landing from "./pages/landing/Landing";
+import Contact from "./pages/contact/Contact";
+import Login from "./pages/login/Login";
+import SignUp from "./pages/sign-up/SignUp";
+import Layout from "./layout/Layout";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const { currentUser } = useContext(AuthContext);

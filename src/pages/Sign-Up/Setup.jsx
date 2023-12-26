@@ -4,12 +4,12 @@ import UsernameSetup from "../../components/Setup/UsernameSetup";
 import IncomeSetup from "../../components/Setup/IncomeSetup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import BudgetSetup from "../../components/Setup/BudgetSetup";
-import SignupWarning from "../../components/SignUp-Warning/SignupWarning";
+import SignupWarning from "../../components/signup-warning/SignupWarning";
 import { db } from "../../firebase";
-import { doc, setDoc } from "firebase/firestore";
-import { AuthContext } from "../../Context/AuthContext";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { AuthContext } from "../../context/AuthContext";
 
-function SetupLayout() {
+function Setup() {
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [signupWarning, setSignupWarning] = useState(true);
@@ -27,6 +27,7 @@ function SetupLayout() {
         username: formData.username,
         income: formData.income,
         budget: formData.budget,
+        timeStamp: serverTimestamp(),
       });
     } catch (err) {
       console.log(err);
@@ -109,4 +110,4 @@ function SetupLayout() {
   );
 }
 
-export default SetupLayout;
+export default Setup;

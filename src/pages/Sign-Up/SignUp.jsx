@@ -5,12 +5,12 @@ import { useFormik } from "formik";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
-import FilledBtn from "../../components/Button/Filled-Button/FilledBtn";
-import TextBtn from "../../components/Button/Text-Button/TextBtn";
-import OutlineBtn from "../../components/Button/Outline-Button/OutlineBtn";
+import FilledBtn from "../../components/button/FilledBtn";
+import TextBtn from "../../components/button/TextBtn";
+import OutlineBtn from "../../components/button/OutlineBtn";
 import authImg from "../../images/svg-img/auth.svg";
-import { AuthContext } from "../../Context/AuthContext";
-import SetupLayout from "../Setup-Layout/SetupLayout";
+import { AuthContext } from "../../context/AuthContext";
+import Setup from "./Setup";
 
 function SignUp() {
   const [loading, setLoading] = useState(false);
@@ -81,7 +81,7 @@ function SignUp() {
     <>
       <div className="mx-auto max-w-7xl shadow-default rounded-sm bg-white text-purple-light">
         {signUpSuccessful ? (
-          <SetupLayout />
+          <Setup />
         ) : (
           <div className="flex items-center">
             <div className="hidden w-full xl:block xl:w-1/2">
