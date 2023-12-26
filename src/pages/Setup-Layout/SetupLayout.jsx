@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UsernameSetup from "../../components/Setup/UsernameSetup";
 import IncomeSetup from "../../components/Setup/IncomeSetup";
@@ -11,17 +11,29 @@ function SetupLayout() {
   const [signupWarning, setSignupWarning] = useState(true);
   const [currentForm, setCurrentForm] = useState(1);
   const [formData, setFormData] = useState({
-    UsernameSetup: "",
-    IncomeSetup: "",
-    BudgetSetup: "",
+    username: "",
+    income: "",
+    budget: "",
   });
+
+  // Track whether all forms are filled
+  const allFormsFilled =
+    formData.username && formData.income && formData.budget;
+
+  useEffect(() => {
+    if (allFormsFilled) {
+      console.log(formData);
+      // fire store logic to update the uid to store the above info
+      navigate("/dashboard");
+    }
+  }, [navigate, formData, allFormsFilled, currentForm]);
 
   const totalSteps = 3;
 
   const handleUsernameSetupSubmit = (data) => {
     setFormData((prevData) => ({
       ...prevData,
-      UsernameSetup: data,
+      username: data,
     }));
     setCurrentForm(2);
   };
@@ -29,7 +41,7 @@ function SetupLayout() {
   const handleIncomeSetupSubmit = (data) => {
     setFormData((prevData) => ({
       ...prevData,
-      IncomeSetup: data,
+      income: data,
     }));
     setCurrentForm(3);
   };
@@ -37,9 +49,8 @@ function SetupLayout() {
   const handleBudgetSetupSubmit = (data) => {
     setFormData((prevData) => ({
       ...prevData,
-      BudgetSetup: data,
+      budget: data,
     }));
-    setCurrentForm(4);
   };
 
   const progressBar = () => {
@@ -53,9 +64,6 @@ function SetupLayout() {
       </div>
     );
   };
-
-  //Just one more step. Your account is almost ready! Please do not close the browser
-  //Later, if this form is not filled.. sign up will not be successful
 
   return (
     <>
@@ -81,9 +89,6 @@ function SetupLayout() {
                 {currentForm === 3 && (
                   <BudgetSetup onSubmit={handleBudgetSetupSubmit} />
                 )}
-
-                {currentForm === 4 &&
-                  navigate("/dashboard", { state: { formData } })}
 
                 {progressBar()}
               </div>

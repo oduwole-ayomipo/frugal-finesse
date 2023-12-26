@@ -11,7 +11,6 @@ function UsernameSetup({ onSubmit }) {
     onSubmit: (values) => {
       //onsubmit from formik
       onSubmit(values.username);
-      console.log("name is", values.username);
     },
 
     validationSchema: Yup.object({

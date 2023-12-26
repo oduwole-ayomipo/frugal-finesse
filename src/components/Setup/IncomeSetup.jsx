@@ -11,7 +11,6 @@ function IncomeSetup({ onSubmit }) {
     onSubmit: (values) => {
       // Clean up the income value by removing commas and extra spaces
       let cleanedIncome = parseFloat(values.income.replace(/[, ]/g, ""));
-      console.log("income", cleanedIncome);
       onSubmit(cleanedIncome);
     },
 

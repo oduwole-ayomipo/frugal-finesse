@@ -9,7 +9,6 @@ function BudgetSetup({ onSubmit }) {
     initialValues: { budgetrule: "50-30-20 Rule" },
 
     onSubmit: (values) => {
-      console.log("budgetrule", values.budgetrule);
       onSubmit(values.budgetrule);
     },
   });
