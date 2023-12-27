@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import smLogo from "../../images/svg-logo/smLogo.svg";
 import mikey_kun from "../../images/svg-img/Mikey-Kun.png";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { AuthContext } from "../../context/AuthContext";
 
 function Header({ sidebarOpen, setSidebarOpen }) {
+  const { currentUser } = useContext(AuthContext);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const fetchUsername = async () => {
+      try {
+        const docRef = doc(db, "setupData", currentUser.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          setUsername(userData.username);
+        } else {
+          // docSnap.data() will be undefined in this case
+          alert("No such document!");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchUsername();
+  }, [currentUser.uid]);
+
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
       <div className="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
@@ -57,8 +82,8 @@ function Header({ sidebarOpen, setSidebarOpen }) {
         </div>
 
         <div className="hidden sm:block">
-          <h3 className="p-3 text-base font-display font-bold text-purple-dark">
-            {`WELCOME BACK {USERNAME}!`}
+          <h3 className="p-3 text-base font-display font-bold uppercase text-purple-dark">
+            Welcome Back {username}!
           </h3>
         </div>
 
@@ -66,7 +91,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
           <Link className="flex items-center gap-4" to="#">
             <span className="hidden text-right lg:block">
               <span className="block text-sm font-display font-medium text-purple-dark">
-                Ayomipo
+                {username}
               </span>
               <span className="block font-body text-purple-dark text-xs">
                 Member
