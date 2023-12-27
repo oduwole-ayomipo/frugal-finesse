@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserDataContext } from "../../context/UserDataContext";
 
 function CardOne() {
+  const { state } = useContext(UserDataContext);
+  const { userData, loading, error } = state;
+  const [income, setIncome] = useState(0);
+
+  useEffect(() => {
+    if (!loading && !error) {
+      setIncome(userData.income);
+    }
+  }, [userData, loading, error]);
+
+  const formatIncomeUI = () => {
+    const formatIncome = income.toLocaleString();
+    return formatIncome;
+  };
+
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white p-6 shadow-default">
@@ -9,7 +25,7 @@ function CardOne() {
             Total Monthly Income
           </span>
           <h4 className="text-title-md py-2 font-bold font-display text-purple-black">
-            $3.456K
+            ₦{formatIncomeUI()}
           </h4>
         </div>
 

@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserDataContext } from "../../context/UserDataContext";
 
-function CardOne() {
+function CardFour() {
+  const { state } = useContext(UserDataContext);
+  const { userData, loading, error } = state;
+  const [income, setIncome] = useState(0);
+  const [maxSavings, setMaxSavings] = useState(0);
+
+  useEffect(() => {
+    if (!loading && !error) {
+      setIncome(userData.income);
+    }
+    const calcMaxSavings = () => {
+      const maxSavings = income * (20 / 100);
+      setMaxSavings(maxSavings);
+    };
+    calcMaxSavings();
+  }, [income, userData, loading, error]);
+
+  const formatMaxSavingsUI = () => {
+    const formatMaxSavings = maxSavings.toLocaleString();
+    return formatMaxSavings;
+  };
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white p-6 shadow-default">
@@ -9,7 +30,7 @@ function CardOne() {
             Max. Savings Budget
           </span>
           <h4 className="text-title-md py-2 font-bold font-display text-purple-black">
-            $3.456
+            ₦{formatMaxSavingsUI()}
           </h4>
         </div>
 
@@ -37,4 +58,4 @@ function CardOne() {
   );
 }
 
-export default CardOne;
+export default CardFour;
