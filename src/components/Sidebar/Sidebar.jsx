@@ -2,10 +2,13 @@ import React, { useRef, useEffect, useContext } from "react";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import lgLogo from "../../images/svg-logo/lgLogo-dark.svg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
+  const location = useLocation();
+  const { pathname } = location;
+
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
 
@@ -105,7 +108,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/dashboard"
-                  className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
+                    pathname.includes("dashboard") && "bg-purple-7"
+                  }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +135,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/budgeting"
-                  className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
+                    pathname.includes("budgeting") && "bg-purple-7"
+                  }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -154,8 +161,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               {/* <!-- Menu Item Transaction --> */}
               <li>
                 <NavLink
-                  to="/transaction"
-                  className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7"
+                  to="/transactions"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
+                    pathname.includes("transactions") && "bg-purple-7"
+                  }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +180,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
                     />
                   </svg>
-                  Transaction
+                  Transactions
                 </NavLink>
               </li>
               {/* <!-- Menu Item Transaction --> */}
@@ -180,7 +189,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/goal"
-                  className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
+                    pathname.includes("goal") && "bg-purple-7"
+                  }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +207,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"
                     />
                   </svg>
-                  Savings Goal
+                  Saving Goals
                 </NavLink>
               </li>
               {/* <!-- Menu Item Goal --> */}
@@ -205,7 +216,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/report"
-                  className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
+                    pathname.includes("report") && "bg-purple-7"
+                  }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +243,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/forums"
-                  className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
+                    pathname.includes("forums") && "bg-purple-7"
+                  }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -255,7 +270,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/accounts"
-                  className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
+                    pathname.includes("accounts") && "bg-purple-7"
+                  }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -276,11 +293,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               </li>
               {/* <!-- Menu Item Settings --> */}
 
-              {/* <!-- Menu Item Help/ Support --> */}
+              {/* <!-- Menu Item  Support --> */}
               <li>
                 <NavLink
-                  to="/help"
-                  className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7"
+                  to="/support"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
+                    pathname.includes("support") && "bg-purple-7"
+                  }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -312,7 +331,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       signOut(auth)
                         .then(() => {
                           // Sign-out successful.
-                          dispatch({ type: "LOGIN", payload: null });
+                          dispatch({ type: "LOGOUT", payload: null });
                           navigate("/");
                         })
                         .catch((error) => {

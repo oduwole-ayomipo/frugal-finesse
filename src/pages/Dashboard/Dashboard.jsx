@@ -3,19 +3,10 @@ import CardOne from "../../components/dashboard-components/CardOne";
 import CardTwo from "../../components/dashboard-components/CardTwo";
 import CardThree from "../../components/dashboard-components/CardThree";
 import CardFour from "../../components/dashboard-components/CardFour";
+import ChartOne from "../../components/dashboard-components/ChartOne";
+import ChartTwo from "../../components/dashboard-components/ChartTwo";
 
 function Dashboard() {
-  /*   const formatIncomeUI = () => {
-    const income = parseFloat(formData.IncomeSetup);
-
-    if (!isNaN(income)) {
-      const formatIncome = income.toLocaleString();
-      return formatIncome;
-    } else {
-      return formData.IncomeSetup;
-    }
-  }; */
-
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
@@ -23,6 +14,11 @@ function Dashboard() {
         <CardTwo />
         <CardThree />
         <CardFour />
+      </div>
+      <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
+        <ChartOne />
+        <ChartTwo />
+        <div className="col-span-12 xl:col-span-8"></div>
       </div>
     </>
   );

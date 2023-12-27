@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/sidebar/Sidebar";
 import Header from "../components/dashboard-header/Header";
-import Dashboard from "../pages/dashboard/Dashboard";
+import { Outlet } from "react-router-dom";
 
 function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -23,7 +23,7 @@ function Layout() {
           {/* <!-- ===== Main Content Start ===== --> */}
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-              <Dashboard />
+              <Outlet />
             </div>
           </main>
           {/* <!-- ===== Main Content End ===== --> */}

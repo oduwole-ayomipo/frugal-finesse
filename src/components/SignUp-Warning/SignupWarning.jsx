@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Loading from "../loading/Loading";
+import Loading from "../../common/Loader/Loading";
 import SetupLayout from "../../pages/sign-up/Setup";
 
 function SignupWarning({ setSignupWarning }) {

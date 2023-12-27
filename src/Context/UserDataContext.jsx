@@ -40,8 +40,11 @@ export const UserDataContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    fetchUserData(currentUser.uid);
-  }, [currentUser.uid]);
+    if (currentUser && currentUser.uid) {
+      fetchUserData(currentUser.uid);
+    }
+  }, [currentUser]);
+
   return (
     <UserDataContext.Provider value={{ state, fetchUserData }}>
       {children}

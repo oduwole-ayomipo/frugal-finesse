@@ -21,9 +21,9 @@ function CardOne() {
     <>
       <div className="rounded-sm border border-stroke bg-white p-6 shadow-default">
         <div>
-          <span className="text-sm font-display font-medium">
+          <h2 className="text-sm font-display font-medium">
             Total Monthly Income
-          </span>
+          </h2>
           <h4 className="text-title-md py-2 font-bold font-display text-purple-black">
             ₦{formatIncomeUI()}
           </h4>
