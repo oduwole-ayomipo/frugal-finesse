@@ -5,13 +5,17 @@ function Breadcrumbs({ pageName }) {
   return (
     <>
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-xl font-display font-semibold capitalize opacity-80 text-purple-dark">
+          {pageName}
+        </h2>
         <nav>
           <ol className="flex items-center gap-2">
-            <li>
-              <Link to="/"> Home / </Link>
-              <span>Dashboard / </span>
+            <li className="font-display text-purple-dark font-medium opacity-80">
+              <Link to="/dashboard"> Dashboard / </Link>
             </li>
-            <li className="text-meta-1">{pageName}</li>
+            <li className="font-display text-purple-4 font-medium opacity-80">
+              {pageName}
+            </li>
           </ol>
         </nav>
       </div>

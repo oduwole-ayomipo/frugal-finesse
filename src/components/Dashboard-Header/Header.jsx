@@ -82,7 +82,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
         </div>
 
         <div className="hidden sm:block">
-          <h3 className="p-3 text-base font-display font-bold uppercase text-purple-dark">
+          <h3 className="py-3 text-base font-display font-bold uppercase text-purple-dark">
             Welcome Back {username}!
           </h3>
         </div>
