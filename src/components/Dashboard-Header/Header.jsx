@@ -13,7 +13,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        const docRef = doc(db, "setupData", currentUser.uid);
+        const docRef = doc(db, "users", currentUser.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const userData = docSnap.data();

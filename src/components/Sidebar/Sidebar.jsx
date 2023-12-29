@@ -108,6 +108,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/dashboard"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
                     pathname.includes("dashboard") && "bg-purple-7"
                   }`}
@@ -135,6 +136,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/budgeting"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
                     pathname.includes("budgeting") && "bg-purple-7"
                   }`}
@@ -162,6 +164,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/transactions"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
                     pathname.includes("transactions") && "bg-purple-7"
                   }`}
@@ -189,6 +192,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/goal"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
                     pathname.includes("goal") && "bg-purple-7"
                   }`}
@@ -216,6 +220,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/report"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
                     pathname.includes("report") && "bg-purple-7"
                   }`}
@@ -243,6 +248,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/forums"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
                     pathname.includes("forums") && "bg-purple-7"
                   }`}
@@ -270,6 +276,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/accounts"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
                     pathname.includes("accounts") && "bg-purple-7"
                   }`}
@@ -297,6 +304,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <li>
                 <NavLink
                   to="/support"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium font-display duration-300  text-white ease-in-out hover:bg-purple-7 ${
                     pathname.includes("support") && "bg-purple-7"
                   }`}

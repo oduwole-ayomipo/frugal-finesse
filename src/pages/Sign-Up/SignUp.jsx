@@ -9,8 +9,20 @@ import FilledBtn from "../../components/button/FilledBtn";
 import TextBtn from "../../components/button/TextBtn";
 import OutlineBtn from "../../components/button/OutlineBtn";
 import authImg from "../../images/svg-img/auth.svg";
-import { AuthContext } from "../../context/AuthContext";
 import Setup from "./Setup";
+import { db } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { AuthContext } from "../../context/AuthContext";
+
+const initialUserDataState = {
+  username: "",
+  budgetRule: "",
+  income: 0,
+  maxNeeds: 0,
+  maxWants: 0,
+  maxSavings: 0,
+  timeStamp: "",
+};
 
 function SignUp() {
   const [loading, setLoading] = useState(false);
@@ -18,6 +30,7 @@ function SignUp() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [signUpSuccessful, setSignUpSuccessful] = useState(false);
   const { dispatch } = useContext(AuthContext);
+  const userData = initialUserDataState;
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -60,15 +73,21 @@ function SignUp() {
           values.email,
           values.password
         );
-
         // Signed up
         const user = userCredential.user;
 
-        await new Promise((resolve) => setTimeout(resolve, 3000));
         // A delay of at least 3 seconds using a promise and setTimeout
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         dispatch({ type: "SIGNUP", payload: user });
+
+        await setDoc(doc(db, "users", user.uid), {
+          ...userData,
+          fullName: values.fullname,
+          email: values.email,
+        });
       } catch (error) {
+        console.log(error);
         alert("Wrong Email or Password. Try Again!");
       } finally {
         setLoading(false);

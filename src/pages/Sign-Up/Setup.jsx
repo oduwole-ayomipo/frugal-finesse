@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UsernameSetup from "../../components/Setup/UsernameSetup";
 import IncomeSetup from "../../components/Setup/IncomeSetup";
@@ -6,7 +6,7 @@ import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import BudgetSetup from "../../components/Setup/BudgetSetup";
 import SignupWarning from "../../components/signup-warning/SignupWarning";
 import { db } from "../../firebase";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
 
 function Setup() {
@@ -17,22 +17,28 @@ function Setup() {
   const [formData, setFormData] = useState({
     username: "",
     income: 0,
-    budget: "",
+    budgetRule: "",
   });
 
   //Add setup data to firestore db
-  const handleSetupData = async () => {
-    try {
-      await setDoc(doc(db, "setupData", currentUser.uid), {
-        username: formData.username,
-        income: formData.income,
-        budget: formData.budget,
-        timeStamp: serverTimestamp(),
-      });
-    } catch (err) {
-      console.log(err);
+
+  useEffect(() => {
+    if (currentForm === 4) {
+      const handleSetupData = async () => {
+        try {
+          await updateDoc(doc(db, "users", currentUser.uid), {
+            ...formData,
+            timeStamp: serverTimestamp(),
+          });
+        } catch (err) {
+          console.log(err);
+        } finally {
+          navigate("/login");
+        }
+      };
+      handleSetupData();
     }
-  };
+  }, [currentUser, formData, currentForm, navigate]);
 
   const handleUsernameSetupSubmit = (data) => {
     setFormData((prevData) => ({
@@ -53,7 +59,7 @@ function Setup() {
   const handleBudgetSetupSubmit = (data) => {
     setFormData((prevData) => ({
       ...prevData,
-      budget: data,
+      budgetRule: data,
     }));
     setCurrentForm(4);
   };
@@ -96,9 +102,7 @@ function Setup() {
                   <BudgetSetup onSubmit={handleBudgetSetupSubmit} />
                 )}
 
-                {currentForm === 4 &&
-                  handleSetupData() &&
-                  navigate("/dashboard")}
+                {/*   {currentForm === 4 && handleSetupData() && navigate("/login")} */}
 
                 {progressBar()}
               </div>

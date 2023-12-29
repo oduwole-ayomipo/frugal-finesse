@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserDataContext } from "../../context/UserDataContext";
+import { db } from "../../firebase";
+import { doc, updateDoc } from "firebase/firestore";
+import { AuthContext } from "../../context/AuthContext";
 
 function CardTwo() {
+  const { currentUser } = useContext(AuthContext);
   const { state } = useContext(UserDataContext);
   const { userData, loading, error } = state;
   const [income, setIncome] = useState(0);
@@ -15,8 +19,19 @@ function CardTwo() {
       const maxNeeds = income * (50 / 100);
       setMaxNeeds(maxNeeds);
     };
+
+    const updateMaxNeeds = async () => {
+      try {
+        await updateDoc(doc(db, "users", currentUser.uid), {
+          maxNeeds: maxNeeds,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    updateMaxNeeds();
     calcMaxNeeds();
-  }, [income, userData, loading, error]);
+  }, [income, userData, currentUser, maxNeeds, loading, error]);
 
   const formatMaxNeedsUI = () => {
     const formatMaxNeed = maxNeeds.toLocaleString();
