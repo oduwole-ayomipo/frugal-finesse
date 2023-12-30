@@ -14,7 +14,7 @@ import { db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
 
-const initialUserDataState = {
+const initialUsersData = {
   username: "",
   budgetRule: "",
   income: 0,
@@ -30,7 +30,7 @@ function SignUp() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [signUpSuccessful, setSignUpSuccessful] = useState(false);
   const { dispatch } = useContext(AuthContext);
-  const userData = initialUserDataState;
+  const userData = initialUsersData;
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -81,6 +81,7 @@ function SignUp() {
 
         dispatch({ type: "SIGNUP", payload: user });
 
+        // set initial user data to db
         await setDoc(doc(db, "users", user.uid), {
           ...userData,
           fullName: values.fullname,

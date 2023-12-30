@@ -6,7 +6,7 @@ import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import BudgetSetup from "../../components/Setup/BudgetSetup";
 import SignupWarning from "../../components/signup-warning/SignupWarning";
 import { db } from "../../firebase";
-import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { doc, serverTimestamp, updateDoc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
 
 function Setup() {
@@ -20,10 +20,26 @@ function Setup() {
     budgetRule: "",
   });
 
-  //Add setup data to firestore db
-
   useEffect(() => {
     if (currentForm === 4) {
+      //set initial transtion data to db
+      const handleTranactionData = async () => {
+        const transactionData = {
+          amount: formData.income,
+          category: "income",
+          description: "initial income",
+          timeStamp: serverTimestamp(),
+        };
+
+        try {
+          await setDoc(doc(db, "transaction", currentUser.uid), {
+            ...transactionData,
+          });
+        } catch (err) {
+          console.log("this is the error", err);
+        }
+      };
+      //update setup data in firestore db
       const handleSetupData = async () => {
         try {
           await updateDoc(doc(db, "users", currentUser.uid), {
@@ -36,6 +52,7 @@ function Setup() {
           navigate("/login");
         }
       };
+      handleTranactionData();
       handleSetupData();
     }
   }, [currentUser, formData, currentForm, navigate]);

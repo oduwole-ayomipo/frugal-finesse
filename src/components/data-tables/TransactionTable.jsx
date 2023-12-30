@@ -1,7 +1,44 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FilledBtn from "../button/FilledBtn";
+import data from "../modals/data.json";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { AuthContext } from "../../context/AuthContext";
 
 function TransactionTable({ openTransactionForm }) {
+  const { currentUser } = useContext(AuthContext);
+  const [initialTransaction, setInitialTransaction] = useState({});
+
+  useEffect(() => {
+    const checkTransactionData = async () => {
+      const initialTransactionData = await getDoc(
+        doc(db, "transaction", currentUser.uid)
+      );
+      if (initialTransactionData.exists()) {
+        console.log("data", initialTransactionData.data());
+        setInitialTransaction(initialTransactionData.data());
+      } else {
+        setInitialTransaction(null);
+      }
+    };
+
+    checkTransactionData();
+  }, [currentUser.uid]);
+
+  //function to convert to date
+  const convertDate = () => {
+    if (initialTransaction && initialTransaction.timeStamp) {
+      const rawDate = initialTransaction.timeStamp;
+      const options = { year: "numeric", month: "short", day: "numeric" };
+      const formattedDate = rawDate
+        .toDate()
+        .toLocaleDateString("en-US", options);
+      return formattedDate;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col gap-10">
@@ -35,151 +72,69 @@ function TransactionTable({ openTransactionForm }) {
                   <tr>
                     <td className="border-b border-[#eee]  py-5 px-4 ">
                       <p className="text-purple-dark text-sm font-body">
-                        12292023
+                        {currentUser.uid}
                       </p>
                     </td>
                     <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        ₦500,000
+                      <p className="text-purple-dark text-sm font-body">
+                        ₦{initialTransaction.amount}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4">
-                      <p className="inline-flex rounded-full font-body bg-purple-2 bg-opacity-10 py-1 px-3 text-sm font-medium text-purple-4">
-                        Income
+                      <p className="inline-flex capitalize rounded-full font-body bg-purple-2 bg-opacity-10 py-1 px-3 text-sm font-medium text-purple-4">
+                        {initialTransaction.category}
                       </p>
                     </td>
                     <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        Dec Salary
+                      <p className="text-purple-dark capitalize text-sm font-body  ">
+                        {initialTransaction.description}
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 ">
                       <p className="text-purple-dark text-sm font-body  ">
-                        Dec. 29, 2023
+                        {convertDate()}
                       </p>
-                    </td>
-                    <td className="border-b  text-sm font-body border-[#eee] py-5 px-4 ">
-                      <div className="flex items-center space-x-3.5">
-                        <button className="text-meta-1 font-medium hover:font-semibold">
-                          EDIT
-                        </button>
-                        <button className="text-meta-1 font-medium hover:font-semibold">
-                          DELETE
-                        </button>
-                      </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body">
-                        12292023
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        ₦5,000
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee] py-5 px-4">
-                      <p className="inline-flex rounded-full  font-body bg-purple-2 bg-opacity-10 py-1 px-3 text-sm font-medium text-purple-4">
-                        Needs
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        Hair Do
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark  text-sm font-body  ">
-                        Dec. 29, 2023
-                      </p>
-                    </td>
-                    <td className="border-b font-body text-sm border-[#eee] py-5 px-4 ">
-                      <div className="flex items-center space-x-3.5">
-                        <button className="text-meta-1 font-medium hover:font-semibold">
-                          EDIT
-                        </button>
-                        <button className="text-meta-1 font-medium hover:font-semibold">
-                          DELETE
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body">
-                        12292023
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        ₦500,000
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee] py-5 px-4">
-                      <p className="inline-flex rounded-full font-body bg-purple-2 bg-opacity-10 py-1 px-3 text-sm font-medium text-purple-4">
-                        Savings
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        Cowrywise
-                      </p>
-                    </td>
-                    <td className="border-b border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        Dec. 29, 2023
-                      </p>
-                    </td>
-                    <td className="border-b font-body text-sm border-[#eee] py-5 px-4 ">
-                      <div className="flex items-center space-x-3.5">
-                        <button className="text-meta-1 font-medium hover:font-semibold">
-                          EDIT
-                        </button>
-                        <button className="text-meta-1 font-medium hover:font-semibold">
-                          DELETE
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className=" border-[rgb(238,238,238)]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm  font-body">
-                        12292023
-                      </p>
-                    </td>
-                    <td className=" border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        ₦5,000
-                      </p>
-                    </td>
-                    <td className=" border-[#eee] py-5 px-4">
-                      <p className="inline-flex rounded-full font-body bg-purple-2 bg-opacity-10 py-1 px-3 text-sm font-medium text-purple-4">
-                        Needs
-                      </p>
-                    </td>
-                    <td className=" border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        Hair Do
-                      </p>
-                    </td>
-                    <td className=" border-[#eee]  py-5 px-4 ">
-                      <p className="text-purple-dark text-sm font-body  ">
-                        Dec. 29, 2023
-                      </p>
-                    </td>
-                    <td className="border-b font-body text-sm border-[#eee] py-5 px-4 ">
-                      <div className="flex items-center space-x-3.5">
-                        <button className="text-meta-1 font-medium hover:font-semibold">
-                          EDIT
-                        </button>
-                        <button className="text-meta-1 font-medium hover:font-semibold">
-                          DELETE
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                  {data.map((item) => (
+                    <tr key={item.id}>
+                      <td className="border-b border-[#eee]  py-5 px-4 ">
+                        <p className="text-purple-dark text-sm font-body">
+                          {item.id}
+                        </p>
+                      </td>
+                      <td className="border-b border-[#eee]  py-5 px-4 ">
+                        <p className="text-purple-dark text-sm font-body  ">
+                          ₦{item.amount}
+                        </p>
+                      </td>
+                      <td className="border-b border-[#eee] py-5 px-4">
+                        <p className="inline-flex rounded-full font-body bg-purple-2 bg-opacity-10 py-1 px-3 text-sm font-medium text-purple-4">
+                          {item.category}
+                        </p>
+                      </td>
+                      <td className="border-b border-[#eee]  py-5 px-4 ">
+                        <p className="text-purple-dark text-sm font-body  ">
+                          {item.description}
+                        </p>
+                      </td>
+                      <td className="border-b border-[#eee] py-5 px-4 ">
+                        <p className="text-purple-dark text-sm font-body  ">
+                          Dec. 29, 2023
+                        </p>
+                      </td>
+                      <td className="border-b  text-sm font-body border-[#eee] py-5 px-4 ">
+                        <div className="flex items-center space-x-3.5">
+                          <button className="text-meta-1 font-medium hover:font-semibold">
+                            EDIT
+                          </button>
+                          <button className="text-meta-1 font-medium hover:font-semibold">
+                            DELETE
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
