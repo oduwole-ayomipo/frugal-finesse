@@ -94,7 +94,7 @@ function Login() {
               <form onSubmit={formik.handleSubmit}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-display font-semibold text-purple-dark">
-                    Email Address{" "}
+                    Email Address
                     <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
                   <div className="relative font-body font-medium text-purple-6">
@@ -137,7 +137,7 @@ function Login() {
 
                 <div className="mb-6">
                   <label className="mb-2.5 block font-medium text-black">
-                    Password{" "}
+                    Password
                     <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
                   <div className="relative font-body font-medium text-purple-6">

@@ -25,6 +25,7 @@ function Setup() {
       //set initial transtion data to db
       const handleTranactionData = async () => {
         const transactionData = {
+          userId: currentUser.uid,
           amount: formData.income,
           category: "income",
           description: "initial income",

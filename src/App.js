@@ -7,7 +7,7 @@ import Contact from "./pages/contact/Contact";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/sign-up/SignUp";
 import Layout from "./layout/Layout";
-import { AuthContext } from "../src/context/AuthContext";
+import { AuthContext } from "./context/AuthContext";
 import routes from "./routes/routes";
 
 function App() {

@@ -1,11 +1,60 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import FilledBtn from "../button/FilledBtn";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../../firebase";
+import { AuthContext } from "../../context/AuthContext";
 
 function TransactionForm({ isOpen, setIsOpen }) {
-  function handleSubmit() {
-    console.log("submitted");
-  }
+  const [loading, setLoading] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+  //Formik
+  const formik = useFormik({
+    initialValues: {
+      amount: "",
+      category: "income",
+      description: "",
+      userId: "",
+    },
+
+    onSubmit: (values, { resetForm }) => {
+      const handleTransactionSubmit = async () => {
+        try {
+          setLoading(true);
+          await addDoc(
+            collection(db, "transaction"),
+            {
+              userId: currentUser.uid,
+              category: values.category,
+              description: values.description,
+              amount: parseFloat(values.amount.replace(/[, ]/g, "")),
+              timeStamp: serverTimestamp(),
+            },
+            { merge: true }
+          );
+        } catch (err) {
+          console.log("this is the err", err);
+        } finally {
+          console.log(values);
+          setIsOpen(false);
+          resetForm();
+          setLoading(false);
+        }
+      };
+      handleTransactionSubmit();
+      console.log(values);
+    },
+
+    validationSchema: Yup.object({
+      amount: Yup.string()
+        .transform((values) => values.replace(/,/g, "")) // Remove commas before validation
+        .matches(/^[0-9]+$/, "Provide a valid amount")
+        .min(3, "Must be at least 3 digit"),
+      description: Yup.string().max(20, "minimum of 20 char"),
+    }),
+  });
 
   return (
     <Dialog
@@ -17,7 +66,7 @@ function TransactionForm({ isOpen, setIsOpen }) {
         className="fixed inset-0 bg-black/30 bg-opacity-75 transition-opacity"
         aria-hidden="true"
       />
-      <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+      <div className="fixed inset-0 z-9999 w-screen overflow-y-auto">
         <Dialog.Panel className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
           <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
             <div className="rounded-sm border border-stroke bg-white shadow-default">
@@ -28,9 +77,11 @@ function TransactionForm({ isOpen, setIsOpen }) {
                 <span
                   aria-roledescription="button"
                   onClick={() => setIsOpen(false)}
-                  className="p-2"
+                  className="p-2 cursor-pointer"
                 >
                   <svg
+                    aria-roledescription="button"
+                    onClick={formik.resetForm}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     opacity="0.5"
@@ -47,7 +98,7 @@ function TransactionForm({ isOpen, setIsOpen }) {
                   </svg>
                 </span>
               </div>
-              <form action="">
+              <form onSubmit={formik.handleSubmit}>
                 <div className="px-6.5 py-3">
                   <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
                     <div className="w-full xl:w-1/2">
@@ -59,11 +110,21 @@ function TransactionForm({ isOpen, setIsOpen }) {
                           ₦
                         </span>
                         <input
+                          required
+                          name="amount"
                           type="text"
                           placeholder="0.00"
+                          value={formik.values.amount}
+                          onBlur={formik.handleBlur}
+                          onChange={formik.handleChange}
                           className="w-full font-body text-purple-8 rounded border-[1.5px] border-stroke bg-transparent py-3 px-12 font-medium outline-none transition focus:border-purple-2 active:border-purple-light"
                         />
                       </div>
+                      <p className="text-meta-1 py-1 font-body text-xs font-thin">
+                        {formik.errors.amount &&
+                          formik.touched.amount &&
+                          formik.errors.amount}
+                      </p>
                     </div>
 
                     <div className="w-full xl:w-1/2">
@@ -88,11 +149,18 @@ function TransactionForm({ isOpen, setIsOpen }) {
                             />
                           </svg>
                         </span>
-                        <select className="relative font-body  text-purple-dark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-purple-2 active:border-purple-light">
-                          <option value="">Income</option>
-                          <option value="">Needs</option>
-                          <option value="">Wants</option>
-                          <option value="">Savings</option>
+                        <select
+                          required
+                          name="category"
+                          value={formik.values.category}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          className="relative font-body  text-purple-dark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-purple-2 active:border-purple-light"
+                        >
+                          <option value="income">Income</option>
+                          <option value="needs">Needs</option>
+                          <option value="wants">Wants</option>
+                          <option value="savings">Savings</option>
                         </select>
                         <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
                           <svg
@@ -121,18 +189,28 @@ function TransactionForm({ isOpen, setIsOpen }) {
                       Description
                     </label>
                     <input
+                      required
+                      name="description"
                       type="text"
                       placeholder="Grant from Jane"
+                      value={formik.values.description}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
                       className="w-full font-body text-purple-8 rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-purple-2 active:border-purple-light"
                     />
                   </div>
+                  <p className="text-meta-1 py-1 font-body text-xs font-thin">
+                    {formik.errors.description &&
+                      formik.touched.description &&
+                      formik.errors.description}
+                  </p>
                 </div>
 
                 <div className="px-4 pb-4 sm:px-6">
                   <FilledBtn
-                    buttonText={"Submit"}
+                    disabled={loading}
+                    buttonText={loading ? "Submitting" : "Submit"}
                     type={"submit"}
-                    onClick={handleSubmit}
                   />
                 </div>
               </form>
