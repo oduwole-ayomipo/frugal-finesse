@@ -1,41 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserDataContext } from "../../context/UserDataContext";
-import { db } from "../../firebase";
-import { doc, updateDoc } from "firebase/firestore";
-import { AuthContext } from "../../context/AuthContext";
+import React from "react";
 
-function CardTwo() {
-  const { currentUser } = useContext(AuthContext);
-  const { state } = useContext(UserDataContext);
-  const { userData, loading, error } = state;
-  const [income, setIncome] = useState(0);
-  const [maxNeeds, setMaxNeeds] = useState(0);
-
-  useEffect(() => {
-    if (!loading && !error) {
-      setIncome(userData.income);
+function CardTwo({ needs }) {
+  const formatNeedsUI = () => {
+    if (needs) {
+      const formatNeeds = needs.toLocaleString();
+      return formatNeeds;
+    } else {
+      return 0;
     }
-    const calcMaxNeeds = () => {
-      const maxNeeds = income * (50 / 100);
-      setMaxNeeds(maxNeeds);
-    };
-
-    const updateMaxNeeds = async () => {
-      try {
-        await updateDoc(doc(db, "users", currentUser.uid), {
-          maxNeeds: maxNeeds,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    updateMaxNeeds();
-    calcMaxNeeds();
-  }, [income, userData, currentUser, maxNeeds, loading, error]);
-
-  const formatMaxNeedsUI = () => {
-    const formatMaxNeed = maxNeeds.toLocaleString();
-    return formatMaxNeed;
   };
 
   return (
@@ -46,7 +18,7 @@ function CardTwo() {
             Max. Needs Budget
           </span>
           <h4 className="text-title-md py-2 font-bold font-display text-purple-black">
-            ₦{formatMaxNeedsUI()}
+            ₦{formatNeedsUI()}
           </h4>
         </div>
 

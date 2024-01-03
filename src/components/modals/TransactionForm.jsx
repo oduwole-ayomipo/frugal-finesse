@@ -37,14 +37,12 @@ function TransactionForm({ isOpen, setIsOpen }) {
         } catch (err) {
           console.log("this is the err", err);
         } finally {
-          console.log(values);
           setIsOpen(false);
           resetForm();
           setLoading(false);
         }
       };
       handleTransactionSubmit();
-      console.log(values);
     },
 
     validationSchema: Yup.object({

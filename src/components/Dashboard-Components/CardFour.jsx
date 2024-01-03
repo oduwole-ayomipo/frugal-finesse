@@ -1,42 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserDataContext } from "../../context/UserDataContext";
-import { db } from "../../firebase";
-import { doc, updateDoc } from "firebase/firestore";
-import { AuthContext } from "../../context/AuthContext";
+import React from "react";
 
-function CardFour() {
-  const { currentUser } = useContext(AuthContext);
-  const { state } = useContext(UserDataContext);
-  const { userData, loading, error } = state;
-  const [income, setIncome] = useState(0);
-  const [maxSavings, setMaxSavings] = useState(0);
-
-  useEffect(() => {
-    if (!loading && !error) {
-      setIncome(userData.income);
+function CardFour({ savings }) {
+  const formatSavingsUI = () => {
+    if (savings) {
+      const formatSavings = savings.toLocaleString();
+      return formatSavings;
+    } else {
+      return 0;
     }
-    const calcMaxSavings = () => {
-      const maxSavings = income * (20 / 100);
-      setMaxSavings(maxSavings);
-    };
-
-    const updateMaxSavings = async () => {
-      try {
-        await updateDoc(doc(db, "users", currentUser.uid), {
-          maxSavings: maxSavings,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    updateMaxSavings();
-
-    calcMaxSavings();
-  }, [income, userData, loading, error, currentUser, maxSavings]);
-
-  const formatMaxSavingsUI = () => {
-    const formatMaxSavings = maxSavings.toLocaleString();
-    return formatMaxSavings;
   };
   return (
     <>
@@ -46,7 +17,7 @@ function CardFour() {
             Max. Savings Budget
           </span>
           <h4 className="text-title-md py-2 font-bold font-display text-purple-black">
-            ₦{formatMaxSavingsUI()}
+            ₦{formatSavingsUI()}
           </h4>
         </div>
 

@@ -90,7 +90,7 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
                 {transactionLoading ? (
                   <tbody className="w-full">
                     <tr className="w-full text-purple-dark text-center text-sm font-body border-[#eee] py-5 px-4">
-                      <td className="text-purple-dark text-lg font-body py-5">
+                      <td className="text-purple-dark text-base font-body py-5">
                         Transaction Loading...
                       </td>
                     </tr>
@@ -99,7 +99,7 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
                   <tbody>
                     {transactionData
                       .filter((item) => item.userId === currentUser.uid)
-                      .map((item) => (
+                      .map((item, i) => (
                         <tr key={item.id}>
                           <td className="border-b border-[#eee]  py-5 px-4 ">
                             <p className="text-purple-dark text-sm font-body">
@@ -131,7 +131,7 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
                               className="text-meta-1 w-full font-medium hover:font-semibold"
                               onClick={() => openDeleteWarning(item.id)}
                             >
-                              {item.id === currentUser.uid ? null : (
+                              {i === 0 ? null : (
                                 <span className="w-full h-full flex items-center justify-center">
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,13 @@ import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import BudgetSetup from "../../components/Setup/BudgetSetup";
 import SignupWarning from "../../components/signup-warning/SignupWarning";
 import { db } from "../../firebase";
-import { doc, serverTimestamp, updateDoc, setDoc } from "firebase/firestore";
+import {
+  doc,
+  serverTimestamp,
+  updateDoc,
+  addDoc,
+  collection,
+} from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
 
 function Setup() {
@@ -22,7 +28,7 @@ function Setup() {
 
   useEffect(() => {
     if (currentForm === 4) {
-      //set initial transtion data to db
+      //add initial income transaction data to db
       const handleTranactionData = async () => {
         const transactionData = {
           userId: currentUser.uid,
@@ -33,7 +39,7 @@ function Setup() {
         };
 
         try {
-          await setDoc(doc(db, "transaction", currentUser.uid), {
+          await addDoc(collection(db, "transaction"), {
             ...transactionData,
           });
         } catch (err) {

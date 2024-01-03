@@ -1,42 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserDataContext } from "../../context/UserDataContext";
-import { db } from "../../firebase";
-import { doc, updateDoc } from "firebase/firestore";
-import { AuthContext } from "../../context/AuthContext";
+import React from "react";
 
-function CardThree() {
-  const { currentUser } = useContext(AuthContext);
-  const { state } = useContext(UserDataContext);
-  const { userData, loading, error } = state;
-  const [income, setIncome] = useState(0);
-  const [maxWants, setMaxWants] = useState(0);
-
-  useEffect(() => {
-    if (!loading && !error) {
-      setIncome(userData.income);
-    }
-    const calcMaxWants = () => {
-      const maxWants = income * (30 / 100);
-      setMaxWants(maxWants);
-    };
-
-    const updateMaxWants = async () => {
-      try {
-        await updateDoc(doc(db, "users", currentUser.uid), {
-          maxWants: maxWants,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    updateMaxWants();
-
-    calcMaxWants();
-  }, [income, userData, loading, error, currentUser, maxWants]);
-
+function CardThree({ wants }) {
   const formatMaxWantsUI = () => {
-    const formatMaxWants = maxWants.toLocaleString();
-    return formatMaxWants;
+    if (wants) {
+      const formatWants = wants.toLocaleString();
+      return formatWants;
+    } else {
+      return 0;
+    }
   };
 
   return (

@@ -1,20 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserDataContext } from "../../context/UserDataContext";
+import React from "react";
 
-function CardOne() {
-  const { state } = useContext(UserDataContext);
-  const { userData, loading, error } = state;
-  const [income, setIncome] = useState(0);
-
-  useEffect(() => {
-    if (!loading && !error) {
-      setIncome(userData.income);
-    }
-  }, [userData, loading, error]);
-
+function CardOne({ income }) {
   const formatIncomeUI = () => {
-    const formatIncome = income.toLocaleString();
-    return formatIncome;
+    if (income) {
+      const formatIncome = income.toLocaleString();
+      return formatIncome;
+    } else {
+      return 0;
+    }
   };
 
   return (
