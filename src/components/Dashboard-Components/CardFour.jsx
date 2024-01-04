@@ -22,7 +22,7 @@ function CardFour({ savings }) {
         </div>
 
         <div className="mt-2 flex items-center justify-between">
-          <span className="font-display font-semibold text-purple-6">0%</span>
+          <span className="font-display font-semibold text-purple-6">10%</span>
           <div className="flex h-8 w-8 items-center justify-center rounded bg-purple-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"

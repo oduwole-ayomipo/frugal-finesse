@@ -14,17 +14,31 @@ function ChartOne({
   };
 
   const progressBar = (expenseType, currentAmount) => {
-    const progress = (currentAmount / expenseType) * 100;
+    let progress = (currentAmount / expenseType) * 100;
+    let className = "bg-purple-6";
+
+    // If current amount is greater than the expenseType, set progress to expense amount
+    if (currentAmount >= expenseType) {
+      progress = (expenseType / expenseType) * 100;
+    }
+
+    // If the ratio of expense type and current amount is above 80%, set className to "meta-red"
+    if (progress > 80) {
+      className = "bg-meta-1";
+    }
 
     return (
-      <div className="w-full ease-in-out bg-purple-light h-3 rounded">
+      <div
+        className={`w-full ease-in-out bg-purple-light h-3 rounded ${className}`}
+      >
         <div
-          className=" bg-purple-6 h-full rounded"
+          className={`h-full  rounded ${className}`}
           style={{ width: `${progress}%` }}
         />
       </div>
     );
   };
+
   return (
     <>
       <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default xl:col-span-4">

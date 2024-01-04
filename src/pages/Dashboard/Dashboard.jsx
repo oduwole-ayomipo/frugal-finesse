@@ -44,27 +44,26 @@ function Dashboard() {
     const getInitialIncome = () => {
       if (transactions.length !== 0) {
         if (transactions[0].category === "income") {
-          const initialIncome = transactions[0].amount;
-          return initialIncome;
+          return transactions[0].amount;
         }
-      } else {
-        return 0;
       }
+      return 0;
     };
+
     let income = getInitialIncome();
     let needs = 0;
     let wants = 0;
     let savings = 0;
 
-    // Sum all categories of each transactions
+    // Sum all categories of each transaction excluding the initial income transaction
     const sumEntries = () => {
-      transactions.forEach((entry) => {
+      const transactionsToSum = transactions.slice(1); // Exclude the first element
+
+      transactionsToSum.forEach((entry) => {
         const { amount, category } = entry;
 
         if (category === "income") {
-          if (income !== amount) {
-            income += amount;
-          }
+          income += amount;
         } else if (category === "needs") {
           needs += amount;
         } else if (category === "wants") {
