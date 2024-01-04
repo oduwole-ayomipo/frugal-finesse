@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FilledBtn from "../Button/Filled-Button/FilledBtn";
+import FilledBtn from "../button/FilledBtn";
 
 function UsernameSetup({ onSubmit }) {
   //Formik
@@ -11,7 +11,6 @@ function UsernameSetup({ onSubmit }) {
     onSubmit: (values) => {
       //onsubmit from formik
       onSubmit(values.username);
-      console.log("name is", values.username);
     },
 
     validationSchema: Yup.object({

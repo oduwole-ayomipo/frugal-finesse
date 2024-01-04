@@ -1,6 +1,6 @@
 import React from "react";
-import LandingNav from "../../components/Landing-nav/LandingNav";
-import Header from "../../components/Landing-Header/Header";
+import Hero from "../../components/landing-component/Hero";
+import Navigation from "../../components/landing-component/Navigation";
 
 function Landing() {
   return (
@@ -9,8 +9,8 @@ function Landing() {
         className="flex flex-col text-purple-dark min-h-[100vh] mx-auto max-w-7xl shadow-default"
         data-testid="landing-page"
       >
-        <LandingNav />
-        <Header />
+        <Navigation />
+        <Hero />
       </div>
     </>
   );

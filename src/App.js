@@ -1,14 +1,22 @@
 import "./App.css";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Landing from "./pages/Landing/Landing";
-import Contact from "./pages/Contact/Contact";
-import Login from "./pages/Login/Login";
-import SignUp from "./pages/Sign-Up/SignUp";
-import SetupLayout from "./pages/Setup-Layout/SetupLayout";
-import Layout from "./pages/Dashboard-Layout/Layout";
+import React, { Suspense, useContext } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Landing from "./pages/landing/Landing";
+import Loader from "./common/Loader/Loader";
+import Contact from "./pages/contact/Contact";
+import Login from "./pages/login/Login";
+import SignUp from "./pages/sign-up/SignUp";
+import Layout from "./layout/Layout";
+import { AuthContext } from "./context/AuthContext";
+import routes from "./routes/routes";
 
 function App() {
+  const { currentUser } = useContext(AuthContext);
+
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/login" replace />;
+  };
+
   return (
     <div data-testid="app-container">
       <Routes>
@@ -16,8 +24,28 @@ function App() {
         <Route path="contact-us" element={<Contact />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route path="basic-setup" element={<SetupLayout />} />
-        <Route path="dashboard" element={<Layout />} />
+        <Route
+          element={
+            <RequireAuth>
+              <Layout />
+            </RequireAuth>
+          }
+        >
+          {routes.map((routes, index) => {
+            const { path, component: Component } = routes;
+            return (
+              <Route
+                key={index}
+                path={path}
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <Component />
+                  </Suspense>
+                }
+              />
+            );
+          })}
+        </Route>
       </Routes>
     </div>
   );

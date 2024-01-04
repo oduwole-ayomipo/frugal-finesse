@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
-import FilledBtn from "../../components/Button/Filled-Button/FilledBtn";
+import FilledBtn from "../../components/button/FilledBtn";
 import authImg from "../../images/svg-img/auth.svg";
 
 function Contact() {

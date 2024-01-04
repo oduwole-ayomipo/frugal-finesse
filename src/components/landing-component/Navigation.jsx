@@ -1,9 +1,9 @@
 import { React } from "react";
 import { Link } from "react-router-dom";
 import smLogo from "../../images/svg-logo/smLogo.svg";
-import FilledBtn from "../Button/Filled-Button/FilledBtn";
-import OutlineBtn from "../Button/Outline-Button/OutlineBtn";
-import TextBtn from "../Button/Text-Button/TextBtn";
+import FilledBtn from "../button/FilledBtn";
+import OutlineBtn from "../button/OutlineBtn";
+import TextBtn from "../button/TextBtn";
 import { Disclosure } from "@headlessui/react";
 
 const navigation = [
@@ -24,7 +24,7 @@ const navigation = [
   },
 ];
 
-function LandingNav() {
+function Navigation() {
   return (
     <Disclosure as="nav" className="nav-bar" data-testid="landing-page-nav">
       {({ open }) => (
@@ -114,4 +114,4 @@ function LandingNav() {
   );
 }
 
-export default LandingNav;
+export default Navigation;

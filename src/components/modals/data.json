@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "amount": "500,000",
+    "category": "Income",
+    "description": "Dec Salary"
+  },
+  {
+    "id": 2,
+    "amount": "20,000",
+    "category": "Needs",
+    "description": "Transportation"
+  },
+  {
+    "id": 3,
+    "amount": "10,000",
+    "category": "Income",
+    "description": "Bolu's Debt Repay"
+  },
+  {
+    "id": 4,
+    "amount": "5,000",
+    "category": "Need",
+    "description": "Hair Do"
+  },
+  {
+    "id": 5,
+    "amount": "30,000",
+    "category": "Want",
+    "description": "Wrist Watch"
+  }
+]

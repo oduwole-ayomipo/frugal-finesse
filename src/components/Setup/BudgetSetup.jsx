@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
-import FilledBtn from "../Button/Filled-Button/FilledBtn";
+import FilledBtn from "../button/FilledBtn";
 
 function BudgetSetup({ onSubmit }) {
   //Formik
@@ -9,7 +9,6 @@ function BudgetSetup({ onSubmit }) {
     initialValues: { budgetrule: "50-30-20 Rule" },
 
     onSubmit: (values) => {
-      console.log("budgetrule", values.budgetrule);
       onSubmit(values.budgetrule);
     },
   });

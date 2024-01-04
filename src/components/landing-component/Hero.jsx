@@ -1,7 +1,7 @@
 import React from "react";
 import landing from "../../images/svg-img/landing.svg";
 
-function Header() {
+function Hero() {
   return (
     <>
       <div className="flex gap-6 flex-col items-center justify-between px-5  md:flex-row sm:flex-row md:px-9">
@@ -58,4 +58,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Hero;

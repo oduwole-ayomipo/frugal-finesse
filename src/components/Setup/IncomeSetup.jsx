@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import FilledBtn from "../Button/Filled-Button/FilledBtn";
+import FilledBtn from "../button/FilledBtn";
 
 function IncomeSetup({ onSubmit }) {
   //Formik
@@ -11,7 +11,6 @@ function IncomeSetup({ onSubmit }) {
     onSubmit: (values) => {
       // Clean up the income value by removing commas and extra spaces
       let cleanedIncome = parseFloat(values.income.replace(/[, ]/g, ""));
-      console.log("income", cleanedIncome);
       onSubmit(cleanedIncome);
     },
 
