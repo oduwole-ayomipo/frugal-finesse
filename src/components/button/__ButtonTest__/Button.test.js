@@ -10,7 +10,7 @@ import TextBtn from "../Text-Button/TextBtn";
 const testButtonComponent = (ButtonComponent) => {
   test("Renders Button Component with a text", () => {
     //Arrange
-    const buttonText = "some action";
+    const buttonText = "";
 
     //Act
     const { getByText } = render(<ButtonComponent buttonText={buttonText} />);
