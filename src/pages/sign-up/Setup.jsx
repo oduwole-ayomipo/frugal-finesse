@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import UsernameSetup from "../../components/Setup/UsernameSetup";
-import IncomeSetup from "../../components/Setup/IncomeSetup";
+import UsernameSetup from "../../components/setup/UsernameSetup";
+import IncomeSetup from "../../components/setup/IncomeSetup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
-import BudgetSetup from "../../components/Setup/BudgetSetup";
+import BudgetSetup from "../../components/setup/BudgetSetup";
 import SignupWarning from "../../components/signup-warning/SignupWarning";
 import { db } from "../../firebase";
 import {
