@@ -93,7 +93,10 @@ function Login() {
 
               <form onSubmit={formik.handleSubmit}>
                 <div className="mb-4">
-                  <label className="mb-2.5 block font-display font-semibold text-purple-dark">
+                  <label
+                    htmlFor="email"
+                    className="mb-2.5 block font-display font-semibold text-purple-dark"
+                  >
                     Email Address
                     <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
@@ -136,7 +139,10 @@ function Login() {
                 </div>
 
                 <div className="mb-6">
-                  <label className="mb-2.5 block font-medium text-black">
+                  <label
+                    htmlFor="password"
+                    className="mb-2.5 block font-medium text-black"
+                  >
                     Password
                     <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
@@ -207,7 +213,7 @@ function Login() {
                 <div className="mb-5">
                   <FilledBtn
                     disabled={loading}
-                    buttonText={loading ? "Logining in..." : "Log In"}
+                    buttonText={loading ? "Logining in..." : "Login"}
                     type={"submit"}
                   />
                 </div>
