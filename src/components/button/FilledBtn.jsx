@@ -2,7 +2,7 @@ import React from "react";
 
 function FilledBtn({ buttonText, type, disabled, onClick }) {
   return (
-    <div>
+    <>
       <button
         data-testid="filled-btn"
         disabled={disabled}
@@ -12,7 +12,7 @@ function FilledBtn({ buttonText, type, disabled, onClick }) {
       >
         {buttonText}
       </button>
-    </div>
+    </>
   );
 }
 

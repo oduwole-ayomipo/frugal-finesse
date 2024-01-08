@@ -2,7 +2,7 @@ import React from "react";
 
 function TextBtn({ buttonText, type, onClick }) {
   return (
-    <div>
+    <>
       <button
         data-testid="text-btn"
         type={type}
@@ -11,7 +11,7 @@ function TextBtn({ buttonText, type, onClick }) {
       >
         {buttonText}
       </button>
-    </div>
+    </>
   );
 }
 

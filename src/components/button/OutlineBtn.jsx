@@ -2,7 +2,7 @@ import React from "react";
 
 function OutlineBtn({ buttonText, type, onClick }) {
   return (
-    <div>
+    <>
       <button
         data-testid="outline-btn"
         onClick={onClick}
@@ -11,7 +11,7 @@ function OutlineBtn({ buttonText, type, onClick }) {
       >
         {buttonText}
       </button>
-    </div>
+    </>
   );
 }
 

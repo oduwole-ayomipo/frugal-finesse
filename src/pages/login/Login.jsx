@@ -258,7 +258,7 @@ function Login() {
                 />
 
                 <div className="mt-6 text-center">
-                  <Link to="/sign-up">
+                  <Link data-testid="sign-up" to="/sign-up">
                     <TextBtn
                       buttonText={"Don't have an account? Sign Up"}
                       type={"button"}
