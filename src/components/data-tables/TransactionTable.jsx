@@ -21,7 +21,6 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const slicedData = transactionData.slice(startIndex, endIndex);
-  const endResult = Math.min(endIndex, transactionData.length);
 
   useEffect(() => {
     setTransactionLoading(true);
@@ -221,10 +220,11 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
         </div>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-base text-purple-dark font-body">
-              Showing <strong>{startIndex + 1}</strong> to{" "}
-              <strong>{endIndex}</strong> of{" "}
-              <strong>{transactionData.length}</strong> results
+            <p className="text-sm text-purple-dark font-light font-body">
+              Showing <span className="font-semibold">{startIndex + 1}</span> to{" "}
+              <span className="font-semibold">{endIndex}</span> of{" "}
+              <span className="font-semibold">{transactionData.length}</span>{" "}
+              results
             </p>
           </div>
           <ReactPaginate
@@ -255,7 +255,7 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 22 22"
-                    stroke-width="1.5"
+                    stroke-width="1"
                     stroke="currentColor"
                     class="w-4 h-4"
                   >

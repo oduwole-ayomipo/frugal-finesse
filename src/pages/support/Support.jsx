@@ -1,7 +1,12 @@
 import React from "react";
+import Maintenance from "../../components/maintenace/Maintenance";
 
 function Support() {
-  return <div>Support</div>;
+  return (
+    <>
+      <Maintenance />
+    </>
+  );
 }
 
 export default Support;

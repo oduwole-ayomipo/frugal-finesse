@@ -103,7 +103,7 @@ function Setup() {
 
   return (
     <>
-      {signupWarning ? (
+      {signupWarning || currentForm > 3 ? (
         <SignupWarning setSignupWarning={setSignupWarning} />
       ) : (
         <div className="max-w-7xl shadow-default mx-auto">

@@ -1,7 +1,7 @@
 import React from "react";
-
+import Maintenance from "../../components/maintenace/Maintenance";
 function Budgeting() {
-  return <div>Budgeting</div>;
+  return <Maintenance />;
 }
 
 export default Budgeting;

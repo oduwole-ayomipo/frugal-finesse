@@ -15,7 +15,7 @@ function ChartOne({
 
   const progressBar = (expenseType, currentAmount) => {
     let progress = (currentAmount / expenseType) * 100;
-    let className = "bg-purple-6";
+    let className = "bg-purple-3";
 
     // If current amount is greater than the expenseType, set progress to expense amount
     if (currentAmount >= expenseType) {
@@ -29,10 +29,10 @@ function ChartOne({
 
     return (
       <div
-        className={`w-full ease-in-out bg-purple-light h-3 rounded ${className}`}
+        className={`w-full ease-in-out bg-purple-light h-5 rounded-xl ${className}`}
       >
         <div
-          className={`h-full  rounded ${className}`}
+          className={`h-full ${className}`}
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -47,8 +47,8 @@ function ChartOne({
             Budget Progress
           </h4>
         </div>
-        <div className="flex gap-4 flex-col">
-          <div className="my-2 flex gap-2 flex-col">
+        <div className="flex flex-col gap-6">
+          <div className="my-2 flex gap-3 flex-col">
             <h3 className="font-display text-purple-dark text-sm font-medium">
               Needs Budget
             </h3>

@@ -1,7 +1,12 @@
 import React from "react";
+import Maintenance from "../../components/maintenace/Maintenance";
 
 function Forums() {
-  return <div>Forums</div>;
+  return (
+    <>
+      <Maintenance />
+    </>
+  );
 }
 
 export default Forums;

@@ -180,7 +180,7 @@ function SignUp() {
 
                   <div className="mb-4">
                     <label className="mb-2.5 block font-display font-semibold text-purple-dark">
-                      Email
+                      Email{" "}
                       <span className="text-meta-1 font-body font-thin">*</span>
                     </label>
                     <div className="relative font-body font-medium text-purple-6">
@@ -293,7 +293,7 @@ function SignUp() {
 
                   <div className="mb-6">
                     <label className="mb-2.5 block font-medium text-black">
-                      Re-type Password{" "}
+                      Confirm Password{" "}
                       <span className="text-meta-1 font-body font-thin">*</span>
                     </label>
                     <div className="relative font-body font-medium text-purple-6">
