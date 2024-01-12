@@ -209,13 +209,9 @@ function Login() {
                         formik.touched.password &&
                         formik.errors.password}
                     </p>
-                    <span
-                      aria-roledescription="button"
-                      role="button"
-                      className="text-purple-6 py-2 font-medium font-display text-sm hover:font-semibold"
-                    >
-                      Forgot Password?
-                    </span>
+                    <Link data-testid="password-reset" to="/password-reset">
+                      <TextBtn buttonText={"Forgot Password?"} />
+                    </Link>
                   </div>
                 </div>
 
