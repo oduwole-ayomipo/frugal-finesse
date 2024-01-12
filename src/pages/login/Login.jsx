@@ -55,7 +55,7 @@ function Login() {
         dispatch({ type: "LOGIN", payload: user });
         navigate("/dashboard");
       } catch (error) {
-        alert("Wrong Email or Password. Try Again!");
+        alert(error.code);
       } finally {
         setLoading(false);
       }
@@ -203,11 +203,20 @@ function Login() {
                       )}
                     </span>
                   </div>
-                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
-                    {formik.errors.password &&
-                      formik.touched.password &&
-                      formik.errors.password}
-                  </p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                      {formik.errors.password &&
+                        formik.touched.password &&
+                        formik.errors.password}
+                    </p>
+                    <span
+                      aria-roledescription="button"
+                      role="button"
+                      className="text-purple-6 py-2 font-medium font-display text-sm hover:font-semibold"
+                    >
+                      Forgot Password?
+                    </span>
+                  </div>
                 </div>
 
                 <div className="mb-5">
@@ -255,6 +264,7 @@ function Login() {
                       Login with Google
                     </span>
                   }
+                  type={"button"}
                 />
 
                 <div className="mt-6 text-center">

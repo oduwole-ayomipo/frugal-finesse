@@ -32,8 +32,8 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
         snapshot.docs.forEach((doc) => {
           transactionList.push({ id: doc.id, ...doc.data() });
         });
-        // Sort the transaction list based on timeStamp in ascending order (FIFO)
-        transactionList.sort((a, b) => a.timeStamp - b.timeStamp);
+        // Sort the transaction list based on timeStamp in stack (FILO)
+        transactionList.sort((a, b) => b.timeStamp - a.timeStamp);
         setTransactionData(transactionList);
         setTransactionLoading(false);
       },

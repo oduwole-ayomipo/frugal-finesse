@@ -30,7 +30,6 @@ function Transactions() {
     } catch (err) {
       console.log(err);
     } finally {
-      alert(`Transaction with the id, ${id} has been deleted`);
       setDeleteWarning(false);
       setLoading(false);
     }

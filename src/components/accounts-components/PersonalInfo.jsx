@@ -112,7 +112,7 @@ function PersonalInfo() {
 
               <div className="mb-5.5">
                 <label
-                  className="mb-3 block text-sm font-medium font-display text-purple-dark font-display"
+                  className="mb-3 block text-sm font-medium font-display text-purple-dark"
                   htmlFor="emailAddress"
                 >
                   Email Address
@@ -150,7 +150,7 @@ function PersonalInfo() {
 
               <div className="mb-5.5">
                 <label
-                  className="mb-3 block text-sm font-medium font-display text-purple-dark font-display"
+                  className="mb-3 block text-sm font-medium font-display text-purple-dark"
                   htmlFor="emailAddress"
                 >
                   New Password
@@ -213,7 +213,7 @@ function PersonalInfo() {
 
               <div className="mb-5.5">
                 <label
-                  className="mb-3 block text-sm font-medium font-display text-purple-dark font-display"
+                  className="mb-3 block text-sm font-medium font-display text-purple-dark"
                   htmlFor="emailAddress"
                 >
                   Confirm New Password
