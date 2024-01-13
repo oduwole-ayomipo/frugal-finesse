@@ -47,9 +47,9 @@ function PasswordReset() {
           </div>
           <div>
             <span className="px-3 py-2 text-center block text-sm font-medium font-display text-purple-6 lg:text-base">
-              <strong>Forgot your password? </strong> We'll fix it for you,
-              enter the email associated with your account and a password reset
-              link would be sent to you!
+              <strong> Re-set Password?</strong> Easy-Peasy, Enter the email
+              associated with your account and a password reset link would be
+              sent to you!
             </span>
           </div>
         </div>

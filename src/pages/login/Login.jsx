@@ -212,8 +212,12 @@ function Login() {
                         formik.touched.password &&
                         formik.errors.password}
                     </p>
-                    <Link data-testid="password-reset" to="/password-reset">
-                      <TextBtn buttonText={"Forgot Password?"} />
+                    <Link
+                      className="font-display font-medium text-meta-1 text-sm py-1 hover:font-semibold"
+                      data-testid="password-reset"
+                      to="/password-reset"
+                    >
+                      Forgot Password?
                     </Link>
                   </div>
                 </div>

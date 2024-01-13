@@ -1,6 +1,6 @@
 import React from "react";
 import user from "../../images/svg-img/Mikey-Kun.png";
-import FilledBtn from "../../components/button/FilledBtn";
+import FilledBtn from "../button/FilledBtn";
 
 function PhotoUpload() {
   return (
@@ -9,7 +9,7 @@ function PhotoUpload() {
         <div className="rounded-sm border border-stroke bg-white shadow-default">
           <div className="border-b border-stroke py-4 px-7">
             <h3 className="font-medium text-purple-dark font-display">
-              Your Photo
+              Profile Photo
             </h3>
           </div>
           <div className="p-7">

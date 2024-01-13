@@ -2,8 +2,7 @@ import React from "react";
 
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 import PersonalInfo from "../../components/accounts-components/PersonalInfo";
-import PhotoUpload from "./PhotoUpload";
-
+import PhotoUpload from "../../components/accounts-components/PhotoUpload";
 function Accounts() {
   return (
     <>

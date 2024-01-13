@@ -1,25 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import FilledBtn from "../button/FilledBtn";
+import { Link } from "react-router-dom";
 
 function PersonalInfo() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const togglePassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const toggleConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
-
   return (
     <>
       <div className="col-span-5 xl:col-span-3">
         <div className="rounded-sm border border-stroke bg-white shadow-default">
           <div className="border-b border-stroke py-4 px-7">
             <h3 className="font-medium text-purple-dark font-display">
-              Personal Information
+              Update Personal Information
             </h3>
           </div>
           <div className="p-7">
@@ -70,7 +60,7 @@ function PersonalInfo() {
                 <div className="w-full sm:w-1/2">
                   <label
                     className="mb-3 block text-sm font-medium font-display text-purple-dark"
-                    htmlFor="phoneNumber"
+                    htmlFor="username"
                   >
                     Username
                   </label>
@@ -113,7 +103,7 @@ function PersonalInfo() {
               <div className="mb-5.5">
                 <label
                   className="mb-3 block text-sm font-medium font-display text-purple-dark"
-                  htmlFor="emailAddress"
+                  htmlFor="email"
                 >
                   Email Address
                 </label>
@@ -151,129 +141,32 @@ function PersonalInfo() {
               <div className="mb-5.5">
                 <label
                   className="mb-3 block text-sm font-medium font-display text-purple-dark"
-                  htmlFor="emailAddress"
+                  htmlFor="income"
                 >
-                  New Password
+                  Income
                 </label>
                 <div className="relative font-body font-medium text-purple-6">
                   <input
-                    name="password"
-                    id="password"
+                    name="income"
+                    id="income"
                     required
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
+                    type="income"
+                    placeholder="Enter initial income"
+                    defaultValue="₦ 345,000"
                     className="w-full rounded-lg border border-purple-light bg-transparent py-3 pl-4 pr-3 outline-none focus:border-purple-6 focus-visible:shadow-none"
                   />
-
-                  <span
-                    className="absolute right-4 top-3 text-purple-6"
-                    onClick={togglePassword}
-                  >
-                    {showPassword ? (
-                      <svg
-                        opacity="0.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        opacity="0.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
-                        />
-                      </svg>
-                    )}
-                  </span>
                 </div>
               </div>
 
-              <div className="mb-5.5">
-                <label
-                  className="mb-3 block text-sm font-medium font-display text-purple-dark"
-                  htmlFor="emailAddress"
+              <div className="flex w-full items-center justify-end mb-5.5">
+                <Link
+                  className="font-display font-medium text-meta-1 text-base py-1 hover:font-semibold"
+                  data-testid="password-reset"
+                  to="/password-reset"
                 >
-                  Confirm New Password
-                </label>
-                <div className="relative font-body font-medium text-purple-6">
-                  <input
-                    name="password"
-                    id="password"
-                    required
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    className="w-full rounded-lg border border-purple-light bg-transparent py-3 pl-4 pr-3 outline-none focus:border-purple-6 focus-visible:shadow-none"
-                  />
-
-                  <span
-                    className="absolute right-4 top-3 text-purple-6"
-                    onClick={toggleConfirmPassword}
-                  >
-                    {showPassword ? (
-                      <svg
-                        opacity="0.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        opacity="0.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
-                        />
-                      </svg>
-                    )}
-                  </span>
-                </div>
+                  Reset Password?
+                </Link>
               </div>
-
               <div className="flex justify-end gap-4.5">
                 <FilledBtn buttonText={"Save"} type={"submit"} />
               </div>

@@ -88,7 +88,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
         </div>
 
         <div className="relative">
-          <Link className="flex items-center gap-4" to="#">
+          <Link className="flex items-center gap-4" to="/accounts">
             <span className="hidden text-right lg:block">
               <span className="block text-sm font-display font-medium text-purple-dark">
                 {username}
