@@ -10,6 +10,7 @@ import PasswordReset from "./pages/password-reset/PasswordReset";
 import Layout from "./layout/Layout";
 import { AuthContext } from "./context/AuthContext";
 import routes from "./routes/routes";
+import ErrorPage from "./pages/error404.jsx/ErrorPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -48,6 +49,7 @@ function App() {
             );
           })}
         </Route>
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );
