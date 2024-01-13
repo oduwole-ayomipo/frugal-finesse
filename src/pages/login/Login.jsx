@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
+import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -10,6 +11,7 @@ import TextBtn from "../../components/button/TextBtn";
 import OutlineBtn from "../../components/button/OutlineBtn";
 import authImg from "../../images/svg-img/auth.svg";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
@@ -48,6 +50,7 @@ function Login() {
 
         // Signed in
         const user = userCredential.user;
+        toast.success("Login successful!");
 
         await new Promise((resolve) => setTimeout(resolve, 3000));
         // A delay of at least 3 seconds using a promise and setTimeout
@@ -55,7 +58,7 @@ function Login() {
         dispatch({ type: "LOGIN", payload: user });
         navigate("/dashboard");
       } catch (error) {
-        alert(error.code);
+        toast.error(error.code);
       } finally {
         setLoading(false);
       }
@@ -276,6 +279,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

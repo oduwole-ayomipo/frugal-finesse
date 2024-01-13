@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 import TransactionTable from "../../components/data-tables/TransactionTable";
 import TransactionForm from "../../components/modals/TransactionForm";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ConfirmDelete from "../../components/modals/ConfirmDelete";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -27,8 +29,9 @@ function Transactions() {
     try {
       setLoading(true);
       await deleteDoc(doc(db, "transaction", id));
+      toast.success("Transaction deleted successfully!");
     } catch (err) {
-      console.log(err);
+      toast.error(err.code);
     } finally {
       setDeleteWarning(false);
       setLoading(false);
@@ -50,6 +53,7 @@ function Transactions() {
         handleDelete={() => handleDelete(transactionToDeleteId)}
         loading={loading}
       />
+      <ToastContainer />
     </>
   );
 }

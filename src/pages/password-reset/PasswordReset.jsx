@@ -46,10 +46,10 @@ function PasswordReset() {
             </Link>
           </div>
           <div>
-            <span className="px-3 py-2 text-center block text-sm font-medium font-display text-purple-dark lg:text-base">
-              <strong>Forgot your password? </strong>Well worry not, enter the
-              email associated with your account and a password reset link would
-              be sent to you!
+            <span className="px-3 py-2 text-center block text-sm font-medium font-display text-purple-6 lg:text-base">
+              <strong>Forgot your password? </strong> We'll fix it for you,
+              enter the email associated with your account and a password reset
+              link would be sent to you!
             </span>
           </div>
         </div>

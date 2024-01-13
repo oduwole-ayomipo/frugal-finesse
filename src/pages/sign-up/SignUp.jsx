@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { auth } from "../../firebase";
@@ -13,6 +14,7 @@ import Setup from "./Setup";
 import { db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const initialUsersData = {
   username: "",
@@ -75,6 +77,7 @@ function SignUp() {
         );
         // Signed up
         const user = userCredential.user;
+        toast.success("Sign up successful!");
 
         // A delay of at least 3 seconds using a promise and setTimeout
         await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -88,8 +91,7 @@ function SignUp() {
           email: values.email,
         });
       } catch (error) {
-        console.log(error);
-        alert("Wrong Email or Password. Try Again!");
+        toast.error(error.code);
       } finally {
         setLoading(false);
         setSignUpSuccessful(true);
@@ -421,6 +423,7 @@ function SignUp() {
           </div>
         )}
       </div>
+      <ToastContainer />
     </>
   );
 }
