@@ -9,7 +9,7 @@ import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/button/FilledBtn";
 import TextBtn from "../../components/button/TextBtn";
 import OutlineBtn from "../../components/button/OutlineBtn";
-import authImg from "../../images/svg-img/auth.svg";
+import authImg from "../../images/svg-img/auth.png";
 import Setup from "./Setup";
 import { db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
@@ -112,7 +112,7 @@ function SignUp() {
                   <img src={lgLogo} alt="Logo" />
                 </Link>
 
-                <p className="2xl:px-20 font-body text-purple-6">
+                <p className="2xl:px-20 font-display text-purple-6">
                   Your number one budgeting application. Create an account let's
                   get started...
                 </p>

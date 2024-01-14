@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/button/FilledBtn";
-import authImg from "../../images/svg-img/auth.svg";
+import contactUs from "../../images/svg-img/contact-us.png";
 
 function Contact() {
   const formik = useFormik({
@@ -37,13 +37,13 @@ function Contact() {
                 <img src={lgLogo} alt="Logo" />
               </Link>
 
-              <p className="2xl:px-20 font-body text-purple-6">
+              <p className="2xl:px-20 font-display text-purple-6">
                 Feedback, Reccommendation, Queries... We'd love to hear from
                 you!
               </p>
 
               <span className="mt-15 inline-block">
-                <img src={authImg} alt="auth" />
+                <img src={contactUs} alt="auth" />
               </span>
             </div>
           </div>

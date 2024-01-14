@@ -6,6 +6,7 @@ import FilledBtn from "../../components/button/FilledBtn";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase";
+import { ToastContainer, toast } from "react-toastify";
 
 function PasswordReset() {
   const navigate = useNavigate();
@@ -24,13 +25,13 @@ function PasswordReset() {
       setLoading(true);
       try {
         await sendPasswordResetEmail(auth, values.email);
-        alert("Password reset email sent.");
-        console.log(values.email);
+        toast.success("Password Reset Link Sent!");
         resetForm();
       } catch (error) {
-        alert(error.code);
+        toast.error(error.code);
       } finally {
         setLoading(false);
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         navigate("/login");
       }
     },
@@ -111,6 +112,7 @@ function PasswordReset() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
