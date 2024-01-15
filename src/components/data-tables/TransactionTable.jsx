@@ -34,7 +34,9 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
         });
         // Sort the transaction list based on timeStamp in stack (FILO)
         transactionList.sort((a, b) => b.timeStamp - a.timeStamp);
-        setTransactionData(transactionList);
+        setTransactionData(
+          transactionList.filter((item) => item.userId === currentUser.uid)
+        );
         setTransactionLoading(false);
       },
 
@@ -46,7 +48,7 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
     return () => {
       unsub();
     };
-  }, []);
+  }, [currentUser]);
 
   //fnction to convert to date
   const convertDate = (timeStamp) => {
@@ -144,7 +146,6 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
               ) : (
                 <tbody>
                   {slicedData
-                    .filter((item) => item.userId === currentUser.uid)
                     .filter((result) => {
                       return search.toLowerCase() === ""
                         ? result
