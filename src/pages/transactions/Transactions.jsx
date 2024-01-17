@@ -11,7 +11,7 @@ import { db } from "../../firebase";
 function Transactions() {
   const [isOpen, setIsOpen] = useState(false);
   const [deleteWarning, setDeleteWarning] = useState(false);
-  const [transactionToDeleteId, setTransactionToDeleteId] = useState();
+  const [transactionToDeleteId, setTransactionToDeleteId] = useState("");
   const [loading, setLoading] = useState(false);
 
   const openTransactionForm = () => {

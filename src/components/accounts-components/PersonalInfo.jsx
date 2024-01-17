@@ -1,8 +1,95 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FilledBtn from "../button/FilledBtn";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { toast } from "react-toastify";
 
-function PersonalInfo() {
+function PersonalInfo({ openUpdateModal }) {
+  const { currentUser } = useContext(AuthContext);
+  const [personalInfo, setPersonalInfo] = useState({});
+  const [infoLoading, setInfoLoading] = useState(true);
+  const [infoChanged, setInfoChanged] = useState(false);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const docRef = doc(db, "users", currentUser.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const infoData = docSnap.data();
+          setPersonalInfo(infoData);
+          setInfoLoading(false);
+        }
+      } catch (err) {
+        toast.error(err.code);
+      }
+    };
+    fetchUserData();
+  }, [currentUser.uid]);
+
+  const formik = useFormik({
+    initialValues: {
+      fullname: personalInfo.fullname || "",
+      email: personalInfo.email || "",
+      username: personalInfo.username || "",
+      income: personalInfo.income || "",
+    },
+
+    validationSchema: Yup.object({
+      email: Yup.string().email("Please provide a valid email"),
+      fullname: Yup.string()
+        .max(32, "Full Name must be maximum of 32 Characters")
+        .min(5, "Full Name must be minimum of 5 Characters"),
+      username: Yup.string().min(3, "Name must be more than 3 character"),
+      income: Yup.string()
+        .transform((values) => values.replace(/,/g, "")) // Remove commas before validation
+        .matches(/^[0-9]+$/, "Provide a valid amount")
+        .min(3, "Must be at least 6 digits"),
+    }),
+
+    onSubmit: (values) => {
+      openUpdateModal(values);
+    },
+  });
+
+  useEffect(() => {
+    // Update Formik's initialValues when personalInfo is available
+    if (!infoLoading) {
+      formik.setValues({
+        fullname: personalInfo.fullname,
+        email: personalInfo.email,
+        username: personalInfo.username,
+        income: personalInfo.income,
+      });
+    }
+    // eslint-disable-next-line
+  }, [infoLoading, personalInfo, formik.setValues]);
+
+  useEffect(() => {
+    const checkInfoChanged = () => {
+      if (infoLoading) {
+        setInfoChanged(false);
+      } else if (
+        formik.values.fullname !== personalInfo.fullname ||
+        formik.values.email !== personalInfo.email ||
+        formik.values.username !== personalInfo.username ||
+        parseFloat(formik.values.income) !== personalInfo.income
+      ) {
+        setInfoChanged(true);
+      } else {
+        setInfoChanged(false);
+      }
+    };
+
+    checkInfoChanged(); // Call the function when needed
+
+    // Any other dependencies for this useEffect
+  }, [formik.values, infoLoading, personalInfo, setInfoChanged]);
+
   return (
     <>
       <div className="col-span-5 xl:col-span-3">
@@ -13,12 +100,12 @@ function PersonalInfo() {
             </h3>
           </div>
           <div className="p-7">
-            <form action="#">
+            <form onSubmit={formik.handleSubmit}>
               <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                 <div className="w-full sm:w-1/2">
                   <label
                     className="mb-3 block text-sm font-medium text-purple-dark font-display"
-                    htmlFor="fullName"
+                    htmlFor="fullname"
                   >
                     Full Name
                   </label>
@@ -28,8 +115,12 @@ function PersonalInfo() {
                       id="fullname"
                       required
                       type="text"
-                      placeholder="John Doe"
-                      defaultValue="John Doe"
+                      placeholder={
+                        infoLoading ? "Full Name" : personalInfo.fullname
+                      }
+                      value={formik.values.fullname}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
                       className="w-full rounded-lg border border-purple-light bg-transparent py-3 pl-4 pr-3 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
@@ -55,6 +146,11 @@ function PersonalInfo() {
                       </svg>
                     </span>
                   </div>
+                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                    {formik.errors.fullname &&
+                      formik.touched.fullname &&
+                      formik.errors.fullname}
+                  </p>
                 </div>
 
                 <div className="w-full sm:w-1/2">
@@ -70,8 +166,12 @@ function PersonalInfo() {
                       id="username"
                       required
                       type="text"
-                      placeholder="Ayomipo"
-                      defaultValue="Ayomipo"
+                      placeholder={
+                        infoLoading ? "Username" : personalInfo.username
+                      }
+                      value={formik.values.username}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
                       className="w-full rounded-lg border border-purple-light bg-transparent py-3 pl-4 pr-3 outline-none focus:border-purple-6 focus-visible:shadow-none"
                     />
 
@@ -98,6 +198,11 @@ function PersonalInfo() {
                     </span>
                   </div>
                 </div>
+                <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                  {formik.errors.username &&
+                    formik.touched.username &&
+                    formik.errors.username}
+                </p>
               </div>
 
               <div className="mb-5.5">
@@ -113,8 +218,12 @@ function PersonalInfo() {
                     id="email"
                     required
                     type="email"
-                    placeholder="Enter your email"
-                    defaultValue="justayooo@gmail.com"
+                    placeholder={
+                      infoLoading ? "Email Address" : personalInfo.email
+                    }
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     className="w-full rounded-lg border border-purple-light bg-transparent py-3 pl-4 pr-3 outline-none focus:border-purple-6 focus-visible:shadow-none"
                   />
 
@@ -136,6 +245,11 @@ function PersonalInfo() {
                     </svg>
                   </span>
                 </div>
+                <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                  {formik.errors.email &&
+                    formik.touched.email &&
+                    formik.errors.email}
+                </p>
               </div>
 
               <div className="mb-5.5">
@@ -146,16 +260,24 @@ function PersonalInfo() {
                   Income
                 </label>
                 <div className="relative font-body font-medium text-purple-6">
+                  <span className="absolute left-4 top-3 text-purple-6">₦</span>
                   <input
                     name="income"
                     id="income"
                     required
-                    type="income"
-                    placeholder="Enter initial income"
-                    defaultValue="₦ 345,000"
-                    className="w-full rounded-lg border border-purple-light bg-transparent py-3 pl-4 pr-3 outline-none focus:border-purple-6 focus-visible:shadow-none"
+                    type="text"
+                    placeholder={infoLoading ? "Income" : personalInfo.income}
+                    value={formik.values.income}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className="w-full rounded-lg border border-purple-light bg-transparent py-3 pl-8 pr-3 outline-none focus:border-purple-6 focus-visible:shadow-none"
                   />
                 </div>
+                <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                  {formik.errors.income &&
+                    formik.touched.income &&
+                    formik.errors.income}
+                </p>
               </div>
 
               <div className="flex w-full items-center justify-end mb-5.5">
@@ -168,7 +290,11 @@ function PersonalInfo() {
                 </Link>
               </div>
               <div className="flex justify-end gap-4.5">
-                <FilledBtn buttonText={"Save"} type={"submit"} />
+                <FilledBtn
+                  disabled={!infoChanged}
+                  buttonText={"Save"}
+                  type={"submit"}
+                />
               </div>
             </form>
           </div>

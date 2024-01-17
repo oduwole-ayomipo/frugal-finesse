@@ -20,9 +20,6 @@ const initialUsersData = {
   username: "",
   budgetRule: "",
   income: 0,
-  maxNeeds: 0,
-  maxWants: 0,
-  maxSavings: 0,
   timeStamp: "",
 };
 
@@ -87,7 +84,7 @@ function SignUp() {
         // set initial user data to db
         await setDoc(doc(db, "users", user.uid), {
           ...userData,
-          fullName: values.fullname,
+          fullname: values.fullname,
           email: values.email,
         });
       } catch (error) {

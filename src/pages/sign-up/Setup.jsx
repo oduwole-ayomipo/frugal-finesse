@@ -14,6 +14,7 @@ import {
   collection,
 } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 function Setup() {
   const { currentUser } = useContext(AuthContext);
@@ -43,7 +44,8 @@ function Setup() {
             ...transactionData,
           });
         } catch (err) {
-          console.log("this is the error", err);
+          toast.error(err.code);
+          console.log(err);
         }
       };
       //update setup data in firestore db
@@ -54,6 +56,7 @@ function Setup() {
             timeStamp: serverTimestamp(),
           });
         } catch (err) {
+          toast.err(err.code);
           console.log(err);
         } finally {
           navigate("/login");
@@ -134,6 +137,7 @@ function Setup() {
           </div>
         </div>
       )}
+      <ToastContainer />
     </>
   );
 }

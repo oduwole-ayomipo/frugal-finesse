@@ -4,6 +4,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
 import ReactPaginate from "react-paginate";
+import { ToastContainer, toast } from "react-toastify";
 
 function TransactionTable({ openTransactionForm, openDeleteWarning }) {
   const { currentUser } = useContext(AuthContext);
@@ -41,6 +42,7 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
       },
 
       (err) => {
+        toast.alert(err.code);
         console.log(err);
       }
     );
@@ -300,6 +302,7 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
           onClick={openTransactionForm}
         />
       </div>
+      <ToastContainer />
     </>
   );
 }
