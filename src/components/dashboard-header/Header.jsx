@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import smLogo from "../../images/svg-logo/smLogo.svg";
-import mikey_kun from "../../images/svg-img/Mikey-Kun.png";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
@@ -10,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 function Header({ sidebarOpen, setSidebarOpen }) {
   const { currentUser } = useContext(AuthContext);
   const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     const fetchUsername = async () => {
@@ -18,6 +18,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const userData = docSnap.data();
+          setAvatar(userData.avatar);
           setUsername(userData.username);
         } else {
           // docSnap.data() will be undefined in this case
@@ -102,7 +103,15 @@ function Header({ sidebarOpen, setSidebarOpen }) {
               </span>
 
               <span className="h-12 w-12 rounded-full">
-                <img className="rounded-full" src={mikey_kun} alt="User" />
+                <img
+                  className="rounded-full h-12 w-12"
+                  src={
+                    avatar === ""
+                      ? "https://avatar.iran.liara.run/public"
+                      : avatar
+                  }
+                  alt="avatar"
+                />
               </span>
             </Link>
           </div>

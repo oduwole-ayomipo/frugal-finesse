@@ -9,8 +9,10 @@ import { collection, doc, getDocs, query, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { toast } from "react-toastify";
 import PersonalInfoUpdate from "../../components/modals/PersonalInfoUpdate";
+import ImageUpdate from "../../components/modals/ImageUpdate";
 
 function Accounts() {
+  const [uploadOpen, setUploadOpen] = useState(false);
   const [updateWarning, setUpdateWarning] = useState(false);
   const [loading, setLoading] = useState(false);
   const { currentUser } = useContext(AuthContext);
@@ -25,6 +27,10 @@ function Accounts() {
     setInfoValues(values);
     setUpdateWarning(true);
     setLoading(false);
+  };
+
+  const openUploadModal = () => {
+    setUploadOpen(true);
   };
 
   const handleSubmit = async (values) => {
@@ -83,7 +89,7 @@ function Accounts() {
 
         <div className="grid grid-cols-5 gap-8">
           <PersonalInfo openUpdateModal={openUpdateModal} />
-          <PhotoUpload />
+          <PhotoUpload openUploadModal={openUploadModal} />
         </div>
       </div>
       <PersonalInfoUpdate
@@ -92,6 +98,7 @@ function Accounts() {
         updateWarning={updateWarning}
         setUpdateWarning={setUpdateWarning}
       />
+      <ImageUpdate setUploadOpen={setUploadOpen} uploadOpen={uploadOpen} />
       <ToastContainer />
     </>
   );

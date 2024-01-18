@@ -44,7 +44,6 @@ function Transactions() {
       <TransactionTable
         openTransactionForm={openTransactionForm}
         openDeleteWarning={openDeleteWarning}
-        handleDelete={() => handleDelete(transactionToDeleteId)}
       />
       <TransactionForm isOpen={isOpen} setIsOpen={setIsOpen} />
       <ConfirmDelete
