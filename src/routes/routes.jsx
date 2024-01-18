@@ -7,7 +7,7 @@ const Goals = lazy(() => import("../pages/goals/Goals"));
 const Report = lazy(() => import("../pages/report/Report"));
 const Forums = lazy(() => import("../pages/forums/Forums"));
 const Accounts = lazy(() => import("../pages/accounts/Accounts"));
-const Support = lazy(() => import("../pages/support/Support"));
+const Feedback = lazy(() => import("../pages/feedback/Feedback"));
 
 const coreRoutes = [
   {
@@ -46,9 +46,9 @@ const coreRoutes = [
     component: Accounts,
   },
   {
-    path: "support",
-    title: "Support",
-    component: Support,
+    path: "feedback",
+    title: "Feedback",
+    component: Feedback,
   },
 ];
 
