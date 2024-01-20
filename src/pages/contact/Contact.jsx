@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/button/FilledBtn";
 import contactUs from "../../images/svg-img/contact-us.png";
+import { ToastContainer, toast } from "react-toastify";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebase";
 
 function Contact() {
+  const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
       Firstname: "",
@@ -15,16 +19,33 @@ function Contact() {
       subject: "",
       message: "",
     },
-    onSubmit: (values) => {
-      console.log("contact data", values);
-    },
+
     validationSchema: Yup.object({
       Firstname: Yup.string().min(3, "First name must be above 3 letters"),
       Lastname: Yup.string().min(3, "Last name must be above 3 letters"),
       email: Yup.string().email("Please provide a valid email"),
-      subject: Yup.string().min(10, "Subject name must be above 10 letters"),
-      message: Yup.string().min(10, "Message name must be above 10 letters"),
+      subject: Yup.string().min(10, "Subject name must be above 10 char"),
+      message: Yup.string().min(20, "Message name must be above 20 char"),
     }),
+
+    onSubmit: async (values, { resetForm }) => {
+      setLoading(true);
+      try {
+        await addDoc(
+          collection(db, "contact us"),
+          {
+            ...values,
+          },
+          { merge: true }
+        );
+        toast.success("Thanks for reaching out!");
+      } catch (err) {
+        toast.error(err.code);
+      } finally {
+        resetForm();
+        setLoading(false);
+      }
+    },
   });
 
   return (
@@ -182,13 +203,18 @@ function Contact() {
                 </div>
 
                 <div className="mb-5">
-                  <FilledBtn buttonText={"Send Message"} type={"submit"} />
+                  <FilledBtn
+                    buttonText={!loading ? "Send Message" : "Sending"}
+                    type={"submit"}
+                    disabled={loading}
+                  />
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
