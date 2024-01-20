@@ -32,9 +32,7 @@ function PhotoUpload({ openUploadModal }) {
               <div className="h-14 w-14 rounded-full">
                 <img
                   src={
-                    avatar === ""
-                      ? "https://avatar.iran.liara.run/public"
-                      : avatar
+                    !avatar ? "https://avatar.iran.liara.run/public" : avatar
                   }
                   alt="Avatar"
                   className="h-14 w-14"

@@ -102,13 +102,11 @@ function Header({ sidebarOpen, setSidebarOpen }) {
                 </span>
               </span>
 
-              <span className="h-12 w-12 rounded-full">
+              <span className="h-12 w-12 rounded-full max-[250px]:hidden">
                 <img
                   className="rounded-full h-12 w-12"
                   src={
-                    avatar === ""
-                      ? "https://avatar.iran.liara.run/public"
-                      : avatar
+                    !avatar ? "https://avatar.iran.liara.run/public" : avatar
                   }
                   alt="avatar"
                 />
