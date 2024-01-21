@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import React from "react";
 import Login from "./Login";
-import { MemoryRouter, BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 // test utils helper func
 const renderWithRouter = (ui, { route = "/login" } = {}) => {
@@ -26,6 +26,10 @@ jest.mock("firebase/auth", () => ({
 
 jest.mock("firebase/firestore", () => ({
   getFirestore: jest.fn(),
+}));
+
+jest.mock("firebase/storage", () => ({
+  getStorage: jest.fn(),
 }));
 
 // Renders login form with email, password, and 3 buttons
