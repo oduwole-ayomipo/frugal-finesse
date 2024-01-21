@@ -5,7 +5,7 @@ function Maintenance() {
   return (
     <>
       <div className="flex flex-col w-full items-center justify-center">
-        <div className="relative max-w-[28rem]">
+        <div className="relative max-w-[23rem]">
           <img src={maintenance} alt="under maintenance" />
         </div>
         <div>

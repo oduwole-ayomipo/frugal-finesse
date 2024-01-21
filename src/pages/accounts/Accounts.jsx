@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react";
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 import PersonalInfo from "../../components/accounts-components/PersonalInfo";
 import PhotoUpload from "../../components/accounts-components/PhotoUpload";
-import { ToastContainer } from "react-toastify";
 import { AuthContext } from "../../context/AuthContext";
 import { collection, doc, getDocs, query, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -99,7 +98,6 @@ function Accounts() {
         setUpdateWarning={setUpdateWarning}
       />
       <ImageUpdate setUploadOpen={setUploadOpen} uploadOpen={uploadOpen} />
-      <ToastContainer />
     </>
   );
 }

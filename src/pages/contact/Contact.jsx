@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/button/FilledBtn";
 import contactUs from "../../images/svg-img/contact-us.png";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -214,7 +214,6 @@ function Contact() {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 import TransactionTable from "../../components/data-tables/TransactionTable";
 import TransactionForm from "../../components/modals/TransactionForm";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ConfirmDelete from "../../components/modals/ConfirmDelete";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -52,7 +52,6 @@ function Transactions() {
         handleDelete={() => handleDelete(transactionToDeleteId)}
         loading={loading}
       />
-      <ToastContainer />
     </>
   );
 }
