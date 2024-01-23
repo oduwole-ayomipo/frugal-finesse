@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
+import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -8,8 +9,9 @@ import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/button/FilledBtn";
 import TextBtn from "../../components/button/TextBtn";
 import OutlineBtn from "../../components/button/OutlineBtn";
-import authImg from "../../images/svg-img/auth.svg";
+import authImg from "../../images/svg-img/auth.png";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
@@ -48,6 +50,7 @@ function Login() {
 
         // Signed in
         const user = userCredential.user;
+        toast.success("Login successful!");
 
         await new Promise((resolve) => setTimeout(resolve, 3000));
         // A delay of at least 3 seconds using a promise and setTimeout
@@ -55,7 +58,7 @@ function Login() {
         dispatch({ type: "LOGIN", payload: user });
         navigate("/dashboard");
       } catch (error) {
-        alert("Wrong Email or Password. Try Again!");
+        toast.error(error.code);
       } finally {
         setLoading(false);
       }
@@ -71,12 +74,12 @@ function Login() {
                 <img src={lgLogo} alt="Logo" />
               </Link>
 
-              <p className="2xl:px-20 font-body text-purple-6">
+              <p className="2xl:px-20 font-display text-purple-6">
                 Your number one budgeting application. Login and let's get
                 started...
               </p>
 
-              <span className="mt-15 inline-block">
+              <span className="mt-4 inline-block">
                 <img src={authImg} alt="auth" />
               </span>
             </div>
@@ -93,7 +96,10 @@ function Login() {
 
               <form onSubmit={formik.handleSubmit}>
                 <div className="mb-4">
-                  <label className="mb-2.5 block font-display font-semibold text-purple-dark">
+                  <label
+                    htmlFor="email"
+                    className="mb-2.5 block font-display font-semibold text-purple-dark"
+                  >
                     Email Address
                     <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
@@ -136,7 +142,10 @@ function Login() {
                 </div>
 
                 <div className="mb-6">
-                  <label className="mb-2.5 block font-medium text-black">
+                  <label
+                    htmlFor="password"
+                    className="mb-2.5 block font-medium text-black"
+                  >
                     Password
                     <span className="text-meta-1 font-body font-thin">*</span>
                   </label>
@@ -197,17 +206,26 @@ function Login() {
                       )}
                     </span>
                   </div>
-                  <p className="text-meta-1 py-2 font-body text-xs font-thin">
-                    {formik.errors.password &&
-                      formik.touched.password &&
-                      formik.errors.password}
-                  </p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-meta-1 py-2 font-body text-xs font-thin">
+                      {formik.errors.password &&
+                        formik.touched.password &&
+                        formik.errors.password}
+                    </p>
+                    <Link
+                      className="font-display font-medium text-meta-1 text-sm py-1 hover:font-semibold"
+                      data-testid="password-reset"
+                      to="/password-reset"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </div>
                 </div>
 
                 <div className="mb-5">
                   <FilledBtn
                     disabled={loading}
-                    buttonText={loading ? "Logining in..." : "Log In"}
+                    buttonText={loading ? "Logining in..." : "Login"}
                     type={"submit"}
                   />
                 </div>
@@ -249,10 +267,11 @@ function Login() {
                       Login with Google
                     </span>
                   }
+                  type={"button"}
                 />
 
                 <div className="mt-6 text-center">
-                  <Link to="/sign-up">
+                  <Link data-testid="sign-up" to="/sign-up">
                     <TextBtn
                       buttonText={"Don't have an account? Sign Up"}
                       type={"button"}
@@ -264,6 +283,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

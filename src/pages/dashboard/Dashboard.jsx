@@ -8,6 +8,7 @@ import ChartTwo from "../../components/dashboard-components/ChartTwo";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
+import ChartThree from "../../components/dashboard-components/ChartThree";
 
 function Dashboard() {
   const [transactions, setTransactions] = useState([]);
@@ -115,8 +116,10 @@ function Dashboard() {
           savingsCurrentAmount={savingsCurrentAmount}
         />
         <ChartTwo />
+
         <div className="col-span-12 xl:col-span-8"></div>
       </div>
+      <ChartThree />
     </>
   );
 }

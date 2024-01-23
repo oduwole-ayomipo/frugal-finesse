@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactApexChart from "react-apexcharts";
 
-/* const options: ApexOptions = {
+const options = {
   legend: {
     show: false,
     position: "top",
     horizontalAlign: "left",
   },
-  colors: ["#3C50E0", "#80CAEE"],
+  colors: ["#AC8BEE", "#DAC7FF"],
   chart: {
-    fontFamily: "Satoshi, sans-serif",
+    fontFamily: 'Montserrat, "sans-serif"',
     height: 335,
     type: "area",
     dropShadow: {
@@ -19,7 +20,6 @@ import React from "react";
       left: 0,
       opacity: 0.1,
     },
-
     toolbar: {
       show: false,
     },
@@ -46,14 +46,10 @@ import React from "react";
     width: [2, 2],
     curve: "straight",
   },
-  // labels: {
-  //   show: false,
-  //   position: "top",
-  // },
   grid: {
     xaxis: {
       lines: {
-        show: true,
+        show: false,
       },
     },
     yaxis: {
@@ -68,7 +64,7 @@ import React from "react";
   markers: {
     size: 4,
     colors: "#fff",
-    strokeColors: ["#3056D3", "#80CAEE"],
+    strokeColors: ["#AC8BEE", "#DAC7FF"],
     strokeWidth: 3,
     strokeOpacity: 0.9,
     strokeDashArray: 0,
@@ -82,10 +78,6 @@ import React from "react";
   xaxis: {
     type: "category",
     categories: [
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
       "Jan",
       "Feb",
       "Mar",
@@ -94,6 +86,10 @@ import React from "react";
       "Jun",
       "Jul",
       "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ],
     axisBorder: {
       show: false,
@@ -113,39 +109,27 @@ import React from "react";
   },
 };
 
-interface ChartTwoState {
-  series: {
-    name: string,
-    data: number[],
-  }[];
-}
-
-const ChartTwo: React.FC = () => {
-  const [state, setState] =
-    useState <
-    ChartTwoState >
-    {
-      series: [
-        {
-          name: "Product One",
-          data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
-        },
-
-        {
-          name: "Product Two",
-          data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
-        },
-      ],
-    };
- */
 function ChartTwo() {
+  const [state, setState] = useState({
+    series: [
+      {
+        name: "Total Income",
+        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
+      },
+      {
+        name: "Total Expenses",
+        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
+      },
+    ],
+  });
+
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default sm:px-7.5 xl:col-span-8">
       <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
         <div className="flex w-full flex-wrap gap-3 sm:gap-5">
           <div className="flex min-w-47.5">
             <span className="mt-1 mr-2 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-primary">
-              <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
+              <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-purple-2"></span>
             </span>
             <div className="w-full">
               <p className="font-semibold font-display">Total Income</p>
@@ -153,7 +137,7 @@ function ChartTwo() {
           </div>
           <div className="flex min-w-47.5">
             <span className="mt-1 mr-2 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-secondary">
-              <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-secondary"></span>
+              <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-purple-4"></span>
             </span>
             <div className="w-full">
               <p className="font-semibold font-display">Total Expense</p>
@@ -163,7 +147,14 @@ function ChartTwo() {
       </div>
 
       <div>
-        <div id="ChartTwo" className="-ml-5"></div>
+        <div id="ChartTwo" className="-ml-5">
+          <ReactApexChart
+            options={options}
+            series={state.series}
+            type="area"
+            height={350}
+          />
+        </div>
       </div>
     </div>
   );

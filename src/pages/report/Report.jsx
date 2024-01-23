@@ -1,7 +1,12 @@
 import React from "react";
+import Maintenance from "../../common/maintenace/Maintenance";
 
 function Report() {
-  return <div>Report</div>;
+  return (
+    <>
+      <Maintenance />
+    </>
+  );
 }
 
 export default Report;

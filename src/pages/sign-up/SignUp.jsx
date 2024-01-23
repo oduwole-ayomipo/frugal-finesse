@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { auth } from "../../firebase";
@@ -8,19 +9,17 @@ import lgLogo from "../../images/svg-logo/lgLogo.svg";
 import FilledBtn from "../../components/button/FilledBtn";
 import TextBtn from "../../components/button/TextBtn";
 import OutlineBtn from "../../components/button/OutlineBtn";
-import authImg from "../../images/svg-img/auth.svg";
+import authImg from "../../images/svg-img/auth.png";
 import Setup from "./Setup";
 import { db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const initialUsersData = {
   username: "",
   budgetRule: "",
   income: 0,
-  maxNeeds: 0,
-  maxWants: 0,
-  maxSavings: 0,
   timeStamp: "",
 };
 
@@ -75,6 +74,7 @@ function SignUp() {
         );
         // Signed up
         const user = userCredential.user;
+        toast.success("Sign up successful!");
 
         // A delay of at least 3 seconds using a promise and setTimeout
         await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -84,12 +84,11 @@ function SignUp() {
         // set initial user data to db
         await setDoc(doc(db, "users", user.uid), {
           ...userData,
-          fullName: values.fullname,
+          fullname: values.fullname,
           email: values.email,
         });
       } catch (error) {
-        console.log(error);
-        alert("Wrong Email or Password. Try Again!");
+        toast.error(error.code);
       } finally {
         setLoading(false);
         setSignUpSuccessful(true);
@@ -110,7 +109,7 @@ function SignUp() {
                   <img src={lgLogo} alt="Logo" />
                 </Link>
 
-                <p className="2xl:px-20 font-body text-purple-6">
+                <p className="2xl:px-20 font-display text-purple-6">
                   Your number one budgeting application. Create an account let's
                   get started...
                 </p>
@@ -180,7 +179,7 @@ function SignUp() {
 
                   <div className="mb-4">
                     <label className="mb-2.5 block font-display font-semibold text-purple-dark">
-                      Email
+                      Email{" "}
                       <span className="text-meta-1 font-body font-thin">*</span>
                     </label>
                     <div className="relative font-body font-medium text-purple-6">
@@ -293,7 +292,7 @@ function SignUp() {
 
                   <div className="mb-6">
                     <label className="mb-2.5 block font-medium text-black">
-                      Re-type Password{" "}
+                      Confirm Password{" "}
                       <span className="text-meta-1 font-body font-thin">*</span>
                     </label>
                     <div className="relative font-body font-medium text-purple-6">
@@ -421,6 +420,7 @@ function SignUp() {
           </div>
         )}
       </div>
+      <ToastContainer />
     </>
   );
 }

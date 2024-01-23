@@ -21,7 +21,7 @@ function SignupWarning({ setSignupWarning }) {
         <div className="flex flex-col items-center justify-center min-h-screen">
           <Loading />
           <p className="text-center font-display text-purple-7 text-lg font-semibold p-4">
-            Just one more step. Your account is almost ready! <br />
+            Hold on! Your account is almost ready! <br />
             <span className=" text-meta-1 font-bold">
               Please do not close the browser...
             </span>

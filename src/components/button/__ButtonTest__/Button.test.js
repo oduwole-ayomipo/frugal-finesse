@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect"; //This for accurate assersions
 
-import FilledBtn from "../Filled-Button/FilledBtn";
-import OutlineBtn from "../Outline-Button/OutlineBtn";
-import TextBtn from "../Text-Button/TextBtn";
+import FilledBtn from "../FilledBtn";
+import OutlineBtn from "../OutlineBtn";
+import TextBtn from "../TextBtn";
 
 // Helper function that defines a test case for rendering the button component
 const testButtonComponent = (ButtonComponent) => {
   test("Renders Button Component with a text", () => {
     //Arrange
-    const buttonText = "some action";
+    const buttonText = "Some Action";
 
     //Act
     const { getByText } = render(<ButtonComponent buttonText={buttonText} />);

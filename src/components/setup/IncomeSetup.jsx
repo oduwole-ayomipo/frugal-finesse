@@ -18,7 +18,7 @@ function IncomeSetup({ onSubmit }) {
       income: Yup.string()
         .transform((values) => values.replace(/,/g, "")) // Remove commas before validation
         .matches(/^[0-9]+$/, "Provide a valid amount")
-        .min(6, "Must be at least 6 digits"),
+        .min(3, "Must be at least 6 digits"),
     }),
   });
   return (
