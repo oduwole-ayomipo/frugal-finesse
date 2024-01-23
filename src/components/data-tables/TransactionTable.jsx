@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import FilledBtn from "../button/FilledBtn";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
 import ReactPaginate from "react-paginate";
@@ -16,7 +16,10 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
     setTransactionLoading(true);
     //Listen for real time update
     const unsub = onSnapshot(
-      collection(db, "transaction"),
+      query(
+        collection(db, "transaction"),
+        where("userId", "==", currentUser.uid)
+      ),
       (snapshot) => {
         let transactionList = [];
         snapshot.docs.forEach((doc) => {
@@ -24,9 +27,7 @@ function TransactionTable({ openTransactionForm, openDeleteWarning }) {
         });
         // Sort the transaction list based on timeStamp in stack (FILO)
         transactionList.sort((a, b) => b.timeStamp - a.timeStamp);
-        setTransactionData(
-          transactionList.filter((item) => item.userId === currentUser.uid)
-        );
+        setTransactionData(transactionList);
         setTransactionLoading(false);
       },
 

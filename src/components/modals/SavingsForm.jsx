@@ -1,15 +1,21 @@
-import React, { useContext, useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
 import { Dialog } from "@headlessui/react";
-import FilledBtn from "../button/FilledBtn";
-import { useFormik } from "formik";
+import React, { useContext, useState } from "react";
 import * as Yup from "yup";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../../firebase";
+import { useFormik } from "formik";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  serverTimestamp,
+  where,
+} from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
+import FilledBtn from "../button/FilledBtn";
+import { db } from "../../firebase";
 import { toast } from "react-toastify";
 
-function TransactionForm({ isOpen, setIsOpen }) {
+function SavingsForm({ isOpen, setIsOpen }) {
   const [loading, setLoading] = useState(false);
   const { currentUser } = useContext(AuthContext);
   //Formik
@@ -21,22 +27,40 @@ function TransactionForm({ isOpen, setIsOpen }) {
       userId: "",
     },
 
-    onSubmit: (values, { resetForm }) => {
-      const handleTransactionSubmit = async () => {
+    onSubmit: async (values, { resetForm }) => {
+      const handleCreateSavingGoal = async () => {
         try {
           setLoading(true);
-          await addDoc(
-            collection(db, "transaction"),
-            {
-              userId: currentUser.uid,
-              category: values.category,
-              description: values.description,
-              amount: parseFloat(values.amount.replace(/[, ]/g, "")),
-              timeStamp: serverTimestamp(),
-            },
-            { merge: true }
+
+          // Check if a savings goal with the same description already exists
+          const existingSavingsQuery = query(
+            collection(db, "savings"),
+            where("userId", "==", currentUser.uid),
+            where("description", "==", values.description)
           );
-          toast.success("Transaction added successfully!");
+
+          const existingSavingsSnapshot = await getDocs(existingSavingsQuery);
+
+          if (!existingSavingsSnapshot.empty) {
+            // A savings goal with the same description already exists
+            toast.error("Savings goal already exists!");
+          } else {
+            // No existing savings goal found, proceed with adding a new one
+            await addDoc(
+              collection(db, "savings"),
+              {
+                userId: currentUser.uid,
+                category: values.category,
+                description: values.description,
+                savingsAmount: 0,
+                totalAmount: parseFloat(values.amount.replace(/[, ]/g, "")),
+                timeStamp: serverTimestamp(),
+              },
+              { merge: true }
+            );
+
+            toast.success("Savings goal created!");
+          }
         } catch (err) {
           toast.error(err.code);
         } finally {
@@ -45,7 +69,8 @@ function TransactionForm({ isOpen, setIsOpen }) {
           setLoading(false);
         }
       };
-      handleTransactionSubmit();
+
+      handleCreateSavingGoal();
     },
 
     validationSchema: Yup.object({
@@ -53,10 +78,9 @@ function TransactionForm({ isOpen, setIsOpen }) {
         .transform((values) => values.replace(/,/g, "")) // Remove commas before validation
         .matches(/^[0-9]+$/, "Provide a valid amount")
         .min(3, "Must be at least 3 digit"),
-      description: Yup.string().max(20, "minimum of 20 char"),
+      description: Yup.string().max(17, "minimum of 17 char"),
     }),
   });
-
   return (
     <>
       <Dialog
@@ -74,7 +98,7 @@ function TransactionForm({ isOpen, setIsOpen }) {
               <div className="rounded-sm border border-stroke bg-white shadow-default">
                 <div className=" flex w-full justify-between items-center border-b border-stroke py-4 px-6.5 ">
                   <h3 className="font-semibold text-purple-dark font-display">
-                    Add new transaction
+                    Create a saving goal
                   </h3>
                   <span
                     aria-roledescription="button"
@@ -105,7 +129,7 @@ function TransactionForm({ isOpen, setIsOpen }) {
                     <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
                       <div className="w-full xl:w-1/2">
                         <label className="mb-2.5 block font-medium text-purple-dark font-display">
-                          Amount
+                          Target
                         </label>
                         <div className="relative z-20 bg-white">
                           <span className=" font-display  font-semibold text-purple-dark text-lg opacity-65 absolute top-1/2 left-4 z-30 -translate-y-1/2">
@@ -188,7 +212,7 @@ function TransactionForm({ isOpen, setIsOpen }) {
 
                     <div className="mb-4.5">
                       <label className="mb-2.5 block font-medium text-purple-dark font-display">
-                        Description
+                        Plan Title
                       </label>
                       <input
                         required
@@ -211,7 +235,7 @@ function TransactionForm({ isOpen, setIsOpen }) {
                   <div className="px-4 pb-4 sm:px-6">
                     <FilledBtn
                       disabled={loading}
-                      buttonText={loading ? "Submitting" : "Submit"}
+                      buttonText={loading ? "Creating" : "Create"}
                       type={"submit"}
                     />
                   </div>
@@ -225,4 +249,4 @@ function TransactionForm({ isOpen, setIsOpen }) {
   );
 }
 
-export default TransactionForm;
+export default SavingsForm;

@@ -4,7 +4,16 @@ import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 import PersonalInfo from "../../components/accounts-components/PersonalInfo";
 import PhotoUpload from "../../components/accounts-components/PhotoUpload";
 import { AuthContext } from "../../context/AuthContext";
-import { collection, doc, getDocs, query, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  query,
+  serverTimestamp,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { db } from "../../firebase";
 import { toast } from "react-toastify";
 import PersonalInfoUpdate from "../../components/modals/PersonalInfoUpdate";
@@ -45,21 +54,28 @@ function Accounts() {
       }
 
       // Query transactions collection
-      const transactionsQuery = query(collection(db, "transaction"));
-      const transactionsSnapshot = await getDocs(transactionsQuery);
+      const transactionsQuery = query(
+        collection(db, "transaction"),
+        where("userId", "==", currentUser.uid),
+        where("description", "==", "initial income")
+      );
 
-      transactionsSnapshot.forEach((transactionDoc) => {
-        const transactionData = transactionDoc.data();
-        if (
-          transactionData.userId === currentUser.uid &&
-          transactionData.description === "initial income"
-        ) {
-          console.log(values);
+      const transactionsSnapshot = await getDocs(transactionsQuery);
+      if (transactionsSnapshot.size > 0) {
+        transactionsSnapshot.forEach((transactionDoc) => {
           updateDoc(doc(db, "transaction", transactionDoc.id), {
             amount: incomeValue,
           });
-        }
-      });
+        });
+      } else {
+        await addDoc(collection(db, "transaction"), {
+          userId: currentUser.uid,
+          amount: incomeValue,
+          category: "income",
+          description: "initial income",
+          timeStamp: serverTimestamp(),
+        });
+      }
 
       // Update user document
       const userDocRef = doc(db, "users", currentUser.uid);

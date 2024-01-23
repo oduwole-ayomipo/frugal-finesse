@@ -1,14 +1,27 @@
-import React from "react";
 import { Dialog } from "@headlessui/react";
+import React, { useState } from "react";
 import FilledBtn from "../button/FilledBtn";
-import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import { db } from "../../firebase";
+import { deleteDoc, doc } from "firebase/firestore";
 
-function ConfirmDelete({
-  deleteWarning,
-  setDeleteWarning,
-  handleDelete,
-  loading,
-}) {
+function DeleteSaving({ deleteWarning, setDeleteWarning, savingToDeleteId }) {
+  const [loading, setLoading] = useState(false);
+
+  //funtion to handle delete
+  const handleDelete = async () => {
+    try {
+      setLoading(true);
+      await deleteDoc(doc(db, "savings", savingToDeleteId));
+      toast.success("Savings goal deleted!");
+    } catch (err) {
+      toast.error(err.code);
+    } finally {
+      setDeleteWarning(false);
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Dialog
@@ -71,7 +84,7 @@ function ConfirmDelete({
                       </svg>
                     </span>
                     <p className="mb-2.5 opacity-80 block font-medium text-purple-dark font-display">
-                      Are you sure you want to delete this transaction? This
+                      Are you sure you want to delete this saving goal? This
                       action cannot be undone.
                     </p>
                   </div>
@@ -88,10 +101,8 @@ function ConfirmDelete({
           </Dialog.Panel>
         </div>
       </Dialog>
-
-      <ToastContainer />
     </>
   );
 }
 
-export default ConfirmDelete;
+export default DeleteSaving;
