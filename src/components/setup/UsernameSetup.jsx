@@ -37,7 +37,7 @@ function UsernameSetup({ onSubmit }) {
             value={formik.values.username}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            className="w-full text-center rounded-lg border border-purple-dark  py-4 outline-none bg-white focus:border-purple-6 focus-visible:shadow-none"
+            className="w-full rounded-lg text-xs border text-center text-purple-6 border-purple-light bg-transparent py-4 outline-none focus:border-purple-6 focus-visible:shadow-none lg:text-base"
           />
         </div>
         <div>
